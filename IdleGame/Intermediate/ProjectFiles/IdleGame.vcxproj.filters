@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\IdleGame.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\IdleGame.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\IdleGameEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\IdleGame">
+      <UniqueIdentifier>{5575B22F-4D93-3949-B5CD-9F8B906962F8}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\IdleGame\IdleGame.Build.cs">
+      <Filter>Source\IdleGame</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\IdleGame\IdleGame.cpp">
+      <Filter>Source\IdleGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\IdleGame\IdleGame.h">
+      <Filter>Source\IdleGame</Filter>
+    </ClCompile>
+    <Filter Include="Source\IdleGame\Private">
+      <UniqueIdentifier>{448DF0CA-C581-3719-A161-94C7E1E6AAD3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\IdleGame\Private\Managers">
+      <UniqueIdentifier>{2D74E655-FBAC-3BB2-AEE9-028B5BCE3CE2}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IdleGame\Private\Managers\IGCivilizationManager.cpp">
+      <Filter>Source\IdleGame\Private\Managers</Filter>
+    </ClCompile>
+    <Filter Include="Source\IdleGame\Public">
+      <UniqueIdentifier>{4B7F15C2-8FE9-337B-B9DB-8BD326B780C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\IdleGame\Public\Managers">
+      <UniqueIdentifier>{1D9BA1AF-0616-38D4-AB54-9D6502FC5443}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IdleGame\Public\Managers\IGCivilizationManager.h">
+      <Filter>Source\IdleGame\Public\Managers</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

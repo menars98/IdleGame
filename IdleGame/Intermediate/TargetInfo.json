@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "IdleGame",
+			"Path": "..\\Source\\IdleGame.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "IdleGameEditor",
+			"Path": "..\\Source\\IdleGameEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
