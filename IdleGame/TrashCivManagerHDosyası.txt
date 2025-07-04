@@ -1,0 +1,39 @@
+public
+
+	//UPROPERTY(BlueprintReadWrite, Category = "Civilization") 
+	//TArray<FIntPoint> LandCells;	
+
+protected
+	// Blank?? //
+	// Convert map coordinates to widget coordinates
+	UFUNCTION(BlueprintCallable, Category = "Map")
+	FVector2D ConvertMapToWidgetCoords(FIntPoint MapCoord, int32 Width, int32 Height, FVector2D WidgetSize);
+
+	// Check if a position is land or sea
+	UFUNCTION(BlueprintCallable, Category = "Map")
+	bool IsLandAtPosition(int32 X, int32 Y);
+
+	// Convert world coordinates to map coordinates and vice versa
+	UFUNCTION(BlueprintCallable, Category = "Map")
+	FVector2D WorldToMapCoordinates(FVector2D WorldPosition);
+
+	// Convert map coordinates to world coordinates
+	UFUNCTION(BlueprintCallable, Category = "Map")
+	FVector2D MapToWorldCoordinates(int32 MapX, int32 MapY);
+
+	// Check if a position is land at world coordinates
+	UFUNCTION(BlueprintCallable, Category = "Map")
+	bool IsLandAtWorldPosition(FVector2D WorldPosition);
+
+	// Get valid neighbor positions for a given map position
+	UFUNCTION(BlueprintCallable, Category = "Map")
+	TArray<FVector2D> GetValidNeighborPositions(FVector2D CurrentPosition);
+	
+	
+private
+	// Dünya haritası için sabit bounds (6289x3533) TRASH
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Map", meta = (AllowPrivateAccess = "true"))
+	FVector2D WorldMin = FVector2D(-31445.0f, -17665.0f);  // Merkezi (0,0)
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Map", meta = (AllowPrivateAccess = "true"))
+	FVector2D WorldMax = FVector2D(31445.0f, 17665.0f);

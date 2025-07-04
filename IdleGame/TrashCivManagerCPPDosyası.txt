@@ -1,0 +1,120 @@
+//Trash
+/*FIntPoint AIGCivilizationManager::GetRandomLandCell()
+{
+    if (LandCells.Num() == 0)
+        return FIntPoint(-1, -1);
+
+    int32 Index = FMath::RandRange(0, LandCells.Num() - 1);
+    ChosenPoint = LandCells[Index];
+    LandCells.RemoveAt(Index);
+    return ChosenPoint;
+}*/
+
+// Convert map coordinates to widget coordinates
+FVector2D AIGCivilizationManager::ConvertMapToWidgetCoords(FIntPoint MapCoord, int32 Width, int32 Height, FVector2D WidgetSize)
+{
+    float X = (float)MapCoord.X / (float)Width * WidgetSize.X;
+    float Y = (float)MapCoord.Y / (float)Height * WidgetSize.Y;
+    return FVector2D(X, Y);
+}
+
+
+bool AIGCivilizationManager::IsLandAtPosition(int32 X, int32 Y)
+{
+    // Sınır kontrolü
+    if (X < 0 || X >= MapWidth || Y < 0 || Y >= MapHeight)
+        return false;
+
+    // MapArray'den kara kontrolü (1 = Kara, 0 = Deniz)
+    return MapArray[Y].Row[X] == 1;
+}
+
+FVector2D AIGCivilizationManager::WorldToMapCoordinates(FVector2D WorldPosition)
+{
+    // Dünya koordinatlarını 0-1 arasında normalize et
+    float NormalizedX = (WorldPosition.X - WorldMin.X) / (WorldMax.X - WorldMin.X);
+    float NormalizedY = (WorldPosition.Y - WorldMin.Y) / (WorldMax.Y - WorldMin.Y);
+
+    // Map array indekslerine çevir (6289x3533)
+    int32 MapX = FMath::Clamp(FMath::RoundToInt(NormalizedX * MapWidth), 0, MapWidth - 1);
+    int32 MapY = FMath::Clamp(FMath::RoundToInt(NormalizedY * MapHeight), 0, MapHeight - 1);
+
+    return FVector2D(MapX, MapY);
+}
+
+FVector2D AIGCivilizationManager::MapToWorldCoordinates(int32 MapX, int32 MapY)
+{
+    // Map indekslerini dünya koordinatlarına çevir
+    float WorldX = WorldMin.X + (MapX / float(MapWidth)) * (WorldMax.X - WorldMin.X);
+    float WorldY = WorldMin.Y + (MapY / float(MapHeight)) * (WorldMax.Y - WorldMin.Y);
+
+    return FVector2D(WorldX, WorldY);
+}
+
+bool AIGCivilizationManager::IsLandAtWorldPosition(FVector2D WorldPosition)
+{
+    FVector2D MapCoords = WorldToMapCoordinates(WorldPosition);
+    return IsLandAtPosition(MapCoords.X, MapCoords.Y);
+}
+
+TArray<FVector2D> AIGCivilizationManager::GetValidNeighborPositions(FVector2D CurrentPosition)
+{
+    TArray<FVector2D> ValidNeighbors;
+    FVector2D MapCoords = WorldToMapCoordinates(CurrentPosition);
+
+    // 8 yönlü komşu kontrolü (veya 4 yönlü için sadece +/- X,Y)
+    TArray<FVector2D> Directions = {
+        FVector2D(-1, -1), FVector2D(0, -1), FVector2D(1, -1),
+        FVector2D(-1,  0),                   FVector2D(1,  0),
+        FVector2D(-1,  1), FVector2D(0,  1), FVector2D(1,  1)
+    };
+
+    for (FVector2D Dir : Directions)
+    {
+        int32 NewX = MapCoords.X + Dir.X;
+        int32 NewY = MapCoords.Y + Dir.Y;
+
+        if (IsLandAtPosition(NewX, NewY))
+        {
+            // Map koordinatlarını dünya koordinatlarına geri çevir
+            FVector2D WorldPos;
+            WorldPos.X = WorldMin.X + (NewX / float(MapWidth)) * (WorldMax.X - WorldMin.X);
+            WorldPos.Y = WorldMin.Y + (NewY / float(MapHeight)) * (WorldMax.Y - WorldMin.Y);
+            ValidNeighbors.Add(WorldPos);
+        }
+    }
+
+    return ValidNeighbors;
+}
+
+void AIGCivilizationManager::CollectLandCells()
+{
+    UnownedLandCells.Empty();
+    for (int32 Y = 0; Y < MapArray.Num(); Y++)
+    {
+        for (int32 X = 0; X < MapArray[Y].Row.Num(); X++)
+        {
+            if (MapArray[Y].Row[X] == 1) // Land
+            {
+                UnownedLandCells.Add(FIntPoint(X, Y));
+            }
+        }
+    }
+}
+
+/*FIntPoint AIGCivilizationManager::GetRandomUnownedLandCell()
+{
+    if (UnownedLandCells.Num() == 0)
+    {
+        return FIntPoint(-1, -1); // Sahipsiz kara kalmamış
+    }
+
+    // Listeden rastgele bir indeks seç
+    int32 Index = FMath::RandRange(0, UnownedLandCells.Num() - 1);
+    // Seçilen noktayı al
+    FIntPoint ChosenPoint = UnownedLandCells[Index];
+    // Bu noktayı artık sahipsizler listesinden çıkar ki tekrar seçilmesin
+    UnownedLandCells.RemoveAtSwap(Index); // RemoveAtSwap, RemoveAt'ten daha hızlıdır.
+
+    return ChosenPoint;
+}*/
