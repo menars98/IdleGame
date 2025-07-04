@@ -13,6 +13,31 @@ AIGCivilizationManager::AIGCivilizationManager()
 
 }
 
+void AIGCivilizationManager::DiagnoseMapDataAtPoint(FIntPoint PointToTest)
+{
+    if (MapArray.Num() == 0 || RegionMap.Num() == 0)
+    {
+        UE_LOG(LogTemp, Error, TEXT("DIAGNOSIS FAILED: Map arrays are empty!"));
+        return;
+    }
+
+    if (!MapArray.IsValidIndex(PointToTest.Y) || !MapArray[PointToTest.Y].Row.IsValidIndex(PointToTest.X))
+    {
+        UE_LOG(LogTemp, Error, TEXT("DIAGNOSIS FAILED: Point %s is out of bounds!"), *PointToTest.ToString());
+        return;
+    }
+
+    int32 IsLandValue = MapArray[PointToTest.Y].Row[PointToTest.X];
+    int32 RegionIDValue = RegionMap[PointToTest.Y].Row[PointToTest.X];
+
+    FString IsLandText = (IsLandValue == 1) ? "YES (Value=1)" : "NO (Value=0)";
+
+    UE_LOG(LogTemp, Error, TEXT("--- DIAGNOSIS FOR POINT %s ---"), *PointToTest.ToString());
+    UE_LOG(LogTemp, Warning, TEXT("Is it Land? -> %s"), *IsLandText);
+    UE_LOG(LogTemp, Warning, TEXT("What is its Region ID? -> %d"), RegionIDValue);
+    UE_LOG(LogTemp, Error, TEXT("------------------------------------"));
+}
+
 void AIGCivilizationManager::BeginPlay()
 {
     Super::BeginPlay();
@@ -21,91 +46,101 @@ void AIGCivilizationManager::BeginPlay()
 
 void AIGCivilizationManager::InitializeMapArray()
 {
-    if (!MaskTexture)
+    if (!MaskTexture || !RegionMaskTexture)
     {
-        UE_LOG(LogTemp, Warning, TEXT("AIGCivilizationManager: MaskTexture is not set!"));
+        UE_LOG(LogTemp, Error, TEXT("MaskTexture or RegionMaskTexture is not set!"));
         return;
     }
 
-    FTexture2DMipMap& Mip = MaskTexture->GetPlatformData()->Mips[0];
-    const FByteBulkData* RawImageData = &Mip.BulkData;
-    const FColor* FormattedImageData = static_cast<const FColor*>(RawImageData->LockReadOnly());
+    // --- BÖLGE RENKLERÝMÝZÝ BURADA TANIMLAYALIM ---
+    // Bu, kodumuzun hangi renklere "benzeyenleri" arayacaðýný belirler.
+    // Haritanýzdaki renklere göre bu listeyi güncelleyebilirsiniz.
+    PureRegionColors.Empty();
+    PureRegionColors.Add(FColor(0, 0, 255));      // 1: Kuzey Amerika (Mavi)
+    PureRegionColors.Add(FColor(0, 255, 0));      // 2: Güney Amerika (Yeþil)
+    PureRegionColors.Add(FColor(255, 0, 0));      // 3: Avrupa (Kýrmýzý - Sizin haritada daha pembemsi)
+    PureRegionColors.Add(FColor(255, 255, 0));    // 4: Afrika (Sarý)
+    PureRegionColors.Add(FColor(255, 0, 255));    // 5: Asya (Macenta)
+    // ... Haritanýzdaki diðer tüm ana renkleri buraya ekleyin.
+    // Örneðin: PureRegionColors.Add(FColor(255, 0, 255)); // 5: Asya (Macenta)
 
+    // --- 1. Kara/Deniz Haritasýný Oku (Deðiþiklik yok) ---
+    FTexture2DMipMap& Mip = MaskTexture->GetPlatformData()->Mips[0];
+    const FColor* FormattedImageData = static_cast<const FColor*>(Mip.BulkData.LockReadOnly());
     MapWidth = Mip.SizeX;
     MapHeight = Mip.SizeY;
 
-    if (MapWidth == 0 || MapHeight == 0)
-    {
-        RawImageData->Unlock();
-        return;
-    }
-
     MapArray.SetNum(MapHeight);
     CivilizationMap.SetNum(MapHeight);
-    UnownedLandCells.Empty();
-
     for (int32 Y = 0; Y < MapHeight; Y++)
     {
         MapArray[Y].Row.SetNum(MapWidth);
-        CivilizationMap[Y].Row.Init(-1, MapWidth); // Tüm deðerleri -1 (SAHÝPSÝZ) olarak baþlat
-
+        CivilizationMap[Y].Row.Init(-1, MapWidth);
         for (int32 X = 0; X < MapWidth; X++)
         {
-            FColor Pixel = FormattedImageData[Y * MapWidth + X];
-            if (Pixel.R > 128) // Beyaz = Kara
-            {
-                MapArray[Y].Row[X] = 1; // Kara
-                UnownedLandCells.Add(FIntPoint(X, Y));
-            }
-            else
-            {
-                MapArray[Y].Row[X] = 0; //Deniz
-            }
+            MapArray[Y].Row[X] = (FormattedImageData[Y * MapWidth + X].R < 128) ? 1 : 0;
         }
     }
-    RawImageData->Unlock();
+    Mip.BulkData.Unlock();
 
+    // --- 2. BÖLGE HARÝTASINI OKU (AKILLI VERSÝYON) ---
+    FTexture2DMipMap& RegionMip = RegionMaskTexture->GetPlatformData()->Mips[0];
+    const FColor* RegionFormattedData = static_cast<const FColor*>(RegionMip.BulkData.LockReadOnly());
+    RegionMap.SetNum(MapHeight);
+
+    // --- DEBUG ÝÇÝN EKLENEN KISIM ---
+    // Sadece birkaç renkli piksel bulup ne okuduðumuzu görelim
+    int32 DebugSamplesFound = 0;
+
+    for (int32 Y = 0; Y < MapHeight; Y++)
+    {
+        RegionMap[Y].Row.SetNum(MapWidth);
+        for (int32 X = 0; X < MapWidth; X++)
+        {
+            FColor PixelColor = RegionFormattedData[Y * MapWidth + X];
+
+            // Eðer piksel siyahsa, burasý kesinlikle bir bölge deðil.
+            if (PixelColor.R < 10 && PixelColor.G < 10 && PixelColor.B < 10)
+            {
+                RegionMap[Y].Row[X] = -1; // -1 = Bölge Yok
+                continue;
+            }
+
+            // Bu piksele en yakýn olan saf rengi bulalým.
+            int32 MinDistanceSq = 20000;
+            int32 BestRegionID = -1;
+
+            for (int32 i = 0; i < PureRegionColors.Num(); ++i)
+            {
+                const FColor& PureColor = PureRegionColors[i];
+
+                // Renkler arasýndaki mesafenin karesini hesapla (daha hýzlý)
+                int32 DistSq = FMath::Square(PixelColor.R - PureColor.R) +
+                    FMath::Square(PixelColor.G - PureColor.G) +
+                    FMath::Square(PixelColor.B - PureColor.B);
+
+                if (DistSq < MinDistanceSq)
+                {
+                    MinDistanceSq = DistSq;
+                    BestRegionID = i + 1; // Region ID'ler 1'den baþlar, dizi indeksi 0'dan.
+                }
+            }
+
+            RegionMap[Y].Row[X] = BestRegionID;
+        }
+    }
+    RegionMip.BulkData.Unlock();
+
+    // --- 3. Geri Kalan Her Þey Ayný ---
+    FindAllSpawnableLocations();
     DynamicMapTexture = UTexture2DDynamic::Create(MapWidth, MapHeight, PF_B8G8R8A8);
     if (DynamicMapTexture)
     {
         DynamicMapTexture->UpdateResource();
         FlushRenderingCommands();
     }
-
-    GetWorld()->GetTimerManager().SetTimer(ExpansionTimerHandle, this, &AIGCivilizationManager::ExpandCivilizations, 0.05f, true, 2.0f); // Timer'ý biraz hýzlandýralým
+    GetWorld()->GetTimerManager().SetTimer(ExpansionTimerHandle, this, &AIGCivilizationManager::ExpandCivilizations, 0.05f, true, 2.0f);
 }
-
-void AIGCivilizationManager::CollectLandCells()
-{
-    UnownedLandCells.Empty();
-    for (int32 Y = 0; Y < MapArray.Num(); Y++)
-    {
-        for (int32 X = 0; X < MapArray[Y].Row.Num(); X++)
-        {
-            if (MapArray[Y].Row[X] == 1) // Land
-            {
-                UnownedLandCells.Add(FIntPoint(X, Y));
-            }
-        }
-    }
-}
-
-/*FIntPoint AIGCivilizationManager::GetRandomUnownedLandCell()
-{
-    if (UnownedLandCells.Num() == 0)
-    {
-        return FIntPoint(-1, -1); // Sahipsiz kara kalmamýþ
-    }
-
-    // Listeden rastgele bir indeks seç
-    int32 Index = FMath::RandRange(0, UnownedLandCells.Num() - 1);
-    // Seçilen noktayý al
-    FIntPoint ChosenPoint = UnownedLandCells[Index];
-    // Bu noktayý artýk sahipsizler listesinden çýkar ki tekrar seçilmesin
-    UnownedLandCells.RemoveAtSwap(Index); // RemoveAtSwap, RemoveAt'ten daha hýzlýdýr.
-
-    return ChosenPoint;
-}*/
 
 FIntPoint AIGCivilizationManager::GetRandomSpawnableLocation()
 {
@@ -120,9 +155,20 @@ FIntPoint AIGCivilizationManager::GetRandomSpawnableLocation()
     return ChosenPoint;
 }
 
+int32 AIGCivilizationManager::GetRegionIDAtLocation(FIntPoint Location)
+{
+    if (RegionMap.IsValidIndex(Location.Y) && RegionMap[Location.Y].Row.IsValidIndex(Location.X))
+    {
+        return RegionMap[Location.Y].Row[Location.X];
+    }
+    return -1;
+}
+
 void AIGCivilizationManager::FindAllSpawnableLocations()
 {
     UnownedLandCells.Empty();
+    if (RegionMap.Num() == 0) return; // Bölge haritasý yüklenmediyse devam etme
+
     for (int32 Y = 0; Y < MapArray.Num(); Y++)
     {
         for (int32 X = 0; X < MapArray[Y].Row.Num(); X++)
@@ -141,38 +187,46 @@ void AIGCivilizationManager::FindAllSpawnableLocations()
 
 void AIGCivilizationManager::ClaimTileForCivilization(FIntPoint Location, int32 CivID, FColor CivColor)
 {
-    if (CivID < 0) return;
-
-    // --- NÝHAÝ KANIT TESTÝ ---
-    // Bu fonksiyon çaðrýldýðýnda, MapArray'in o konum için ne düþündüðünü LOG'A YAZDIRALIM.
-    int32 LandOrSeaValue = -999; // Varsayýlan hata deðeri
-    if (Location.Y >= 0 && Location.Y < MapHeight && Location.X >= 0 && Location.X < MapWidth)
-    {
-        LandOrSeaValue = MapArray[Location.Y].Row[Location.X];
-    }
-    
-    // ERROR seviyesinde yazdýralým ki kýrmýzý renkle hemen fark edilsin.
-    UE_LOG(LogTemp, Error, TEXT("Attempting to place Civ %d at %s. MapArray value at this location is: %d (1=Land, 0=Sea)"), 
-        CivID, *Location.ToString(), LandOrSeaValue);
-    // --- TEST SONU ---
-
+    // Sýnýr kontrolü her zaman iyidir.
+    if (CivID < 0 || !MapArray.IsValidIndex(Location.Y) || !MapArray[Location.Y].Row.IsValidIndex(Location.X)) return;
 
     FColor OpaqueColor = CivColor;
     OpaqueColor.A = 255;
-    
-    // Orijinal kontrolümüzü yapalým
-    if (Location.Y >= 0 && Location.Y < MapHeight && Location.X >= 0 && Location.X < MapWidth &&
-        MapArray[Location.Y].Row[Location.X] == 1 &&
-        CivilizationMap[Location.Y].Row[Location.X] == -1)
+
+    // Deðerleri ata
+    CivilizationMap[Location.Y].Row[Location.X] = CivID;
+    CivilizationOwnedTiles.FindOrAdd(CivID).AddUnique(Location);
+
+    // Texture'ý boya
+    UpdateTextureWithColor(Location, OpaqueColor);
+}
+
+void AIGCivilizationManager::ClaimInitialAreaForCivilization(FIntPoint Center, int32 Radius, int32 CivID, FColor CivColor)
+{
+    if (CivID < 0) return;
+
+    for (int32 y = -Radius; y <= Radius; ++y)
     {
-        CivilizationMap[Location.Y].Row[Location.X] = CivID;
-        CivilizationOwnedTiles.FindOrAdd(CivID).AddUnique(Location);
-        UpdateTextureWithColor(Location, OpaqueColor);
-    }
-    else
-    {
-        // Eðer yerleþtirme BAÞARISIZ olursa, nedenini de yazdýralým.
-        UE_LOG(LogTemp, Warning, TEXT(" -> Placement FAILED for Civ %d. Condition not met."), CivID);
+        for (int32 x = -Radius; x <= Radius; ++x)
+        {
+            FIntPoint CurrentPoint(Center.X + x, Center.Y + y);
+
+            // Sýnýr kontrolü
+            if (!MapArray.IsValidIndex(CurrentPoint.Y) || !MapArray[CurrentPoint.Y].Row.IsValidIndex(CurrentPoint.X))
+            {
+                continue; // Bu nokta harita dýþýnda, atla.
+            }
+
+            // KARAR ANI: Bu piksel boyanmaya uygun mu?
+            const bool bIsLand = (MapArray[CurrentPoint.Y].Row[CurrentPoint.X] == 1);
+            const bool bIsUnowned = (CivilizationMap[CurrentPoint.Y].Row[CurrentPoint.X] == -1);
+
+            if (bIsLand && bIsUnowned)
+            {
+                // Koþul saðlandýysa, boyama emrini ver.
+                ClaimTileForCivilization(CurrentPoint, CivID, CivColor);
+            }
+        }
     }
 }
 
@@ -185,72 +239,46 @@ void AIGCivilizationManager::ExpandCivilizations()
 {
     if (CurrentCivColors.Num() == 0 || CivilizationOwnedTiles.Num() == 0) return;
 
-    // Geniþleyecek bir medeniyet seç
     TArray<int32> CivIDs;
     CivilizationOwnedTiles.GetKeys(CivIDs);
     if (CivIDs.Num() == 0) return;
-    int32 ExpandingCivID = CivIDs[FMath::RandRange(0, CivIDs.Num() - 1)];
 
-    // --- YENÝ MANTIK BAÞLIYOR ---
+    const int32 ExpandingCivID = CivIDs[FMath::RandRange(0, CivIDs.Num() - 1)];
+    const TArray<FIntPoint>& OwnedTiles = CivilizationOwnedTiles[ExpandingCivID];
+    if (OwnedTiles.Num() == 0) return;
 
-    // 1. Adým: Bu medeniyetin sadece SINIRDA olan karolarýný bul.
-    TArray<FIntPoint> BorderTiles;
-    if (CivilizationOwnedTiles.Contains(ExpandingCivID))
+    const int32 CivHomeRegionID = GetRegionIDAtLocation(OwnedTiles[0]);
+    if (CivHomeRegionID == -1) return;
+
+    // Medeniyetin TÜM sýnýr hattýndaki BÜTÜN geniþleme noktalarýný bul.
+    TArray<FIntPoint> AllPossibleExpansions;
+    for (const FIntPoint& OwnedTile : OwnedTiles)
     {
-        for (const FIntPoint& OwnedTile : CivilizationOwnedTiles[ExpandingCivID])
+        const FIntPoint Neighbors[] = {
+            {OwnedTile.X, OwnedTile.Y - 1}, {OwnedTile.X, OwnedTile.Y + 1},
+            {OwnedTile.X - 1, OwnedTile.Y}, {OwnedTile.X + 1, OwnedTile.Y}
+        };
+
+        for (const FIntPoint& Neighbor : Neighbors)
         {
-            // Bu karonun komþularýndan en az biri geniþlemeye uygunsa, bu bir sýnýr karosudur.
-            const FIntPoint Neighbors[] = {
-                {OwnedTile.X, OwnedTile.Y - 1}, {OwnedTile.X, OwnedTile.Y + 1},
-                {OwnedTile.X - 1, OwnedTile.Y}, {OwnedTile.X + 1, OwnedTile.Y}
-            };
-            for (const FIntPoint& Neighbor : Neighbors)
+            if (Neighbor.Y >= 0 && Neighbor.Y < MapHeight && Neighbor.X >= 0 && Neighbor.X < MapWidth &&
+                MapArray[Neighbor.Y].Row[Neighbor.X] == 1 &&
+                CivilizationMap[Neighbor.Y].Row[Neighbor.X] == -1 &&
+                GetRegionIDAtLocation(Neighbor) == CivHomeRegionID)
             {
-                if (Neighbor.Y >= 0 && Neighbor.Y < MapHeight && Neighbor.X >= 0 && Neighbor.X < MapWidth &&
-                    MapArray[Neighbor.Y].Row[Neighbor.X] == 1 &&
-                    CivilizationMap[Neighbor.Y].Row[Neighbor.X] == -1)
-                {
-                    BorderTiles.Add(OwnedTile);
-                    break; // Bir tane bulmak yeterli, diðer komþulara bakmaya gerek yok.
-                }
+                AllPossibleExpansions.AddUnique(Neighbor);
             }
         }
     }
 
-    // Eðer geniþleyecek sýnýr karosu yoksa, fonksiyondan çýk.
-    if (BorderTiles.Num() == 0)
+    // Geniþleyecek bir yer bulduysak, o büyük listeden rastgele birini seçip sahiplen.
+    if (AllPossibleExpansions.Num() > 0)
     {
-        return;
+        FIntPoint NewTile = AllPossibleExpansions[FMath::RandRange(0, AllPossibleExpansions.Num() - 1)];
+        // Koþul yukarýda zaten kontrol edildiði için, doðrudan boyama emrini ver.
+        ClaimTileForCivilization(NewTile, ExpandingCivID, CurrentCivColors[ExpandingCivID]);
     }
 
-    // 2. Adým: Bulunan sýnýr karolarýndan rastgele BÝR TANE seç. Burasý bizim "büyüme noktamýz".
-    FIntPoint GrowthPoint = BorderTiles[FMath::RandRange(0, BorderTiles.Num() - 1)];
-
-    // 3. Adým: Sadece bu "büyüme noktasýnýn" etrafýndaki boþ yerleri bul.
-    TArray<FIntPoint> PossibleExpansions;
-    const FIntPoint NeighborsOfGrowthPoint[] = {
-        {GrowthPoint.X, GrowthPoint.Y - 1}, {GrowthPoint.X, GrowthPoint.Y + 1},
-        {GrowthPoint.X - 1, GrowthPoint.Y}, {GrowthPoint.X + 1, GrowthPoint.Y}
-    };
-    for (const FIntPoint& Neighbor : NeighborsOfGrowthPoint)
-    {
-        if (Neighbor.Y >= 0 && Neighbor.Y < MapHeight && Neighbor.X >= 0 && Neighbor.X < MapWidth &&
-            MapArray[Neighbor.Y].Row[Neighbor.X] == 1 &&
-            CivilizationMap[Neighbor.Y].Row[Neighbor.X] == -1)
-        {
-            PossibleExpansions.Add(Neighbor);
-        }
-    }
-
-    // 4. Adým: Bulunan bu komþu boþ yerlerden birini seç ve sahiplen.
-    if (PossibleExpansions.Num() > 0)
-    {
-        FIntPoint NewTile = PossibleExpansions[FMath::RandRange(0, PossibleExpansions.Num() - 1)];
-
-        CivilizationMap[NewTile.Y].Row[NewTile.X] = ExpandingCivID;
-        CivilizationOwnedTiles.FindOrAdd(ExpandingCivID).AddUnique(NewTile);
-        UpdateTextureWithColor(NewTile, CurrentCivColors[ExpandingCivID]);
-    }
 }
 
 void AIGCivilizationManager::UpdateTextureWithColor(FIntPoint Location, FColor Color)

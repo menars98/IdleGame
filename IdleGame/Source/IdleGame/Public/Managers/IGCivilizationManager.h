@@ -26,9 +26,16 @@ public:
 	// Sets default values for this actor's properties
 	AIGCivilizationManager();
 	
+	UFUNCTION(BlueprintCallable, Category = "DEBUG")
+	void DiagnoseMapDataAtPoint(FIntPoint PointToTest);
+
 	// --- MAIN FUNCTIONS TO BE CALLED FROM BLUEPRINT ---
+
 	UFUNCTION(BlueprintCallable, Category = "Map")
 	void InitializeMapArray();
+
+	UFUNCTION(BlueprintCallable, Category = "Map Interaction")
+	void ClaimInitialAreaForCivilization(FIntPoint Center, int32 Radius, int32 CivID, FColor CivColor);
 
 	// Allows Blueprint to claim a cell on behalf of a civilization.
 	// Used to place the starting cells.
@@ -73,16 +80,8 @@ private:
 	// NEW: Added for region system
 	// Holds the region to which each tile belongs (RegionID).
 	TArray<FMapRow> RegionMap;
-	// A map to translate colors into Region IDs.
-	TMap<FColor, int32> ColorToRegionIDMap;
-	int32 NextRegionID = 1;
-
-	UPROPERTY(BlueprintReadOnly, Category = "Map") 
-	int32 MapWidth;
-	UPROPERTY(BlueprintReadOnly, Category = "Map") 
-	int32 MapHeight;
-	UPROPERTY(BlueprintReadWrite, Category = "Civilization") 
-	FIntPoint StartPoint;
+	// Bu dizinin indeksi, bölge ID'sini belirleyecek (Index 0 = RegionID 1, vs.)
+	TArray<FColor> PureRegionColors;
 
 	// C++ ÝÇÝ KULLANILAN FONKSÝYONLAR
 	// Main function that is called periodically and runs the expansion logic for all civilizations.
@@ -97,4 +96,11 @@ protected:
 	virtual void BeginPlay() override;
 	//UFUNCTION(BlueprintCallable, Category = "Map")
 	//FIntPoint GetRandomLandCell();
+
+	UPROPERTY(BlueprintReadOnly, Category = "Map")
+	int32 MapWidth=0;
+	UPROPERTY(BlueprintReadOnly, Category = "Map")
+	int32 MapHeight=0;
+	UPROPERTY(BlueprintReadWrite, Category = "Civilization")
+	FIntPoint StartPoint;
 };

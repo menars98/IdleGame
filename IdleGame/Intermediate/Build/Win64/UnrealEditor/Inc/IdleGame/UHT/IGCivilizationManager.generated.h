@@ -24,11 +24,14 @@ struct FColor;
 template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FMapRow>();
 
 #define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_23_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execFindAllSpawnableLocations); \
+	DECLARE_FUNCTION(execGetRegionIDAtLocation); \
+	DECLARE_FUNCTION(execGetRandomSpawnableLocation); \
 	DECLARE_FUNCTION(execUpdateCivilizationData); \
 	DECLARE_FUNCTION(execClaimTileForCivilization); \
-	DECLARE_FUNCTION(execGetRandomUnownedLandCell); \
-	DECLARE_FUNCTION(execCollectLandCells); \
-	DECLARE_FUNCTION(execInitializeMapArray);
+	DECLARE_FUNCTION(execClaimInitialAreaForCivilization); \
+	DECLARE_FUNCTION(execInitializeMapArray); \
+	DECLARE_FUNCTION(execDiagnoseMapDataAtPoint);
 
 
 #define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_23_INCLASS_NO_PURE_DECLS \
