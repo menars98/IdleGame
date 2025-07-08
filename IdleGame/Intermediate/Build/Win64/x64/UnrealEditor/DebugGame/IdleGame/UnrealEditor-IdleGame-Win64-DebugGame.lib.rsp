@@ -7,10 +7,16 @@
 /IGNORE:4221
 /NODEFAULTLIB
 "C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\IdleGameEditor\DebugGame\UnrealEd\SharedPCH.UnrealEd.Project.NonOptimized.ValApi.Cpp20.InclOrderUnreal5_3.h.obj"
+"C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\IdleCivManagerComponent.gen.cpp.obj"
 "C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\IdleGame.init.gen.cpp.obj"
+"C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\IdleGameSave.gen.cpp.obj"
+"C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\IdleGameTypes.gen.cpp.obj"
 "C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\IGCivilizationManager.gen.cpp.obj"
 "C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\IdleGame.cpp.obj"
-"C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\IGCivilizationManager.cpp.obj"
 "C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\PerModuleInline.gen.cpp.obj"
+"C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\IdleGameSave.cpp.obj"
+"C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\IdleGameTypes.cpp.obj"
+"C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\IdleCivManagerComponent.cpp.obj"
+"C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\IGCivilizationManager.cpp.obj"
 "C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\Default.rc2.res"
 /OUT:"C:\Users\muham\Documents\GitHub\IdleGame\IdleGame\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\IdleGame\UnrealEditor-IdleGame-Win64-DebugGame.lib"

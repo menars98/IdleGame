@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\muham\\documents\\github\\idlegame\\idlegame\\source\\idlegame\\private\\components\\idlecivmanagercomponent.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\muham\\documents\\github\\idlegame\\idlegame\\intermediate\\build\\win64\\x64\\idlegameeditor\\debuggame\\unrealed\\sharedpch.unrealed.project.nonoptimized.valapi.cpp20.inclorderunreal5_3.h.pch",
+        "Includes": [
+            "c:\\users\\muham\\documents\\github\\idlegame\\idlegame\\intermediate\\build\\win64\\x64\\unrealeditor\\debuggame\\idlegame\\definitions.idlegame.h",
+            "c:\\users\\muham\\documents\\github\\idlegame\\idlegame\\source\\idlegame\\public\\components\\idlecivmanagercomponent.h",
+            "c:\\users\\muham\\documents\\github\\idlegame\\idlegame\\intermediate\\build\\win64\\unrealeditor\\inc\\idlegame\\uht\\idlecivmanagercomponent.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

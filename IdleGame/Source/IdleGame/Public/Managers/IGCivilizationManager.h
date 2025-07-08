@@ -5,7 +5,10 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Engine/Texture2DDynamic.h"
+#include "IdleGameTypes.h"
 #include "IGCivilizationManager.generated.h"
+
+
 
 
 USTRUCT(BlueprintType)
@@ -53,6 +56,24 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Map Information")
 	int32 GetRegionIDAtLocation(FIntPoint Location);
 
+	// Save & Load
+	UFUNCTION(BlueprintCallable, Category = "SaveLoad")
+	bool SaveGame(FString SlotName, const TArray<FS_CivilizationStructures>& BPCivilizations);
+
+	UFUNCTION(BlueprintCallable, Category = "SaveLoad")
+	bool LoadGame(FString SlotName);
+
+	UFUNCTION(BlueprintPure, Category = "SaveLoad")
+	const TArray<FMapRow>& GetCivilizationMap() const { return CivilizationMap; }
+
+	// Yüklenen harita sahiplik verisini C++'a uygular.
+	UFUNCTION(BlueprintCallable, Category = "SaveLoad|Internal")
+	void ApplyCivilizationMapData(const TArray<FMapRow>& LoadedMapData);
+
+	// Tüm haritayý mevcut C++ verilerine göre yeniden çizer.
+	UFUNCTION(BlueprintCallable, Category = "SaveLoad|Internal")
+	void RedrawEntireMap();
+
 public:
 	// Dynamic Texture on which we will draw colors
 	UPROPERTY(BlueprintReadOnly, Category = "Map")
@@ -63,6 +84,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Map Initialization")
 	TObjectPtr<UTexture2D> RegionMaskTexture;
+
+
 
 private:
 	// Map Data
@@ -83,7 +106,7 @@ private:
 	// Bu dizinin indeksi, bölge ID'sini belirleyecek (Index 0 = RegionID 1, vs.)
 	TArray<FColor> PureRegionColors;
 
-	// C++ ÝÇÝ KULLANILAN FONKSÝYONLAR
+	// C++ Functions
 	// Main function that is called periodically and runs the expansion logic for all civilizations.
 	void ExpandCivilizations();
 	// Updates specific regions of the dynamic texture.

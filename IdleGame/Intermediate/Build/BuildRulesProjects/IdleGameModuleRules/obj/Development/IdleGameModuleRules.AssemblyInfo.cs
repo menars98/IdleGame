@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IdleGameModuleRules")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Development")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b34230e1eb34caf22796d5d521b88164e9da893")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7ffea355c8f96aa5bc9d294d9b493b7b263a6d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("IdleGameModuleRules")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IdleGameModuleRules")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

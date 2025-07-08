@@ -11,6 +11,9 @@
     <None Include="..\..\Source\IdleGameEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.vsconfig" />
+    <None Include="..\..\TrashCivManagerCPPDosyası.txt" />
+    <None Include="..\..\TrashCivManagerHDosyası.txt" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -41,6 +44,18 @@
     <Filter Include="Source\IdleGame\Private">
       <UniqueIdentifier>{448DF0CA-C581-3719-A161-94C7E1E6AAD3}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\IdleGame\Private\IdleGameSave.cpp">
+      <Filter>Source\IdleGame\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\IdleGame\Private\IdleGameTypes.cpp">
+      <Filter>Source\IdleGame\Private</Filter>
+    </ClCompile>
+    <Filter Include="Source\IdleGame\Private\Components">
+      <UniqueIdentifier>{DC82AB92-0088-30B2-824F-09F146DE1422}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IdleGame\Private\Components\IdleCivManagerComponent.cpp">
+      <Filter>Source\IdleGame\Private\Components</Filter>
+    </ClCompile>
     <Filter Include="Source\IdleGame\Private\Managers">
       <UniqueIdentifier>{2D74E655-FBAC-3BB2-AEE9-028B5BCE3CE2}</UniqueIdentifier>
     </Filter>
@@ -50,6 +65,18 @@
     <Filter Include="Source\IdleGame\Public">
       <UniqueIdentifier>{4B7F15C2-8FE9-337B-B9DB-8BD326B780C6}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\IdleGame\Public\IdleGameSave.h">
+      <Filter>Source\IdleGame\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\IdleGame\Public\IdleGameTypes.h">
+      <Filter>Source\IdleGame\Public</Filter>
+    </ClCompile>
+    <Filter Include="Source\IdleGame\Public\Components">
+      <UniqueIdentifier>{3B37C5E2-8195-367D-95C1-8EAD7BA3CE1D}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IdleGame\Public\Components\IdleCivManagerComponent.h">
+      <Filter>Source\IdleGame\Public\Components</Filter>
+    </ClCompile>
     <Filter Include="Source\IdleGame\Public\Managers">
       <UniqueIdentifier>{1D9BA1AF-0616-38D4-AB54-9D6502FC5443}</UniqueIdentifier>
     </Filter>
