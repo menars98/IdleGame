@@ -74,6 +74,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "SaveLoad|Internal")
 	void RedrawEntireMap();
 
+	UFUNCTION(BlueprintPure, Category = "SaveLoad|GetData")
+	TArray<FOwnedTilesSaveData> GetOwnedTilesForSaving() const;
+
+	UFUNCTION(BlueprintCallable, Category = "SaveLoad|ApplyData")
+	void ApplyOwnedTilesData(const TArray<FOwnedTilesSaveData>& LoadedOwnedTiles);
+
 public:
 	// Dynamic Texture on which we will draw colors
 	UPROPERTY(BlueprintReadOnly, Category = "Map")

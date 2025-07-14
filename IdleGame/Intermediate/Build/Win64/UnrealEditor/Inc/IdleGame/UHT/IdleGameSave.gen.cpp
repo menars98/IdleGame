@@ -17,6 +17,7 @@ ENGINE_API UClass* Z_Construct_UClass_USaveGame();
 IDLEGAME_API UClass* Z_Construct_UClass_UIdleGameSave();
 IDLEGAME_API UClass* Z_Construct_UClass_UIdleGameSave_NoRegister();
 IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FMapRow();
+IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FOwnedTilesSaveData();
 IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FS_CivilizationStructures();
 UPackage* Z_Construct_UPackage__Script_IdleGame();
 // End Cross Module References
@@ -63,6 +64,10 @@ struct Z_Construct_UClass_UIdleGameSave_Statics
 #if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Map that holds which CivID has which color." },
 #endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SavedOwnedTilesMap_MetaData[] = {
+		{ "Category", "SaveData|Map" },
+		{ "ModuleRelativePath", "Public/IdleGameSave.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SavedPoints_MetaData[] = {
 		{ "Category", "SaveData|Player|Points" },
@@ -132,6 +137,8 @@ struct Z_Construct_UClass_UIdleGameSave_Statics
 	static const UECodeGen_Private::FStructPropertyParams NewProp_CurrentCivColors_ValueProp;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_CurrentCivColors_Key_KeyProp;
 	static const UECodeGen_Private::FMapPropertyParams NewProp_CurrentCivColors;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_SavedOwnedTilesMap_Inner;
+	static const UECodeGen_Private::FArrayPropertyParams NewProp_SavedOwnedTilesMap;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_SavedPoints;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_SavedTotalPoints;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_DisplayedPoints;
@@ -157,6 +164,8 @@ const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UIdleGameSave_S
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_CurrentCivColors_ValueProp = { "CurrentCivColors", nullptr, (EPropertyFlags)0x0000000000020001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, Z_Construct_UScriptStruct_FColor, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_CurrentCivColors_Key_KeyProp = { "CurrentCivColors_Key", nullptr, (EPropertyFlags)0x0000000000020001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_CurrentCivColors = { "CurrentCivColors", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIdleGameSave, CurrentCivColors), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentCivColors_MetaData), NewProp_CurrentCivColors_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedOwnedTilesMap_Inner = { "SavedOwnedTilesMap", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FOwnedTilesSaveData, METADATA_PARAMS(0, nullptr) }; // 133798282
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedOwnedTilesMap = { "SavedOwnedTilesMap", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIdleGameSave, SavedOwnedTilesMap), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SavedOwnedTilesMap_MetaData), NewProp_SavedOwnedTilesMap_MetaData) }; // 133798282
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedPoints = { "SavedPoints", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIdleGameSave, SavedPoints), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SavedPoints_MetaData), NewProp_SavedPoints_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedTotalPoints = { "SavedTotalPoints", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIdleGameSave, SavedTotalPoints), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SavedTotalPoints_MetaData), NewProp_SavedTotalPoints_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_DisplayedPoints = { "DisplayedPoints", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIdleGameSave, DisplayedPoints), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DisplayedPoints_MetaData), NewProp_DisplayedPoints_MetaData) };
@@ -176,6 +185,8 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UIdleGame
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_CurrentCivColors_ValueProp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_CurrentCivColors_Key_KeyProp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_CurrentCivColors,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedOwnedTilesMap_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedOwnedTilesMap,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedPoints,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedTotalPoints,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_DisplayedPoints,
@@ -229,10 +240,10 @@ UIdleGameSave::~UIdleGameSave() {}
 struct Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UIdleGameSave, UIdleGameSave::StaticClass, TEXT("UIdleGameSave"), &Z_Registration_Info_UClass_UIdleGameSave, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UIdleGameSave), 3042954646U) },
+		{ Z_Construct_UClass_UIdleGameSave, UIdleGameSave::StaticClass, TEXT("UIdleGameSave"), &Z_Registration_Info_UClass_UIdleGameSave, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UIdleGameSave), 2574678516U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_2207095675(TEXT("/Script/IdleGame"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_4195279918(TEXT("/Script/IdleGame"),
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

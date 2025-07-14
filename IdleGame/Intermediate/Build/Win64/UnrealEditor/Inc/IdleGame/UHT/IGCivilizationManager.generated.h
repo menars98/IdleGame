@@ -12,6 +12,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
  struct FColor;
 struct FColor;
 struct FMapRow;
+struct FOwnedTilesSaveData;
 struct FS_CivilizationStructures;
 #ifdef IDLEGAME_IGCivilizationManager_generated_h
 #error "IGCivilizationManager.generated.h already included, missing '#pragma once' in IGCivilizationManager.h"
@@ -27,6 +28,8 @@ template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FMapRow>();
 
 #define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execFindAllSpawnableLocations); \
+	DECLARE_FUNCTION(execApplyOwnedTilesData); \
+	DECLARE_FUNCTION(execGetOwnedTilesForSaving); \
 	DECLARE_FUNCTION(execRedrawEntireMap); \
 	DECLARE_FUNCTION(execApplyCivilizationMapData); \
 	DECLARE_FUNCTION(execGetCivilizationMap); \

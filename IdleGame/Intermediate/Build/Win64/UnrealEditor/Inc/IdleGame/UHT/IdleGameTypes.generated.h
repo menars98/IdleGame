@@ -22,6 +22,13 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_CivilizationStructures>();
 
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_47_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics; \
+	IDLEGAME_API static class UScriptStruct* StaticStruct();
+
+
+template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FOwnedTilesSaveData>();
+
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h
 

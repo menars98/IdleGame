@@ -32,6 +32,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "SaveData|Civilizations")
 	TMap<int32, FColor> CurrentCivColors;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "SaveData|Map")
+	TArray<FOwnedTilesSaveData> SavedOwnedTilesMap;
+
 	// --- Data for PlayerState ---
 	// ... Add fields here for all other important variables in PlayerState.
 	// For example: float SavedClickerPoints; float SavedPointsPerSecond;

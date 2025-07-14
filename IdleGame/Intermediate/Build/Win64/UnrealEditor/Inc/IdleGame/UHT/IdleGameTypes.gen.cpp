@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeIdleGameTypes() {}
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FColor();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FIntPoint();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FTableRowBase();
+IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FOwnedTilesSaveData();
 IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FS_CivilizationStructures();
 UPackage* Z_Construct_UPackage__Script_IdleGame();
 // End Cross Module References
@@ -150,14 +151,87 @@ UScriptStruct* Z_Construct_UScriptStruct_FS_CivilizationStructures()
 }
 // End ScriptStruct FS_CivilizationStructures
 
+// Begin ScriptStruct FOwnedTilesSaveData
+static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_OwnedTilesSaveData;
+class UScriptStruct* FOwnedTilesSaveData::StaticStruct()
+{
+	if (!Z_Registration_Info_UScriptStruct_OwnedTilesSaveData.OuterSingleton)
+	{
+		Z_Registration_Info_UScriptStruct_OwnedTilesSaveData.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FOwnedTilesSaveData, (UObject*)Z_Construct_UPackage__Script_IdleGame(), TEXT("OwnedTilesSaveData"));
+	}
+	return Z_Registration_Info_UScriptStruct_OwnedTilesSaveData.OuterSingleton;
+}
+template<> IDLEGAME_API UScriptStruct* StaticStruct<FOwnedTilesSaveData>()
+{
+	return FOwnedTilesSaveData::StaticStruct();
+}
+struct Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CivID_MetaData[] = {
+		{ "Category", "OwnedTilesSaveData" },
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Tiles_MetaData[] = {
+		{ "Category", "OwnedTilesSaveData" },
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FIntPropertyParams NewProp_CivID;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_Tiles_Inner;
+	static const UECodeGen_Private::FArrayPropertyParams NewProp_Tiles;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static void* NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FOwnedTilesSaveData>();
+	}
+	static const UECodeGen_Private::FStructParams StructParams;
+};
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::NewProp_CivID = { "CivID", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FOwnedTilesSaveData, CivID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CivID_MetaData), NewProp_CivID_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::NewProp_Tiles_Inner = { "Tiles", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FIntPoint, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::NewProp_Tiles = { "Tiles", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FOwnedTilesSaveData, Tiles), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Tiles_MetaData), NewProp_Tiles_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::NewProp_CivID,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::NewProp_Tiles_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::NewProp_Tiles,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::StructParams = {
+	(UObject* (*)())Z_Construct_UPackage__Script_IdleGame,
+	nullptr,
+	&NewStructOps,
+	"OwnedTilesSaveData",
+	Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::PropPointers,
+	UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::PropPointers),
+	sizeof(FOwnedTilesSaveData),
+	alignof(FOwnedTilesSaveData),
+	RF_Public|RF_Transient|RF_MarkAsNative,
+	EStructFlags(0x00000001),
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::Struct_MetaDataParams), Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::Struct_MetaDataParams)
+};
+UScriptStruct* Z_Construct_UScriptStruct_FOwnedTilesSaveData()
+{
+	if (!Z_Registration_Info_UScriptStruct_OwnedTilesSaveData.InnerSingleton)
+	{
+		UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_OwnedTilesSaveData.InnerSingleton, Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::StructParams);
+	}
+	return Z_Registration_Info_UScriptStruct_OwnedTilesSaveData.InnerSingleton;
+}
+// End ScriptStruct FOwnedTilesSaveData
+
 // Begin Registration
 struct Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics
 {
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
 		{ FS_CivilizationStructures::StaticStruct, Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewStructOps, TEXT("S_CivilizationStructures"), &Z_Registration_Info_UScriptStruct_S_CivilizationStructures, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_CivilizationStructures), 761573513U) },
+		{ FOwnedTilesSaveData::StaticStruct, Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::NewStructOps, TEXT("OwnedTilesSaveData"), &Z_Registration_Info_UScriptStruct_OwnedTilesSaveData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FOwnedTilesSaveData), 133798282U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_918235409(TEXT("/Script/IdleGame"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_4162874777(TEXT("/Script/IdleGame"),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::ScriptStructInfo),
 	nullptr, 0);

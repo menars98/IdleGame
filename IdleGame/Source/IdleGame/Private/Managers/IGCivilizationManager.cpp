@@ -166,7 +166,8 @@ int32 AIGCivilizationManager::GetRegionIDAtLocation(FIntPoint Location)
 
 bool AIGCivilizationManager::SaveGame(FString SlotName, const TArray<FS_CivilizationStructures>& BPCivilizations)
 {
-    // Artýk CreateSaveGameObject'u doðrudan C++ sýnýfýyla çaðýrabiliriz.
+    //Its useless ill delete it probably
+    // Now we can call CreateSaveGameObject directly with the C++ class.
     UIdleGameSave* SaveGameObject = Cast<UIdleGameSave>(UGameplayStatics::CreateSaveGameObject(UIdleGameSave::StaticClass()));
 
     if (!SaveGameObject)
@@ -175,18 +176,19 @@ bool AIGCivilizationManager::SaveGame(FString SlotName, const TArray<FS_Civiliza
         return false;
     }
 
-    // Verileri C++ nesnesine yaz:
+    // Write the data to the C++ object:
     SaveGameObject->SavedCivilizations = BPCivilizations;
     SaveGameObject->SavedCivilizationMapData = this->CivilizationMap;
-    // Diðer verileri de buraya yaz...
+    // Write the other data here...
 
-    // Diske kaydet
+    // Save to disk
     return UGameplayStatics::SaveGameToSlot(SaveGameObject, SlotName, 0);
 }
 
 bool AIGCivilizationManager::LoadGame(FString SlotName)
 {
-    // Disketen yükle
+    // I will delete that too
+    // Load from floppy disk
     UIdleGameSave* LoadedGame = Cast<UIdleGameSave>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
 
     if (!LoadedGame)
@@ -195,10 +197,10 @@ bool AIGCivilizationManager::LoadGame(FString SlotName)
         return false;
     }
 
-    // Yüklenen verileri oyuna geri aktar
-    // ... Bu kýsým, verileri ilgili yerlere (BP'deki Civilizations dizisi, C++'taki haritalar) geri atayacak...
+    // Import the loaded data back into the game
+    // ... This part will assign the data back to the relevant places (Civilizations array in BP, maps in C++)...
     // this->CivilizationMap = LoadedGame->SavedCivilizationMapData;
-    // ve sonra tüm haritayý yeniden çizmek için bir fonksiyon çaðýr.
+    // and then call a function to redraw the whole map.
 
     return true;
 }
@@ -267,6 +269,32 @@ void AIGCivilizationManager::RedrawEntireMap()
     UE_LOG(LogTemp, Warning, TEXT("Entire map redrawn based on loaded data."));
 }
 
+TArray<FOwnedTilesSaveData> AIGCivilizationManager::GetOwnedTilesForSaving() const
+{
+    TArray<FOwnedTilesSaveData> SaveData;
+    // Return the current TMap and add each element to the new struct array
+    for (const auto& Elem : CivilizationOwnedTiles)
+    {
+        FOwnedTilesSaveData Entry;
+        Entry.CivID = Elem.Key;
+        Entry.Tiles = Elem.Value;
+        SaveData.Add(Entry);
+    }
+    return SaveData;
+}
+
+void AIGCivilizationManager::ApplyOwnedTilesData(const TArray<FOwnedTilesSaveData>& LoadedOwnedTiles)
+{
+    // Clear current TMap
+    CivilizationOwnedTiles.Empty();
+    // Return the loaded array and add each element back to TMap
+    for (const FOwnedTilesSaveData& Entry : LoadedOwnedTiles)
+    {
+        CivilizationOwnedTiles.Add(Entry.CivID, Entry.Tiles);
+    }
+    UE_LOG(LogTemp, Warning, TEXT("Owned Tiles Data applied."));
+}
+
 void AIGCivilizationManager::FindAllSpawnableLocations()
 {
     UnownedLandCells.Empty();
@@ -320,7 +348,7 @@ void AIGCivilizationManager::ClaimInitialAreaForCivilization(FIntPoint Center, i
                 continue; // This point is off the map, skip it.
             }
 
-            // KARAR ANI: Bu piksel boyanmaya uygun mu?
+            //Is this pixel suitable for painting ?
             const bool bIsLand = (MapArray[CurrentPoint.Y].Row[CurrentPoint.X] == 1);
             const bool bIsUnowned = (CivilizationMap[CurrentPoint.Y].Row[CurrentPoint.X] == -1);
 
@@ -353,7 +381,7 @@ void AIGCivilizationManager::ExpandCivilizations()
     const int32 CivHomeRegionID = GetRegionIDAtLocation(OwnedTiles[0]);
     if (CivHomeRegionID == -1) return;
 
-    // Find ALL the expansion points of civilization on ALL border lines.
+    // Find All the expansion points of civilization on All border lines.
     TArray<FIntPoint> AllPossibleExpansions;
     for (const FIntPoint& OwnedTile : OwnedTiles)
     {

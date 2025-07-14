@@ -40,3 +40,15 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FColor Color;
 };
+
+USTRUCT(BlueprintType)
+struct FOwnedTilesSaveData
+{
+    GENERATED_BODY()
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+    int32 CivID = 0;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+    TArray<FIntPoint> Tiles;
+};
