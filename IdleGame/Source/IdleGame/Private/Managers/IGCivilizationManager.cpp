@@ -13,6 +13,16 @@ AIGCivilizationManager::AIGCivilizationManager()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
+    // --- LET'S DEFINE OUR REGION COLORS HERE ---
+    // This determines which colors our code will look for "look like".
+    // You can update this list according to the colors in your map.
+    PureRegionColors.Empty();
+    PureRegionColors.Add(FColor(0, 0, 255));      // 1: North America (Blue)
+    PureRegionColors.Add(FColor(0, 255, 0));      // 2: South America (Green)
+    PureRegionColors.Add(FColor(255, 0, 0));      // 3: Europe (Red)
+    PureRegionColors.Add(FColor(255, 255, 0));    // 4: Africa (Yellow)
+    PureRegionColors.Add(FColor(255, 0, 255));    // 5: Asia (Purple?)
+
 }
 
 void AIGCivilizationManager::DiagnoseMapDataAtPoint(FIntPoint PointToTest)
@@ -40,81 +50,73 @@ void AIGCivilizationManager::DiagnoseMapDataAtPoint(FIntPoint PointToTest)
     UE_LOG(LogTemp, Error, TEXT("------------------------------------"));
 }
 
-void AIGCivilizationManager::BeginPlay()
+void AIGCivilizationManager::SetupMapFromTextures()
 {
-    Super::BeginPlay();
-
-}
-
-void AIGCivilizationManager::InitializeMapArray()
-{
+    // Fonksiyonun baþýnda, gerekli texture'larýn atanýp atanmadýðýný kontrol edelim.
     if (!MaskTexture || !RegionMaskTexture)
     {
-        UE_LOG(LogTemp, Error, TEXT("MaskTexture or RegionMaskTexture is not set!"));
+        UE_LOG(LogTemp, Error, TEXT("SetupMapFromTextures: MaskTexture or RegionMaskTexture is not set in the Civilization Manager!"));
         return;
     }
 
-    // --- LET'S DEFINE OUR REGION COLORS HERE ---
-    // This determines which colors our code will look for "look like".
-    // You can update this list according to the colors in your map.
-    PureRegionColors.Empty();
-    PureRegionColors.Add(FColor(0, 0, 255));      // 1: North America (Blue)
-    PureRegionColors.Add(FColor(0, 255, 0));      // 2: South America (Green)
-    PureRegionColors.Add(FColor(255, 0, 0));      // 3: Europe (Red)
-    PureRegionColors.Add(FColor(255, 255, 0));    // 4: Africa (Yellow)
-    PureRegionColors.Add(FColor(255, 0, 255));    // 5: Asia (Purple?)
+    // --- 1. Read Land/Sea Map ---
+    // We create a MipMap reference to get data from MaskTexture.
+    FTexture2DMipMap& LandSeaMip = MaskTexture->GetPlatformData()->Mips[0];
+    const FColor* LandSeaImageData = static_cast<const FColor*>(LandSeaMip.BulkData.LockReadOnly());
 
+    MapWidth = LandSeaMip.SizeX;
+    MapHeight = LandSeaMip.SizeY;
 
-    // --- 1. Read Land/Sea Map (No change) ---
-    FTexture2DMipMap& Mip = MaskTexture->GetPlatformData()->Mips[0];
-    const FColor* FormattedImageData = static_cast<const FColor*>(Mip.BulkData.LockReadOnly());
-    MapWidth = Mip.SizeX;
-    MapHeight = Mip.SizeY;
+    // If map dimensions are not valid, stop the operation.
+    if (MapWidth == 0 || MapHeight == 0)
+    {
+        LandSeaMip.BulkData.Unlock();
+        return;
+    }
 
+    // Fill MapArray.
     MapArray.SetNum(MapHeight);
-    CivilizationMap.SetNum(MapHeight);
     for (int32 Y = 0; Y < MapHeight; Y++)
     {
         MapArray[Y].Row.SetNum(MapWidth);
-        CivilizationMap[Y].Row.Init(-1, MapWidth);
         for (int32 X = 0; X < MapWidth; X++)
         {
-            MapArray[Y].Row[X] = (FormattedImageData[Y * MapWidth + X].R < 128) ? 1 : 0;
+            // Land (1) if Black (<128), otherwise Sea (0)
+            MapArray[Y].Row[X] = (LandSeaImageData[Y * MapWidth + X].R < 128) ? 1 : 0;
         }
     }
-    Mip.BulkData.Unlock();
+    // Unlock after reading the data.
+    LandSeaMip.BulkData.Unlock();
 
-    // --- 2. READ REGION MAP (SMART VERSION) ---
-    FTexture2DMipMap& RegionMip = RegionMaskTexture->GetPlatformData()->Mips[0];
-    const FColor* RegionFormattedData = static_cast<const FColor*>(RegionMip.BulkData.LockReadOnly());
+    // --- Read 2nd Region Map ---
+    // We create a NEW MipMap reference to get data from RegionMaskTexture.
+    // Variable names should be different so that they don't get confused.
+    FTexture2DMipMap& RegionTextureMip = RegionMaskTexture->GetPlatformData()->Mips[0];
+    const FColor* RegionImageData = static_cast<const FColor*>(RegionTextureMip.BulkData.LockReadOnly());
+
     RegionMap.SetNum(MapHeight);
-
-    //Debug
-    int32 DebugSamplesFound = 0;
+    // We assume that the PureRegionColors array is full (this should be filled elsewhere).
+    if (PureRegionColors.Num() == 0) UE_LOG(LogTemp, Warning, TEXT("PureRegionColors array is empty!"));
 
     for (int32 Y = 0; Y < MapHeight; Y++)
     {
         RegionMap[Y].Row.SetNum(MapWidth);
         for (int32 X = 0; X < MapWidth; X++)
         {
-            FColor PixelColor = RegionFormattedData[Y * MapWidth + X];
+            FColor PixelColor = RegionImageData[Y * MapWidth + X];
 
-            // If the pixel is black, this is definitely not a region.
             if (PixelColor.R < 10 && PixelColor.G < 10 && PixelColor.B < 10)
             {
-                RegionMap[Y].Row[X] = -1; // -1 = Bölge Yok
+                RegionMap[Y].Row[X] = -1; // -1 = No Region
                 continue;
             }
 
-            // Let's find the pure color closest to this pixel.
             int32 MinDistanceSq = 20000;
             int32 BestRegionID = -1;
 
             for (int32 i = 0; i < PureRegionColors.Num(); ++i)
             {
                 const FColor& PureColor = PureRegionColors[i];
-
-                // Renkler arasýndaki mesafenin karesini hesapla (daha hýzlý)
                 int32 DistSq = FMath::Square(PixelColor.R - PureColor.R) +
                     FMath::Square(PixelColor.G - PureColor.G) +
                     FMath::Square(PixelColor.B - PureColor.B);
@@ -122,24 +124,48 @@ void AIGCivilizationManager::InitializeMapArray()
                 if (DistSq < MinDistanceSq)
                 {
                     MinDistanceSq = DistSq;
-                    BestRegionID = i + 1; // Region IDs start from 1, array index from 0.
+                    BestRegionID = i + 1;
                 }
             }
-
             RegionMap[Y].Row[X] = BestRegionID;
         }
     }
-    RegionMip.BulkData.Unlock();
+	// Unlock after reading the data.
+    RegionTextureMip.BulkData.Unlock();
 
-    
-    FindAllSpawnableLocations();
+	// --- 2. Create Dynamic Texture ---
     DynamicMapTexture = UTexture2DDynamic::Create(MapWidth, MapHeight, PF_B8G8R8A8);
     if (DynamicMapTexture)
     {
         DynamicMapTexture->UpdateResource();
         FlushRenderingCommands();
+        UE_LOG(LogTemp, Warning, TEXT("Map textures set up successfully."));
     }
-    GetWorld()->GetTimerManager().SetTimer(ExpansionTimerHandle, this, &AIGCivilizationManager::ExpandCivilizations, 0.05f, true, 2.0f);
+}
+
+void AIGCivilizationManager::InitializeForNewGame()
+{
+    // This function does everything needed to start a game from ZERO.
+    CivilizationMap.SetNum(MapHeight);
+    for (int32 Y = 0; Y < MapHeight; Y++)
+    {
+        CivilizationMap[Y].Row.Init(-1, MapWidth); // Set map to UNOWNED
+    }
+    CivilizationOwnedTiles.Empty(); // Clear data from previous game
+
+	FindAllSpawnableLocations(); // Find all spawnable locations on the map
+}
+
+void AIGCivilizationManager::StartExpansionTimer()
+{
+	// Start the timer that will periodically call the expansion logic.
+    //GetWorld()->GetTimerManager().SetTimer(ExpansionTimerHandle, this, &AIGCivilizationManager::ExpandCivilizations, 0.1f, true, 2.0f);
+}
+
+void AIGCivilizationManager::BeginPlay()
+{
+    Super::BeginPlay();
+
 }
 
 FIntPoint AIGCivilizationManager::GetRandomSpawnableLocation()
@@ -283,6 +309,16 @@ TArray<FOwnedTilesSaveData> AIGCivilizationManager::GetOwnedTilesForSaving() con
     return SaveData;
 }
 
+int32 AIGCivilizationManager::GetCivilizationMapSize() const
+{
+	return CivilizationMap.Num();
+}
+
+int32 AIGCivilizationManager::GetOwnedTilesMapSize() const
+{
+	return CivilizationOwnedTiles.Num();
+}
+
 void AIGCivilizationManager::ApplyOwnedTilesData(const TArray<FOwnedTilesSaveData>& LoadedOwnedTiles)
 {
     // Clear current TMap
@@ -294,6 +330,25 @@ void AIGCivilizationManager::ApplyOwnedTilesData(const TArray<FOwnedTilesSaveDat
     }
     UE_LOG(LogTemp, Warning, TEXT("Owned Tiles Data applied."));
 }
+
+void AIGCivilizationManager::SetExpansionPaused(bool bIsPaused)
+{
+    bIsExpansionActive = !bIsPaused; // bIsPaused true ise, bIsExpansionActive false olur.
+
+    // Log mesajý ekleyelim ki çalýþtýðýný görelim.
+    if (bIsExpansionActive)
+    {
+        UE_LOG(LogTemp, Log, TEXT("Expansion State set to: ACTIVE"));
+        // Before continuing the game, repaint the entire map according to the current state in C++.
+        RedrawEntireMap();
+    }
+    else
+    {
+        UE_LOG(LogTemp, Log, TEXT("Expansion State set to: PAUSED"));
+    }
+}
+
+
 
 void AIGCivilizationManager::FindAllSpawnableLocations()
 {
@@ -368,6 +423,12 @@ void AIGCivilizationManager::UpdateCivilizationData(const TMap<int32, FColor>& C
 
 void AIGCivilizationManager::ExpandCivilizations()
 {
+    // Eðer geniþleme aktif deðilse, hiçbir þey yapmadan fonksiyondan çýk.
+    if (!bIsExpansionActive)
+    {
+        return;
+    }
+
     if (CurrentCivColors.Num() == 0 || CivilizationOwnedTiles.Num() == 0) return;
 
     TArray<int32> CivIDs;

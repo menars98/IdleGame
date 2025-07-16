@@ -28,19 +28,24 @@ template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FMapRow>();
 
 #define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execFindAllSpawnableLocations); \
+	DECLARE_FUNCTION(execSetExpansionPaused); \
 	DECLARE_FUNCTION(execApplyOwnedTilesData); \
-	DECLARE_FUNCTION(execGetOwnedTilesForSaving); \
 	DECLARE_FUNCTION(execRedrawEntireMap); \
 	DECLARE_FUNCTION(execApplyCivilizationMapData); \
-	DECLARE_FUNCTION(execGetCivilizationMap); \
 	DECLARE_FUNCTION(execLoadGame); \
 	DECLARE_FUNCTION(execSaveGame); \
+	DECLARE_FUNCTION(execGetOwnedTilesMapSize); \
+	DECLARE_FUNCTION(execGetCivilizationMapSize); \
+	DECLARE_FUNCTION(execGetOwnedTilesForSaving); \
+	DECLARE_FUNCTION(execGetCivilizationMap); \
 	DECLARE_FUNCTION(execGetRegionIDAtLocation); \
 	DECLARE_FUNCTION(execGetRandomSpawnableLocation); \
 	DECLARE_FUNCTION(execUpdateCivilizationData); \
 	DECLARE_FUNCTION(execClaimTileForCivilization); \
 	DECLARE_FUNCTION(execClaimInitialAreaForCivilization); \
-	DECLARE_FUNCTION(execInitializeMapArray); \
+	DECLARE_FUNCTION(execStartExpansionTimer); \
+	DECLARE_FUNCTION(execInitializeForNewGame); \
+	DECLARE_FUNCTION(execSetupMapFromTextures); \
 	DECLARE_FUNCTION(execDiagnoseMapDataAtPoint);
 
 

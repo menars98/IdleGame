@@ -34,8 +34,17 @@ public:
 
 	// --- MAIN FUNCTIONS TO BE CALLED FROM BLUEPRINT ---
 
-	UFUNCTION(BlueprintCallable, Category = "Map")
-	void InitializeMapArray();
+	// Sadece maske texture'larýný okuyup temel harita dizilerini (MapArray, RegionMap) oluþturur.
+	UFUNCTION(BlueprintCallable, Category = "Initialization")
+	void SetupMapFromTextures();
+
+	// Sadece YENÝ BÝR OYUN için sahiplik haritasýný ve diðer oyun durumlarýný sýfýrlar.
+	UFUNCTION(BlueprintCallable, Category = "Initialization")
+	void InitializeForNewGame();
+
+	// Geniþleme timer'ýný baþlatýr. Hem yeni oyunda hem de yüklemeden sonra çaðrýlýr.
+	UFUNCTION(BlueprintCallable, Category = "Initialization")
+	void StartExpansionTimer();
 
 	UFUNCTION(BlueprintCallable, Category = "Map Interaction")
 	void ClaimInitialAreaForCivilization(FIntPoint Center, int32 Radius, int32 CivID, FColor CivColor);
@@ -50,21 +59,31 @@ public:
 	void UpdateCivilizationData(const TMap<int32, FColor>& CivColorMap);
 
 	// --- AUXILIARY FUNCTIONS FOR BLUEPRINT ---
+	// --- GETTERS ---
 	UFUNCTION(BlueprintCallable, Category = "Map")
 	FIntPoint GetRandomSpawnableLocation();
 
 	UFUNCTION(BlueprintPure, Category = "Map Information")
 	int32 GetRegionIDAtLocation(FIntPoint Location);
 
+	UFUNCTION(BlueprintPure, Category = "SaveLoad")
+	const TArray<FMapRow>& GetCivilizationMap() const { return CivilizationMap; }
+
+	UFUNCTION(BlueprintPure, Category = "SaveLoad|GetData")
+	TArray<FOwnedTilesSaveData> GetOwnedTilesForSaving() const;
+
+	UFUNCTION(BlueprintPure, Category = "SaveLoad|GetData")
+	int32 GetCivilizationMapSize() const;
+
+	UFUNCTION(BlueprintPure, Category = "SaveLoad|GetData")
+	int32 GetOwnedTilesMapSize() const;
+	// --- END ----
 	// Save & Load
 	UFUNCTION(BlueprintCallable, Category = "SaveLoad")
 	bool SaveGame(FString SlotName, const TArray<FS_CivilizationStructures>& BPCivilizations);
 
 	UFUNCTION(BlueprintCallable, Category = "SaveLoad")
 	bool LoadGame(FString SlotName);
-
-	UFUNCTION(BlueprintPure, Category = "SaveLoad")
-	const TArray<FMapRow>& GetCivilizationMap() const { return CivilizationMap; }
 
 	// Yüklenen harita sahiplik verisini C++'a uygular.
 	UFUNCTION(BlueprintCallable, Category = "SaveLoad|Internal")
@@ -74,11 +93,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "SaveLoad|Internal")
 	void RedrawEntireMap();
 
-	UFUNCTION(BlueprintPure, Category = "SaveLoad|GetData")
-	TArray<FOwnedTilesSaveData> GetOwnedTilesForSaving() const;
-
 	UFUNCTION(BlueprintCallable, Category = "SaveLoad|ApplyData")
 	void ApplyOwnedTilesData(const TArray<FOwnedTilesSaveData>& LoadedOwnedTiles);
+
+	
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	void SetExpansionPaused(bool bIsPaused);
 
 public:
 	// Dynamic Texture on which we will draw colors
@@ -119,6 +139,8 @@ private:
 	void UpdateTextureWithColor(FIntPoint Location, FColor Color);
 	UFUNCTION(BlueprintCallable, Category = "Map")
 	void FindAllSpawnableLocations();
+
+	bool bIsExpansionActive = true;
 
 protected:
 	// Called when the game starts or when spawned

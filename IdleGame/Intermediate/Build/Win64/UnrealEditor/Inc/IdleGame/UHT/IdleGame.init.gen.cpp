@@ -17,7 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeIdleGame_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x55BA51E1,
+				0x91279098,
 				0x8F1011DE,
 				METADATA_PARAMS(0, nullptr)
 			};
@@ -25,5 +25,5 @@ void EmptyLinkFunctionForGeneratedCodeIdleGame_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_IdleGame.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_IdleGame(Z_Construct_UPackage__Script_IdleGame, TEXT("/Script/IdleGame"), Z_Registration_Info_UPackage__Script_IdleGame, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x55BA51E1, 0x8F1011DE));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_IdleGame(Z_Construct_UPackage__Script_IdleGame, TEXT("/Script/IdleGame"), Z_Registration_Info_UPackage__Script_IdleGame, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x91279098, 0x8F1011DE));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
