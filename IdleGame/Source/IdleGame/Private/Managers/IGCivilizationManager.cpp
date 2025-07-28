@@ -143,23 +143,93 @@ void AIGCivilizationManager::SetupMapFromTextures()
     }
 }
 
-void AIGCivilizationManager::InitializeForNewGame()
+void AIGCivilizationManager::InitializeForNewGame(const TArray<FS_CivilizationStructures>& StartingCivs)
 {
-    // This function does everything needed to start a game from ZERO.
+    // 1. Reset all old game data
     CivilizationMap.SetNum(MapHeight);
     for (int32 Y = 0; Y < MapHeight; Y++)
     {
-        CivilizationMap[Y].Row.Init(-1, MapWidth); // Set map to UNOWNED
+        CivilizationMap[Y].Row.Init(-1, MapWidth);
     }
-    CivilizationOwnedTiles.Empty(); // Clear data from previous game
+    CivilizationOwnedTiles.Empty();
+    CurrentCivColors.Empty();
 
-	FindAllSpawnableLocations(); // Find all spawnable locations on the map
+    // 2. Get the initial data from GameMode
+    this->Civilizations = StartingCivs;
+
+    // 3. Create the color map based on this new data
+    RebuildColorMap();
+
+    // 4. Find starting points
+    FindAllSpawnableLocations();
+
+    UE_LOG(LogTemp, Warning, TEXT("Manager Initialized for New Game. Color Map has %d entries. Ready for placement."), CurrentCivColors.Num());
+}
+
+void AIGCivilizationManager::PlaceCivilizations()
+{
+    // Medeniyet listemizdeki her bir medeniyet için...
+    for (int32 i = 0; i < Civilizations.Num(); ++i)
+    {
+        // ...rastgele bir baþlangýç merkezi bul.
+        FIntPoint StartCenter = GetRandomSpawnableLocation();
+        if (StartCenter.X == -1)
+        {
+            // Eðer baþlanacak yer kalmadýysa döngüyü kýr.
+            UE_LOG(LogTemp, Warning, TEXT("No more spawnable locations left to place civilizations."));
+            break;
+        }
+
+        // Medeniyetin ID'sini ve baþlangýç alanýnýn yarýçapýný belirle.
+        int32 CivID = i + 1; // ID'lerin 1'den baþladýðýný varsayýyoruz.
+        int32 Radius = 3;    // Baþlangýç alaný boyutu (3 = 7x7'lik bir kare).
+
+        // Bu merkez noktanýn etrafýndaki alaný tara.
+        for (int32 y = -Radius; y <= Radius; ++y)
+        {
+            for (int32 x = -Radius; x <= Radius; ++x)
+            {
+                FIntPoint CurrentPoint(StartCenter.X + x, StartCenter.Y + y);
+
+                // --- ÝÞTE TÜM GEÇERLÝLÝK KONTROLLERÝ ---
+                if (
+                    // 1. Sýnýrlarýn içinde mi?
+                    CurrentPoint.Y >= 0 && CurrentPoint.Y < MapHeight && CurrentPoint.X >= 0 && CurrentPoint.X < MapWidth &&
+
+                    // 2. Kara parçasý mý?
+                    MapArray[CurrentPoint.Y].Row[CurrentPoint.X] == 1 &&
+
+                    // 3. Sahipsiz mi?
+                    CivilizationMap[CurrentPoint.Y].Row[CurrentPoint.X] == -1
+
+                    // 4. Geçerli bir bölge mi? Bu kontrol aslýnda GetRandomSpawnableLocation'da
+                    // zaten yapýldýðý için burada tekrar yapmaya gerek yok, ama güvenlik için eklenebilir.
+                    // RegionMap[CurrentPoint.Y].Row[CurrentPoint.X] != -1
+                    )
+                {
+                    // Eðer tüm koþullar saðlandýysa, bu karoyu sahiplen.
+                    CivilizationMap[CurrentPoint.Y].Row[CurrentPoint.X] = CivID;
+                    CivilizationOwnedTiles.FindOrAdd(CivID).AddUnique(CurrentPoint);
+                }
+            }
+        }
+    }
+
+    // Tüm medeniyetler yerleþtirildikten sonra, haritayý tek seferde çiz.
+    RedrawEntireMap();
 }
 
 void AIGCivilizationManager::StartExpansionTimer()
 {
 	// Start the timer that will periodically call the expansion logic.
     //GetWorld()->GetTimerManager().SetTimer(ExpansionTimerHandle, this, &AIGCivilizationManager::ExpandCivilizations, 0.1f, true, 2.0f);
+    GetWorld()->GetTimerManager().SetTimer(ExpansionTimerHandle, this, &AIGCivilizationManager::TimerTick, 1.0f, true);
+}
+
+// Timer'ýn her saniye çaðýracaðý fonksiyon
+void AIGCivilizationManager::TimerTick()
+{
+    UpdateExpansionProgress(1.0f); // We assume that 1 second passes with each tick.
 }
 
 void AIGCivilizationManager::BeginPlay()
@@ -188,71 +258,6 @@ int32 AIGCivilizationManager::GetRegionIDAtLocation(FIntPoint Location)
         return RegionMap[Location.Y].Row[Location.X];
     }
     return -1;
-}
-
-bool AIGCivilizationManager::SaveGame(FString SlotName, const TArray<FS_CivilizationStructures>& BPCivilizations)
-{
-    //Its useless ill delete it probably
-    // Now we can call CreateSaveGameObject directly with the C++ class.
-    UIdleGameSave* SaveGameObject = Cast<UIdleGameSave>(UGameplayStatics::CreateSaveGameObject(UIdleGameSave::StaticClass()));
-
-    if (!SaveGameObject)
-    {
-        UE_LOG(LogTemp, Error, TEXT("Failed to create IdleSaveGame Object."));
-        return false;
-    }
-
-    // Write the data to the C++ object:
-    SaveGameObject->SavedCivilizations = BPCivilizations;
-    SaveGameObject->SavedCivilizationMapData = this->CivilizationMap;
-    // Write the other data here...
-
-    // Save to disk
-    return UGameplayStatics::SaveGameToSlot(SaveGameObject, SlotName, 0);
-}
-
-bool AIGCivilizationManager::LoadGame(FString SlotName)
-{
-    // I will delete that too
-    // Load from floppy disk
-    UIdleGameSave* LoadedGame = Cast<UIdleGameSave>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
-
-    if (!LoadedGame)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("Failed to load game from slot: %s"), *SlotName);
-        return false;
-    }
-
-    // Import the loaded data back into the game
-    // ... This part will assign the data back to the relevant places (Civilizations array in BP, maps in C++)...
-    // this->CivilizationMap = LoadedGame->SavedCivilizationMapData;
-    // and then call a function to redraw the whole map.
-
-    return true;
-}
-
-void AIGCivilizationManager::ApplyCivilizationMapData(const TArray<FMapRow>& LoadedMapData)
-{
-    // Checking that the size of the incoming data is compatible with the existing map
-    // is a good security measure, but for now it is enough to assign directly
-    this->CivilizationMap = LoadedMapData;
-
-    // IMPORTANT: Since the ownership map has changed, we need to recreate the list of
-    // tiles owned by civilizations according to this new map.
-    CivilizationOwnedTiles.Empty();
-    for (int32 y = 0; y < CivilizationMap.Num(); ++y)
-    {
-        for (int32 x = 0; x < CivilizationMap[y].Row.Num(); ++x)
-        {
-            const int32 CivID = CivilizationMap[y].Row[x];
-            if (CivID != -1) // -1 means unowned tile
-            {
-                CivilizationOwnedTiles.FindOrAdd(CivID).Add(FIntPoint(x, y));
-            }
-        }
-    }
-
-    UE_LOG(LogTemp, Warning, TEXT("Civilization Map Data applied. Owned tiles map rebuilt."));
 }
 
 void AIGCivilizationManager::RedrawEntireMap()
@@ -319,6 +324,30 @@ int32 AIGCivilizationManager::GetOwnedTilesMapSize() const
 	return CivilizationOwnedTiles.Num();
 }
 
+void AIGCivilizationManager::ApplyCivilizationMapData(const TArray<FMapRow>& LoadedMapData)
+{
+    // Checking that the size of the incoming data is compatible with the existing map
+    // is a good security measure, but for now it is enough to assign directly
+    this->CivilizationMap = LoadedMapData;
+
+    // IMPORTANT: Since the ownership map has changed, we need to recreate the list of
+    // tiles owned by civilizations according to this new map.
+    CivilizationOwnedTiles.Empty();
+    for (int32 y = 0; y < CivilizationMap.Num(); ++y)
+    {
+        for (int32 x = 0; x < CivilizationMap[y].Row.Num(); ++x)
+        {
+            const int32 CivID = CivilizationMap[y].Row[x];
+            if (CivID != -1) // -1 means unowned tile
+            {
+                CivilizationOwnedTiles.FindOrAdd(CivID).Add(FIntPoint(x, y));
+            }
+        }
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("Civilization Map Data applied. Owned tiles map rebuilt."));
+}
+
 void AIGCivilizationManager::ApplyOwnedTilesData(const TArray<FOwnedTilesSaveData>& LoadedOwnedTiles)
 {
     // Clear current TMap
@@ -329,6 +358,14 @@ void AIGCivilizationManager::ApplyOwnedTilesData(const TArray<FOwnedTilesSaveDat
         CivilizationOwnedTiles.Add(Entry.CivID, Entry.Tiles);
     }
     UE_LOG(LogTemp, Warning, TEXT("Owned Tiles Data applied."));
+
+}
+
+void AIGCivilizationManager::ApplyCivilizationsData(const TArray<FS_CivilizationStructures>& LoadedCivs)
+{
+    this->Civilizations = LoadedCivs;
+	// After applying the new civilizations, we need to rebuild the color map.
+    RebuildColorMap();
 }
 
 void AIGCivilizationManager::SetExpansionPaused(bool bIsPaused)
@@ -345,10 +382,120 @@ void AIGCivilizationManager::SetExpansionPaused(bool bIsPaused)
     else
     {
         UE_LOG(LogTemp, Log, TEXT("Expansion State set to: PAUSED"));
+
     }
 }
 
+void AIGCivilizationManager::UpdateExpansionProgress(float DeltaTime)
+{
+    if (!bIsExpansionActive) return;
 
+    bool bMapStateChanged = false; // Has there been a change in the map?
+
+    for (int32 i = 0; i < Civilizations.Num(); ++i)
+    {
+        FS_CivilizationStructures& CurrentCiv = Civilizations[i];
+        const int32 CivID = i + 1;
+
+        
+        while (CurrentCiv.ExpansionProgress >= CurrentCiv.ExpansionCost)
+        {
+            FIntPoint BestTarget;
+            if (FindBestExpansionTarget_Internal(CivID, BestTarget))
+            {
+                // Only update the C++ DATA. Do not paint.
+                ClaimTileForCivilization(BestTarget, CivID);
+
+                CurrentCiv.ExpansionProgress -= CurrentCiv.ExpansionCost;
+                CurrentCiv.ExpansionCost *= 1.0f;
+
+                bMapStateChanged = true; // There has been a change, raise the flag.
+            }
+            else
+            {
+                break;
+            }
+        }
+        // Always update Progress
+        CurrentCiv.ExpansionProgress += CurrentCiv.GrowthRate * DeltaTime;
+    }
+
+    // If at least one civilization expanded during this tick...
+    if (bMapStateChanged)
+    {
+        // ...redraw the entire map.
+        RedrawEntireMap();
+    }
+}
+
+/*
+void AIGCivilizationManager::ExpandCivilizations()
+{
+    if (!bIsExpansionActive) return;
+    if (CurrentCivColors.Num() == 0 || CivilizationOwnedTiles.Num() == 0) return;
+
+    TArray<int32> CivIDs;
+    CivilizationOwnedTiles.GetKeys(CivIDs);
+    if (CivIDs.Num() == 0) return;
+
+    const int32 ExpandingCivID = CivIDs[FMath::RandRange(0, CivIDs.Num() - 1)];
+    const TArray<FIntPoint>& OwnedTiles = CivilizationOwnedTiles[ExpandingCivID];
+    if (OwnedTiles.Num() == 0) return;
+
+    const int32 CivHomeRegionID = GetRegionIDAtLocation(OwnedTiles[0]);
+    if (CivHomeRegionID == -1) return;
+
+    TArray<FIntPoint> AllPossibleExpansions;
+    for (const FIntPoint& OwnedTile : OwnedTiles)
+    {
+        const FIntPoint Neighbors[] = {
+            {OwnedTile.X, OwnedTile.Y - 1}, {OwnedTile.X, OwnedTile.Y + 1},
+            {OwnedTile.X - 1, OwnedTile.Y}, {OwnedTile.X + 1, OwnedTile.Y}
+        };
+
+        for (const FIntPoint& Neighbor : Neighbors)
+        {
+            if (Neighbor.Y >= 0 && Neighbor.Y < MapHeight && Neighbor.X >= 0 && Neighbor.X < MapWidth &&
+                MapArray[Neighbor.Y].Row[Neighbor.X] == 1 &&
+                CivilizationMap[Neighbor.Y].Row[Neighbor.X] == -1 &&
+                GetRegionIDAtLocation(Neighbor) == CivHomeRegionID)
+            {
+                AllPossibleExpansions.AddUnique(Neighbor);
+            }
+        }
+    }
+
+    if (AllPossibleExpansions.Num() == 0)
+    {
+        return;
+    }
+
+    
+    const int32 ExpansionsThisTick = FMath::Min(5, AllPossibleExpansions.Num()); // En fazla 5 tane veya listede ne kadar varsa.
+
+    TArray<TPair<FIntPoint, FColor>> TilesToPaint;
+
+    for (int i = 0; i < ExpansionsThisTick; ++i)
+    {
+      
+        int32 ChoiceIndex = FMath::RandRange(0, AllPossibleExpansions.Num() - 1);
+        FIntPoint NewTile = AllPossibleExpansions[ChoiceIndex];
+
+        ClaimTileForCivilization(NewTile, ExpandingCivID);
+ 
+        FColor CivColor = CurrentCivColors[ExpandingCivID];
+        TilesToPaint.Add(TPair<FIntPoint, FColor>(NewTile, CivColor));
+
+        AllPossibleExpansions.RemoveAt(ChoiceIndex);
+    }
+
+
+    if (TilesToPaint.Num() > 0)
+    {
+        UpdateMultipleTilesWithColor(TilesToPaint);
+    }
+}
+*/
 
 void AIGCivilizationManager::FindAllSpawnableLocations()
 {
@@ -371,143 +518,139 @@ void AIGCivilizationManager::FindAllSpawnableLocations()
     UE_LOG(LogTemp, Warning, TEXT("Found %d spawnable locations."), UnownedLandCells.Num());
 }
 
-void AIGCivilizationManager::ClaimTileForCivilization(FIntPoint Location, int32 CivID, FColor CivColor)
+bool AIGCivilizationManager::FindBestExpansionTarget_Internal(int32 CivID, FIntPoint& OutBestTarget)
 {
-    // Border control 
-    if (CivID < 0 || !MapArray.IsValidIndex(Location.Y) || !MapArray[Location.Y].Row.IsValidIndex(Location.X)) return;
+    // 1. Find the tiles owned by the expanding civilization.
+    // Since CivilizationOwnedTiles TMap is a member of this class, we can access it directly.
+    if (!CivilizationOwnedTiles.Contains(CivID) || CivilizationOwnedTiles[CivID].Num() == 0)
+    {
+        return false; // This civilization has no tiles.
+    }
+    const TArray<FIntPoint>& OwnedTilesForThisCiv = CivilizationOwnedTiles[CivID];
 
-    FColor OpaqueColor = CivColor;
-    OpaqueColor.A = 255;
+    // 2. Find the homeland (region) of civilization.
+    // RegionMap is a member of this class.
+    const int32 HomeRegionID = RegionMap[OwnedTilesForThisCiv[0].Y].Row[OwnedTilesForThisCiv[0].X];
+    if (HomeRegionID == -1)
+    {
+        return false;
+    }
 
-    // Assign values
+    // 3. Find all possible targets.
+    TArray<FIntPoint> AllPossibleTargets;
+    for (const FIntPoint& CurrentTile : OwnedTilesForThisCiv)
+    {
+        const FIntPoint Neighbors[] = {
+            {CurrentTile.X, CurrentTile.Y - 1}, {CurrentTile.X, CurrentTile.Y + 1},
+            {CurrentTile.X - 1, CurrentTile.Y}, {CurrentTile.X + 1, CurrentTile.Y}
+        };
+        for (const FIntPoint& Neighbor : Neighbors)
+        {
+            if (Neighbor.Y >= 0 && Neighbor.Y < MapHeight && Neighbor.X >= 0 && Neighbor.X < MapWidth &&
+                MapArray[Neighbor.Y].Row[Neighbor.X] == 1 &&
+                CivilizationMap[Neighbor.Y].Row[Neighbor.X] == -1 &&
+                RegionMap[Neighbor.Y].Row[Neighbor.X] == HomeRegionID)
+            {
+                AllPossibleTargets.AddUnique(Neighbor);
+            }
+        }
+    }
+
+    // 4. Return the result.
+    if (AllPossibleTargets.Num() > 0)
+    {
+        OutBestTarget = AllPossibleTargets[FMath::RandRange(0, AllPossibleTargets.Num() - 1)];
+        return true;
+    }
+
+    return false;
+}
+
+void AIGCivilizationManager::ClaimTileForCivilization(FIntPoint Location, int32 CivID)
+{
+    if (CivID < 0 || !CivilizationMap.IsValidIndex(Location.Y) || !CivilizationMap[Location.Y].Row.IsValidIndex(Location.X) || CivilizationMap[Location.Y].Row[Location.X] != -1)
+    {
+        return;
+    }
     CivilizationMap[Location.Y].Row[Location.X] = CivID;
     CivilizationOwnedTiles.FindOrAdd(CivID).AddUnique(Location);
 
-    // Paint Texture
-    UpdateTextureWithColor(Location, OpaqueColor);
 }
 
-void AIGCivilizationManager::ClaimInitialAreaForCivilization(FIntPoint Center, int32 Radius, int32 CivID, FColor CivColor)
+/*
+void AIGCivilizationManager::ClaimInitialAreaForCivilization(FIntPoint Center, int32 Radius, int32 CivID)
 {
-    if (CivID < 0) return;
+   if (CivID < 0 || !CurrentCivColors.Contains(CivID)) return;
+
+    TArray<TPair<FIntPoint, FColor>> TilesToPaint;
+    FColor CivColor = CurrentCivColors[CivID];
 
     for (int32 y = -Radius; y <= Radius; ++y)
     {
         for (int32 x = -Radius; x <= Radius; ++x)
         {
             FIntPoint CurrentPoint(Center.X + x, Center.Y + y);
-
-            // Border control 
-            if (!MapArray.IsValidIndex(CurrentPoint.Y) || !MapArray[CurrentPoint.Y].Row.IsValidIndex(CurrentPoint.X))
+            if (CurrentPoint.Y >= 0 && CurrentPoint.Y < MapHeight && CurrentPoint.X >= 0 && CurrentPoint.X < MapWidth &&
+                MapArray[CurrentPoint.Y].Row[CurrentPoint.X] == 1 &&
+                CivilizationMap[CurrentPoint.Y].Row[CurrentPoint.X] == -1)
             {
-                continue; // This point is off the map, skip it.
-            }
-
-            //Is this pixel suitable for painting ?
-            const bool bIsLand = (MapArray[CurrentPoint.Y].Row[CurrentPoint.X] == 1);
-            const bool bIsUnowned = (CivilizationMap[CurrentPoint.Y].Row[CurrentPoint.X] == -1);
-
-            if (bIsLand && bIsUnowned)
-            {
-                // If the condition is met, order painting.
-                ClaimTileForCivilization(CurrentPoint, CivID, CivColor);
+                ClaimTileForCivilization(CurrentPoint, CivID);
+                TilesToPaint.Add(TPair<FIntPoint, FColor>(CurrentPoint, CivColor));
             }
         }
     }
+    if (TilesToPaint.Num() > 0)
+    {
+        UpdateMultipleTilesWithColor(TilesToPaint);
+    }
 }
+*/
 
 void AIGCivilizationManager::UpdateCivilizationData(const TMap<int32, FColor>& CivColorMap)
 {
     CurrentCivColors = CivColorMap;
 }
 
-void AIGCivilizationManager::ExpandCivilizations()
+void AIGCivilizationManager::RebuildColorMap()
 {
-    // Eðer geniþleme aktif deðilse, hiçbir þey yapmadan fonksiyondan çýk.
-    if (!bIsExpansionActive)
+    CurrentCivColors.Empty();
+    if (Civilizations.Num() == 0) return;
+
+    for (int32 i = 0; i < Civilizations.Num(); ++i)
     {
-        return;
+        // We could add CIVID maybe
+        // CurrentCivColors.Add(Civilizations[i].CivID, Civilizations[i].Color);
+        CurrentCivColors.Add(i + 1, Civilizations[i].Color);
     }
-
-    if (CurrentCivColors.Num() == 0 || CivilizationOwnedTiles.Num() == 0) return;
-
-    TArray<int32> CivIDs;
-    CivilizationOwnedTiles.GetKeys(CivIDs);
-    if (CivIDs.Num() == 0) return;
-
-    const int32 ExpandingCivID = CivIDs[FMath::RandRange(0, CivIDs.Num() - 1)];
-    const TArray<FIntPoint>& OwnedTiles = CivilizationOwnedTiles[ExpandingCivID];
-    if (OwnedTiles.Num() == 0) return;
-
-    const int32 CivHomeRegionID = GetRegionIDAtLocation(OwnedTiles[0]);
-    if (CivHomeRegionID == -1) return;
-
-    // Find All the expansion points of civilization on All border lines.
-    TArray<FIntPoint> AllPossibleExpansions;
-    for (const FIntPoint& OwnedTile : OwnedTiles)
-    {
-        const FIntPoint Neighbors[] = {
-            {OwnedTile.X, OwnedTile.Y - 1}, {OwnedTile.X, OwnedTile.Y + 1},
-            {OwnedTile.X - 1, OwnedTile.Y}, {OwnedTile.X + 1, OwnedTile.Y}
-        };
-
-        for (const FIntPoint& Neighbor : Neighbors)
-        {
-            if (Neighbor.Y >= 0 && Neighbor.Y < MapHeight && Neighbor.X >= 0 && Neighbor.X < MapWidth &&
-                MapArray[Neighbor.Y].Row[Neighbor.X] == 1 &&
-                CivilizationMap[Neighbor.Y].Row[Neighbor.X] == -1 &&
-                GetRegionIDAtLocation(Neighbor) == CivHomeRegionID)
-            {
-                AllPossibleExpansions.AddUnique(Neighbor);
-            }
-        }
-    }
-
-    // If we have found a place to expand, pick one at random from that big list and claim it.
-    if (AllPossibleExpansions.Num() > 0)
-    {
-        FIntPoint NewTile = AllPossibleExpansions[FMath::RandRange(0, AllPossibleExpansions.Num() - 1)];
-        // Order painting directly, since the condition has already been checked above.
-        ClaimTileForCivilization(NewTile, ExpandingCivID, CurrentCivColors[ExpandingCivID]);
-    }
-
+    UE_LOG(LogTemp, Warning, TEXT("Color Map rebuilt. Found %d colors."), CurrentCivColors.Num());
 }
 
-void AIGCivilizationManager::UpdateTextureWithColor(FIntPoint Location, FColor Color)
+void AIGCivilizationManager::UpdateMultipleTilesWithColor(const TArray<TPair<FIntPoint, FColor>>& TilesToUpdate)
 {
-    if (!DynamicMapTexture || !DynamicMapTexture->GetResource())
-    {
-        UE_LOG(LogTemp, Warning, TEXT("UpdateTextureWithColor: DynamicMapTexture is invalid."));
-        return;
-    }
+    if (!DynamicMapTexture || !DynamicMapTexture->GetResource() || TilesToUpdate.Num() == 0) return;
 
     FTexture2DDynamicResource* TextureResource = static_cast<FTexture2DDynamicResource*>(DynamicMapTexture->GetResource());
-
-    // Lock to write the entire region of the Texture.
-    // In more complex scenarios it is possible to lock only the region to be updated,
-    // but this method is the most reliable.
     uint32 Stride = 0;
-    uint8* MipData = (uint8*)RHILockTexture2D(TextureResource->GetTexture2DRHI(), 0, RLM_WriteOnly, Stride, false);
 
-    if (!MipData)
+    // Lock the texture ONLY ONCE
+    uint8* MipData = (uint8*)RHILockTexture2D(TextureResource->GetTexture2DRHI(), 0, RLM_WriteOnly, Stride, false);
+    if (!MipData) return;
+
+    // Gelen listedeki TÜM pikselleri boya
+    for (const TPair<FIntPoint, FColor>& TileData : TilesToUpdate)
     {
-        UE_LOG(LogTemp, Error, TEXT("UpdateTextureWithColor: Failed to lock texture MipData."));
-        return;
+        const FIntPoint& Location = TileData.Key;
+        const FColor& Color = TileData.Value;
+
+        const int32 Index = (Location.Y * Stride) + (Location.X * 4);
+        MipData[Index]     = Color.B;
+        MipData[Index + 1] = Color.G;
+        MipData[Index + 2] = Color.R;
+        MipData[Index + 3] = 255; // Opaque
     }
 
-    // Calculate the address of the correct pixel in MipData.
-    // Stride is the length of a line in bytes. It is usually equal to MapWidth * 4.
-    const int32 Index = (Location.Y * Stride) + (Location.X * 4); // 4 byte per pixel (BGRA)
-
-    // Write pixel data in BGRA format.
-    MipData[Index] = Color.B;
-    MipData[Index + 1] = Color.G;
-    MipData[Index + 2] = Color.R;
-    MipData[Index + 3] = Color.A; // Usually should be 255 (opaque)
-
-    // Unlock and send the texture back to the GPU.
+    // Open the texture ONLY ONCE
     RHIUnlockTexture2D(TextureResource->GetTexture2DRHI(), 0, false);
 }
-
 
 

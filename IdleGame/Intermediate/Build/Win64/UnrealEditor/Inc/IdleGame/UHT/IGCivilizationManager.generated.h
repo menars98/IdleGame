@@ -10,7 +10,6 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
  struct FColor;
-struct FColor;
 struct FMapRow;
 struct FOwnedTilesSaveData;
 struct FS_CivilizationStructures;
@@ -19,37 +18,41 @@ struct FS_CivilizationStructures;
 #endif
 #define IDLEGAME_IGCivilizationManager_generated_h
 
-#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_17_GENERATED_BODY \
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_14_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FMapRow_Statics; \
 	IDLEGAME_API static class UScriptStruct* StaticStruct();
 
 
 template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FMapRow>();
 
-#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execFindAllSpawnableLocations); \
+	DECLARE_FUNCTION(execPlaceCivilizations); \
+	DECLARE_FUNCTION(execUpdateExpansionProgress); \
 	DECLARE_FUNCTION(execSetExpansionPaused); \
-	DECLARE_FUNCTION(execApplyOwnedTilesData); \
 	DECLARE_FUNCTION(execRedrawEntireMap); \
+	DECLARE_FUNCTION(execGetCurrentColors); \
+	DECLARE_FUNCTION(execApplyCivilizationsData); \
+	DECLARE_FUNCTION(execApplyOwnedTilesData); \
 	DECLARE_FUNCTION(execApplyCivilizationMapData); \
-	DECLARE_FUNCTION(execLoadGame); \
-	DECLARE_FUNCTION(execSaveGame); \
 	DECLARE_FUNCTION(execGetOwnedTilesMapSize); \
 	DECLARE_FUNCTION(execGetCivilizationMapSize); \
 	DECLARE_FUNCTION(execGetOwnedTilesForSaving); \
+	DECLARE_FUNCTION(execGetRegionMap); \
+	DECLARE_FUNCTION(execGetMapArray); \
 	DECLARE_FUNCTION(execGetCivilizationMap); \
+	DECLARE_FUNCTION(execGetCivilizationsData); \
 	DECLARE_FUNCTION(execGetRegionIDAtLocation); \
 	DECLARE_FUNCTION(execGetRandomSpawnableLocation); \
 	DECLARE_FUNCTION(execUpdateCivilizationData); \
 	DECLARE_FUNCTION(execClaimTileForCivilization); \
-	DECLARE_FUNCTION(execClaimInitialAreaForCivilization); \
 	DECLARE_FUNCTION(execStartExpansionTimer); \
 	DECLARE_FUNCTION(execInitializeForNewGame); \
 	DECLARE_FUNCTION(execSetupMapFromTextures); \
 	DECLARE_FUNCTION(execDiagnoseMapDataAtPoint);
 
 
-#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_26_INCLASS_NO_PURE_DECLS \
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_25_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAIGCivilizationManager(); \
 	friend struct Z_Construct_UClass_AIGCivilizationManager_Statics; \
@@ -58,7 +61,7 @@ public: \
 	DECLARE_SERIALIZER(AIGCivilizationManager)
 
 
-#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_26_ENHANCED_CONSTRUCTORS \
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AIGCivilizationManager(AIGCivilizationManager&&); \
@@ -70,13 +73,13 @@ public: \
 	NO_API virtual ~AIGCivilizationManager();
 
 
-#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_23_PROLOG
-#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_26_GENERATED_BODY \
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_22_PROLOG
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_25_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_26_INCLASS_NO_PURE_DECLS \
-	FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_26_ENHANCED_CONSTRUCTORS \
+	FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_25_INCLASS_NO_PURE_DECLS \
+	FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

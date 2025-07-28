@@ -67,11 +67,19 @@ struct Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics
 		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_GrowthRate_MetaData[] = {
-		{ "Category", "S_CivilizationStructures" },
+		{ "Category", "Expansion" },
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ExpansionProgress_MetaData[] = {
+		{ "Category", "Expansion" },
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ExpansionCost_MetaData[] = {
+		{ "Category", "Expansion" },
 		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Location_MetaData[] = {
-		{ "Category", "S_CivilizationStructures" },
+		{ "Category", "Location" },
 		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentSize_MetaData[] = {
@@ -91,6 +99,8 @@ struct Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_OwnerPlayer;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Score;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_GrowthRate;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_ExpansionProgress;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_ExpansionCost;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_Location;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentSize;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_Color;
@@ -112,6 +122,8 @@ void Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_OwnerP
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_OwnerPlayer = { "OwnerPlayer", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(FS_CivilizationStructures), &Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_OwnerPlayer_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OwnerPlayer_MetaData), NewProp_OwnerPlayer_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_Score = { "Score", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_CivilizationStructures, Score), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Score_MetaData), NewProp_Score_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_GrowthRate = { "GrowthRate", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_CivilizationStructures, GrowthRate), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GrowthRate_MetaData), NewProp_GrowthRate_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_ExpansionProgress = { "ExpansionProgress", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_CivilizationStructures, ExpansionProgress), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ExpansionProgress_MetaData), NewProp_ExpansionProgress_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_ExpansionCost = { "ExpansionCost", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_CivilizationStructures, ExpansionCost), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ExpansionCost_MetaData), NewProp_ExpansionCost_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_Location = { "Location", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_CivilizationStructures, Location), Z_Construct_UScriptStruct_FIntPoint, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Location_MetaData), NewProp_Location_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_CurrentSize = { "CurrentSize", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_CivilizationStructures, CurrentSize), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentSize_MetaData), NewProp_CurrentSize_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_Color = { "Color", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_CivilizationStructures, Color), Z_Construct_UScriptStruct_FColor, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Color_MetaData), NewProp_Color_MetaData) };
@@ -123,6 +135,8 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FS
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_OwnerPlayer,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_Score,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_GrowthRate,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_ExpansionProgress,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_ExpansionCost,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_Location,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_CurrentSize,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewProp_Color,
@@ -227,11 +241,11 @@ UScriptStruct* Z_Construct_UScriptStruct_FOwnedTilesSaveData()
 struct Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics
 {
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FS_CivilizationStructures::StaticStruct, Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewStructOps, TEXT("S_CivilizationStructures"), &Z_Registration_Info_UScriptStruct_S_CivilizationStructures, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_CivilizationStructures), 761573513U) },
+		{ FS_CivilizationStructures::StaticStruct, Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewStructOps, TEXT("S_CivilizationStructures"), &Z_Registration_Info_UScriptStruct_S_CivilizationStructures, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_CivilizationStructures), 2406020703U) },
 		{ FOwnedTilesSaveData::StaticStruct, Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::NewStructOps, TEXT("OwnedTilesSaveData"), &Z_Registration_Info_UScriptStruct_OwnedTilesSaveData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FOwnedTilesSaveData), 133798282U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_4162874777(TEXT("/Script/IdleGame"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_3775100111(TEXT("/Script/IdleGame"),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::ScriptStructInfo),
 	nullptr, 0);

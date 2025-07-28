@@ -28,10 +28,16 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     float Score = 0.0f;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Expansion")
     float GrowthRate = 0.0f;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Expansion")
+    float ExpansionProgress = 0.0f; 
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Expansion")
+    float ExpansionCost = 100.0f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Location")
 	FIntPoint Location;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)

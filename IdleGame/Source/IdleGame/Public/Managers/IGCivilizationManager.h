@@ -8,9 +8,6 @@
 #include "IdleGameTypes.h"
 #include "IGCivilizationManager.generated.h"
 
-
-
-
 USTRUCT(BlueprintType)
 struct FMapRow
 {
@@ -18,6 +15,8 @@ struct FMapRow
 
 	UPROPERTY(BlueprintReadOnly)
 	TArray<int32> Row;
+
+	FMapRow() {}
 };
 
 UCLASS()
@@ -40,19 +39,21 @@ public:
 
 	// Sadece YENÝ BÝR OYUN için sahiplik haritasýný ve diðer oyun durumlarýný sýfýrlar.
 	UFUNCTION(BlueprintCallable, Category = "Initialization")
-	void InitializeForNewGame();
+	void InitializeForNewGame(const TArray<FS_CivilizationStructures>& StartingCivs);
 
 	// Geniþleme timer'ýný baþlatýr. Hem yeni oyunda hem de yüklemeden sonra çaðrýlýr.
 	UFUNCTION(BlueprintCallable, Category = "Initialization")
 	void StartExpansionTimer();
 
-	UFUNCTION(BlueprintCallable, Category = "Map Interaction")
-	void ClaimInitialAreaForCivilization(FIntPoint Center, int32 Radius, int32 CivID, FColor CivColor);
+	void TimerTick();
+
+	//UFUNCTION(BlueprintCallable, Category = "Map Interaction")
+	//void ClaimInitialAreaForCivilization(FIntPoint Center, int32 Radius, int32 CivID);
 
 	// Allows Blueprint to claim a cell on behalf of a civilization.
 	// Used to place the starting cells.
 	UFUNCTION(BlueprintCallable, Category = "Map Interaction")
-	void ClaimTileForCivilization(FIntPoint Location, int32 CivID, FColor CivColor);
+	void ClaimTileForCivilization(FIntPoint Location, int32 CivID);
 
 	// To send color information from Blueprint to C++.
 	UFUNCTION(BlueprintCallable, Category = "Map Interaction")
@@ -66,40 +67,60 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Map Information")
 	int32 GetRegionIDAtLocation(FIntPoint Location);
 
-	UFUNCTION(BlueprintPure, Category = "SaveLoad")
+	UFUNCTION(BlueprintPure, Category = "SaveLoad|GetData")
+	const TArray<FS_CivilizationStructures>& GetCivilizationsData() const { return Civilizations; };
+
+	UFUNCTION(BlueprintPure, Category = "GetData")
 	const TArray<FMapRow>& GetCivilizationMap() const { return CivilizationMap; }
+
+	UFUNCTION(BlueprintPure, Category = "GetData")
+	const TArray<FMapRow>& GetMapArray() const { return MapArray; }
+
+	UFUNCTION(BlueprintPure, Category = "GetData")
+	const TArray<FMapRow>& GetRegionMap() const { return RegionMap; }
 
 	UFUNCTION(BlueprintPure, Category = "SaveLoad|GetData")
 	TArray<FOwnedTilesSaveData> GetOwnedTilesForSaving() const;
 
-	UFUNCTION(BlueprintPure, Category = "SaveLoad|GetData")
+	UFUNCTION(BlueprintPure, Category = "GetData")
 	int32 GetCivilizationMapSize() const;
 
-	UFUNCTION(BlueprintPure, Category = "SaveLoad|GetData")
+	UFUNCTION(BlueprintPure, Category = "GetData")
 	int32 GetOwnedTilesMapSize() const;
 	// --- END ----
 	// Save & Load
-	UFUNCTION(BlueprintCallable, Category = "SaveLoad")
-	bool SaveGame(FString SlotName, const TArray<FS_CivilizationStructures>& BPCivilizations);
 
-	UFUNCTION(BlueprintCallable, Category = "SaveLoad")
-	bool LoadGame(FString SlotName);
-
-	// Yüklenen harita sahiplik verisini C++'a uygular.
+	// --- Setters START ---
 	UFUNCTION(BlueprintCallable, Category = "SaveLoad|Internal")
 	void ApplyCivilizationMapData(const TArray<FMapRow>& LoadedMapData);
-
-	// Tüm haritayý mevcut C++ verilerine göre yeniden çizer.
-	UFUNCTION(BlueprintCallable, Category = "SaveLoad|Internal")
-	void RedrawEntireMap();
 
 	UFUNCTION(BlueprintCallable, Category = "SaveLoad|ApplyData")
 	void ApplyOwnedTilesData(const TArray<FOwnedTilesSaveData>& LoadedOwnedTiles);
 
+	UFUNCTION(BlueprintCallable, Category = "SaveLoad|ApplyData")
+	void ApplyCivilizationsData(const TArray<FS_CivilizationStructures>& LoadedCivs);
+
+	UFUNCTION(BlueprintPure, Category = "GetData")
+	TMap<int32, FColor> GetCurrentColors() const { return CurrentCivColors; };
+
+	// --- Setters END ---
+	// Tüm haritayý mevcut C++ verilerine göre yeniden çizer.
+	UFUNCTION(BlueprintCallable, Category = "SaveLoad|Internal")
+	void RedrawEntireMap();
+
 	
+
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	void SetExpansionPaused(bool bIsPaused);
 
+	/*UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	void ExpandCivilizations();*/
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateExpansionProgress(float DeltaTime);
+
+	UFUNCTION(BlueprintCallable)
+	void PlaceCivilizations();
 public:
 	// Dynamic Texture on which we will draw colors
 	UPROPERTY(BlueprintReadOnly, Category = "Map")
@@ -110,14 +131,14 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Map Initialization")
 	TObjectPtr<UTexture2D> RegionMaskTexture;
-
-
+	
 
 private:
 	// Map Data
 	TArray<FMapRow> MapArray;
 	// Holds the civilization to which each tile belongs (CivID). 0 = unclaimed.
 	TArray<FMapRow> CivilizationMap;
+	TArray<FS_CivilizationStructures> Civilizations;
 	TArray<FIntPoint> UnownedLandCells;
 	// A Map that keeps a list of all tiles owned by each civilization.
 	TMap<int32, TArray<FIntPoint>> CivilizationOwnedTiles;
@@ -134,13 +155,18 @@ private:
 
 	// C++ Functions
 	// Main function that is called periodically and runs the expansion logic for all civilizations.
-	void ExpandCivilizations();
+	
+	void RebuildColorMap();
+
 	// Updates specific regions of the dynamic texture.
-	void UpdateTextureWithColor(FIntPoint Location, FColor Color);
+	void UpdateMultipleTilesWithColor(const TArray<TPair<FIntPoint, FColor>>& TilesToUpdate);
+
 	UFUNCTION(BlueprintCallable, Category = "Map")
 	void FindAllSpawnableLocations();
 
 	bool bIsExpansionActive = true;
+
+	bool FindBestExpansionTarget_Internal(int32 CivID, FIntPoint& OutBestTarget);
 
 protected:
 	// Called when the game starts or when spawned
