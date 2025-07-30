@@ -139,6 +139,7 @@ void AIGCivilizationManager::SetupMapFromTextures()
     {
         DynamicMapTexture->UpdateResource();
         FlushRenderingCommands();
+        OnDynamicTextureReady.Broadcast(DynamicMapTexture);
         UE_LOG(LogTemp, Warning, TEXT("Map textures set up successfully."));
     }
 }
@@ -283,9 +284,13 @@ void AIGCivilizationManager::RedrawEntireMap()
             {
                 // If it has an owner and we know the color, paint it that color
                 PixelColor = CurrentCivColors[CivID];
-                PixelColor.A = 255; // Make it opaque
+                PixelColor.A = CivilizationAlpha; // We can change the alpha value if we want
             }
 
+            else 
+            {
+                PixelColor = FColor(0, 0, 0, 0); // 
+            }
             // Write pixel to Texture memory (BGRA format)
             const int32 Index = (y * Stride) + (x * 4);
             MipData[Index] = PixelColor.B;
@@ -646,7 +651,7 @@ void AIGCivilizationManager::UpdateMultipleTilesWithColor(const TArray<TPair<FIn
         MipData[Index]     = Color.B;
         MipData[Index + 1] = Color.G;
         MipData[Index + 2] = Color.R;
-        MipData[Index + 3] = 255; // Opaque
+        MipData[Index + 3] = Color.A; // Now alpha has a value
     }
 
     // Open the texture ONLY ONCE

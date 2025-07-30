@@ -8,6 +8,8 @@
 #include "IdleGameTypes.h"
 #include "IGCivilizationManager.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDynamicTextureReady, UTexture2DDynamic*, DynamicTexture);
+
 USTRUCT(BlueprintType)
 struct FMapRow
 {
@@ -132,6 +134,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Map Initialization")
 	TObjectPtr<UTexture2D> RegionMaskTexture;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Drawing", meta = (ClampMin = "0", ClampMax = "255"))
+	int32 CivilizationAlpha = 180; // 
+
+	UPROPERTY(BlueprintAssignable, Category = "Events")
+	FOnDynamicTextureReady OnDynamicTextureReady;
 
 private:
 	// Map Data
