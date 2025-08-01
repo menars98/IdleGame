@@ -35,11 +35,11 @@ public:
 
 	// --- MAIN FUNCTIONS TO BE CALLED FROM BLUEPRINT ---
 
-	// Sadece maske texture'larýný okuyup temel harita dizilerini (MapArray, RegionMap) oluþturur.
+	// Only reads mask textures and creates basic map arrays (MapArray, RegionMap).
 	UFUNCTION(BlueprintCallable, Category = "Initialization")
 	void SetupMapFromTextures();
 
-	// Sadece YENÝ BÝR OYUN için sahiplik haritasýný ve diðer oyun durumlarýný sýfýrlar.
+	// Only resets the ownership map and other game states for a NEW GAME.
 	UFUNCTION(BlueprintCallable, Category = "Initialization")
 	void InitializeForNewGame(const TArray<FS_CivilizationStructures>& StartingCivs);
 
@@ -48,9 +48,6 @@ public:
 	void StartExpansionTimer();
 
 	void TimerTick();
-
-	//UFUNCTION(BlueprintCallable, Category = "Map Interaction")
-	//void ClaimInitialAreaForCivilization(FIntPoint Center, int32 Radius, int32 CivID);
 
 	// Allows Blueprint to claim a cell on behalf of a civilization.
 	// Used to place the starting cells.
@@ -106,23 +103,23 @@ public:
 	TMap<int32, FColor> GetCurrentColors() const { return CurrentCivColors; };
 
 	// --- Setters END ---
-	// Tüm haritayý mevcut C++ verilerine göre yeniden çizer.
+	// Redraws the entire map based on the current C++ data.
 	UFUNCTION(BlueprintCallable, Category = "SaveLoad|Internal")
 	void RedrawEntireMap();
 
-	
-
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	void SetExpansionPaused(bool bIsPaused);
-
-	/*UFUNCTION(BlueprintCallable, Category = "Gameplay")
-	void ExpandCivilizations();*/
 
 	UFUNCTION(BlueprintCallable)
 	void UpdateExpansionProgress(float DeltaTime);
 
 	UFUNCTION(BlueprintCallable)
 	void PlaceCivilizations();
+
+	// Checks whether the given coordinates are on land
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Map Query")
+	bool IsLandAtCoordinates(FIntPoint Coordinates);
+
 public:
 	// Dynamic Texture on which we will draw colors
 	UPROPERTY(BlueprintReadOnly, Category = "Map")
@@ -157,7 +154,7 @@ private:
 	// NEW: Added for region system
 	// Holds the region to which each tile belongs (RegionID).
 	TArray<FMapRow> RegionMap;
-	// Bu dizinin indeksi, bölge ID'sini belirleyecek (Index 0 = RegionID 1, vs.)
+	// The index of this array will determine the region ID (Index 0 = RegionID 1, etc.)
 	TArray<FColor> PureRegionColors;
 
 	// C++ Functions
@@ -178,8 +175,6 @@ private:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	//UFUNCTION(BlueprintCallable, Category = "Map")
-	//FIntPoint GetRandomLandCell();
 
 	UPROPERTY(BlueprintReadOnly, Category = "Map")
 	int32 MapWidth=0;

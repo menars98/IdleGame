@@ -32,6 +32,7 @@ template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FMapRow>();
 
 #define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_27_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execFindAllSpawnableLocations); \
+	DECLARE_FUNCTION(execIsLandAtCoordinates); \
 	DECLARE_FUNCTION(execPlaceCivilizations); \
 	DECLARE_FUNCTION(execUpdateExpansionProgress); \
 	DECLARE_FUNCTION(execSetExpansionPaused); \

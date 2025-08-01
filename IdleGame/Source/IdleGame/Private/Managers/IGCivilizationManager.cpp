@@ -220,6 +220,19 @@ void AIGCivilizationManager::PlaceCivilizations()
     RedrawEntireMap();
 }
 
+bool AIGCivilizationManager::IsLandAtCoordinates(FIntPoint Coordinates)
+{
+    // First, check whether the coordinates are valid (within the boundaries)
+    if (Coordinates.Y >= 0 && Coordinates.Y < MapHeight && Coordinates.X >= 0 && Coordinates.X < MapWidth)
+    {
+        // Returns the value in MapArray. Returns true if it is 1, false if it is 0.
+        return MapArray[Coordinates.Y].Row[Coordinates.X] == 1;
+    }
+
+    // If it is outside the boundaries, it is definitely not land.
+    return false;
+}
+
 void AIGCivilizationManager::StartExpansionTimer()
 {
 	// Start the timer that will periodically call the expansion logic.
