@@ -9153,3 +9153,832 @@ Script call stack:
 [2025.08.01-12.03.29:320][793]LogFileHelpers: Auto-saving content packages took 0.009
 [2025.08.01-12.04.16:604][935]LogEOSSDK: LogEOSAuth: Refreshing authentication session. AccessTokenExpired: No RefreshRequired: Yes VerifyRequired: No UserId: 1cb...1bf
 [2025.08.01-12.04.16:604][935]LogEOSSDK: LogEOSAuth: Refresh authentication session. AuthState: 1 AccessExpires: 99.83 RefreshExpires: 1.554e+07
+[2025.08.01-12.04.17:605][938]LogEOSSDK: LogEOSAuth: UpdateUserAuthToken: User ClientId: xyz...459 AccountId: 1cb...1bf Access[Expires: 2025.08.01-14.04.15 Remaining: 7200.50] Refresh[Expires: 2026-01-28T10:05:54.504Z Remaining: 15544899.50] State: Valid
+[2025.08.01-12.07.32:603][523]LogDerivedDataCache: C:/Users/muham/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:00:00.000 and deleted 0 files with total size 0 MiB and 0 empty folders. Scanned 0 files in 1 folders with total size 0 MiB.
+[2025.08.01-12.08.16:313][654]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 7349.474609
+[2025.08.01-12.08.17:313][657]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.08.01-12.08.17:313][657]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 7350.140625, Update Interval: 323.407074
+[2025.08.01-12.14.39:999][ 37]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 7733.148438
+[2025.08.01-12.14.41:000][ 40]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.08.01-12.14.41:000][ 40]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 7733.815430, Update Interval: 347.284760
+[2025.08.01-12.16.16:116][493]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2025.08.01-12.16.16:125][493]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2025.08.01-12.16.16:125][493]LogPlayLevel: Creating play world package: /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.16.16:126][493]LogPlayLevel: PIE: StaticDuplicateObject took: (0.000529s)
+[2025.08.01-12.16.16:126][493]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/IdleGame/Map/MainMenuMap.MainMenuMap to /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap (0.000556s)
+[2025.08.01-12.16.16:145][493]LogUObjectHash: Compacting FUObjectHashTables data took   1.39ms
+[2025.08.01-12.16.16:148][493]LogChaosDD: Creating Chaos Debug Draw Scene for world MainMenuMap
+[2025.08.01-12.16.16:149][493]LogPlayLevel: PIE: World Init took: (0.001113s)
+[2025.08.01-12.16.16:149][493]LogAudio: Display: Creating Audio Device:                 Id: 71, Scope: Unique, Realtime: True
+[2025.08.01-12.16.16:149][493]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2025.08.01-12.16.16:149][493]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2025.08.01-12.16.16:149][493]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2025.08.01-12.16.16:149][493]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2025.08.01-12.16.16:149][493]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2025.08.01-12.16.16:149][493]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2025.08.01-12.16.16:149][493]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2025.08.01-12.16.16:149][493]LogAudio: Display: AudioDevice MaxSources: 32
+[2025.08.01-12.16.16:149][493]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2025.08.01-12.16.16:149][493]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2025.08.01-12.16.16:149][493]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2025.08.01-12.16.16:151][493]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2025.08.01-12.16.16:174][493]LogAudioMixer: Display: Using Audio Hardware Device Hoparlör (High Definition Audio Device)
+[2025.08.01-12.16.16:174][493]LogAudioMixer: Display: Initializing Sound Submixes...
+[2025.08.01-12.16.16:175][493]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2025.08.01-12.16.16:175][493]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2025.08.01-12.16.16:175][493]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=71
+[2025.08.01-12.16.16:175][493]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=71
+[2025.08.01-12.16.16:177][493]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=71
+[2025.08.01-12.16.16:177][493]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=71
+[2025.08.01-12.16.16:177][493]LogInit: FAudioDevice initialized with ID 71.
+[2025.08.01-12.16.16:177][493]LogAudio: Display: Audio Device (ID: 71) registered with world 'MainMenuMap'.
+[2025.08.01-12.16.16:177][493]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 71
+[2025.08.01-12.16.16:199][493]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.16.16:199][493]LogLoad: Game class is 'BP_MainMenu_GM_C'
+[2025.08.01-12.16.16:199][493]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap up for play (max tick rate 0) at 2025.08.01-15.16.16
+[2025.08.01-12.16.16:199][493]LogWorld: Bringing up level for play took: 0.000283
+[2025.08.01-12.16.16:201][493]LogOnline: OSS: Created online subsystem instance for: :Context_104
+[2025.08.01-12.16.16:201][493]LogGameMode: FindPlayerStart: PATHS NOT DEFINED or NO PLAYERSTART with positive rating
+[2025.08.01-12.16.16:206][493]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> DoNotLock
+[2025.08.01-12.16.16:206][493]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently_IncludingInitialMouseDown -> NoCapture
+[2025.08.01-12.16.16:207][493]PIE: Server logged in
+[2025.08.01-12.16.16:208][493]PIE: Play in editor total start time 0,083 seconds.
+[2025.08.01-12.16.16:815][552]LogGlobalStatus: UEngine::Browse Started Browse: "/Game/IdleGame/Map/IdleLevel"
+[2025.08.01-12.16.16:815][552]LogNet: Browse: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.16.16:815][552]LogLoad: LoadMap: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.16.16:815][552]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.16.16:818][552]LogWorld: UWorld::CleanupWorld for MainMenuMap, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.16.16:818][552]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.16.16:879][552]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2025.08.01-12.16.16:880][552]LogUObjectHash: Compacting FUObjectHashTables data took   1.07ms
+[2025.08.01-12.16.16:884][552]LogStreaming: Display: FlushAsyncLoading(606): 1 QueuedPackages, 0 AsyncPackages
+[2025.08.01-12.16.16:885][552]LogAudio: Display: Audio Device (ID: 71) registered with world 'IdleLevel'.
+[2025.08.01-12.16.16:885][552]LogChaosDD: Creating Chaos Debug Draw Scene for world IdleLevel
+[2025.08.01-12.16.16:886][552]LogPlayLevel: PIE: World Init took: (0.000969s)
+[2025.08.01-12.16.16:886][552]LogLoad: Game class is 'BP_IdleGM_C'
+[2025.08.01-12.16.16:887][552]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_IdleLevel.IdleLevel up for play (max tick rate 0) at 2025.08.01-15.16.16
+[2025.08.01-12.16.16:887][552]LogWorld: Bringing up level for play took: 0.000970
+[2025.08.01-12.16.16:887][552]LogGameMode: FindPlayerStart: PATHS NOT DEFINED or NO PLAYERSTART with positive rating
+[2025.08.01-12.16.16:926][552]LogTemp: Warning: Map textures set up successfully.
+[2025.08.01-12.16.16:934][552]LogTemp: Warning: Color Map rebuilt. Found 3 colors.
+[2025.08.01-12.16.16:950][552]LogTemp: Warning: Found 548106 spawnable locations.
+[2025.08.01-12.16.16:950][552]LogTemp: Warning: Manager Initialized for New Game. Color Map has 3 entries. Ready for placement.
+[2025.08.01-12.16.16:975][552]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.16:978][552]LogViewport: Display: Viewport MouseLockMode Changed, DoNotLock -> LockOnCapture
+[2025.08.01-12.16.16:978][552]LogViewport: Display: Viewport MouseCaptureMode Changed, NoCapture -> CapturePermanently
+[2025.08.01-12.16.16:978][552]LogLoad: Took 0.162400 seconds to LoadMap(/Game/IdleGame/Map/IdleLevel)
+[2025.08.01-12.16.16:978][552]LogGlobalStatus: UEngine::LoadMap Load map complete /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.16.17:836][652]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.18:842][770]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.19:839][887]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.20:844][  5]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.21:841][122]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.22:846][240]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.23:877][244]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.24:877][247]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.25:878][250]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.26:877][253]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.27:881][256]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.28:878][259]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.29:877][262]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.30:878][265]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.31:878][268]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.32:878][271]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.33:878][274]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.34:879][277]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.35:880][280]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.36:879][283]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.37:880][286]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.38:881][289]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.39:879][292]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.40:879][295]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.41:879][298]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.42:880][301]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.43:881][304]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.44:848][417]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.45:846][534]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.46:845][651]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.47:841][768]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.48:846][886]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.49:842][  3]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.50:840][120]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.51:844][238]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.52:842][355]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.53:840][470]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.54:845][588]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.55:842][705]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.56:846][823]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.57:842][940]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.58:840][ 57]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.16.59:846][175]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.00:842][292]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.02:155][330]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.03:155][333]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.04:154][336]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.05:154][339]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.06:155][342]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.07:155][345]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.08:154][348]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.09:155][351]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.10:155][354]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.11:155][357]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.12:155][360]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.13:162][363]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.14:155][366]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.15:156][369]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.16:155][372]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.17:155][375]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.18:155][378]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.19:156][381]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.20:155][384]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.21:157][387]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.22:157][390]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.23:156][393]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.24:156][396]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.25:156][399]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.26:156][402]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.27:156][405]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.28:157][408]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.29:155][411]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.29:841][454]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.30:847][572]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.31:843][689]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.32:842][806]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.33:848][924]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.34:845][ 41]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.35:842][158]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.36:839][275]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.37:844][393]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.38:841][510]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.39:846][628]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.40:842][745]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.41:847][863]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.42:005][882]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> DoNotLock
+[2025.08.01-12.17.42:005][882]LogViewport: Display: Viewport HideCursorDuringCapture Changed, False -> True
+[2025.08.01-12.17.42:005][882]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently -> CaptureDuringMouseDown
+[2025.08.01-12.17.42:005][882]LogTemp: Expansion State set to: PAUSED
+[2025.08.01-12.17.43:623][ 48]PIE: UWidget::RemoveFromParent() called on '/Engine/Transient.UnrealEdEngine_0:BP_IdleGameInstance_C_69.BPW_SaveLoadMenu_C_0' which has no UMG parent (if it was added directly to a native Slate widget via TakeWidget() then it must be removed explicitly rather than via RemoveFromParent())
+[2025.08.01-12.17.43:623][ 48]LogTemp: Expansion State set to: ACTIVE
+[2025.08.01-12.17.43:646][ 48]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.43:646][ 48]PIE: UWidget::RemoveFromParent() called on '/Engine/Transient.UnrealEdEngine_0:BP_IdleGameInstance_C_69.BPW_SaveLoadMenu_C_0' which has no UMG parent (if it was added directly to a native Slate widget via TakeWidget() then it must be removed explicitly rather than via RemoveFromParent())
+[2025.08.01-12.17.43:646][ 48]LogTemp: Expansion State set to: ACTIVE
+[2025.08.01-12.17.43:669][ 48]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.43:672][ 48]LogGlobalStatus: UEngine::Browse Started Browse: "/Game/IdleGame/Map/IdleLevel"
+[2025.08.01-12.17.43:672][ 48]LogNet: Browse: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.17.43:672][ 48]LogLoad: LoadMap: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.17.43:672][ 48]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_IdleLevel
+[2025.08.01-12.17.43:674][ 48]LogWorld: UWorld::CleanupWorld for IdleLevel, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.17.43:674][ 48]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.17.43:728][ 48]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2025.08.01-12.17.43:731][ 48]LogUObjectHash: Compacting FUObjectHashTables data took   1.08ms
+[2025.08.01-12.17.43:734][ 48]LogStreaming: Display: FlushAsyncLoading(607): 1 QueuedPackages, 0 AsyncPackages
+[2025.08.01-12.17.43:735][ 48]LogAudio: Display: Audio Device (ID: 71) registered with world 'IdleLevel'.
+[2025.08.01-12.17.43:735][ 48]LogChaosDD: Creating Chaos Debug Draw Scene for world IdleLevel
+[2025.08.01-12.17.43:736][ 48]LogPlayLevel: PIE: World Init took: (0.001050s)
+[2025.08.01-12.17.43:736][ 48]LogLoad: Game class is 'BP_IdleGM_C'
+[2025.08.01-12.17.43:737][ 48]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_IdleLevel.IdleLevel up for play (max tick rate 0) at 2025.08.01-15.17.43
+[2025.08.01-12.17.43:737][ 48]LogWorld: Bringing up level for play took: 0.001003
+[2025.08.01-12.17.43:738][ 48]LogGameMode: FindPlayerStart: PATHS NOT DEFINED or NO PLAYERSTART with positive rating
+[2025.08.01-12.17.43:772][ 48]LogTemp: Warning: Map textures set up successfully.
+[2025.08.01-12.17.43:842][ 48]LogTemp: Warning: Color Map rebuilt. Found 3 colors.
+[2025.08.01-12.17.43:842][ 48]LogTemp: Warning: Owned Tiles Data applied.
+[2025.08.01-12.17.43:855][ 48]LogTemp: Warning: Civilization Map Data applied. Owned tiles map rebuilt.
+[2025.08.01-12.17.43:878][ 48]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.43:878][ 48]LogViewport: Display: Viewport MouseCaptureMode Changed, CaptureDuringMouseDown -> NoCapture
+[2025.08.01-12.17.43:882][ 48]LogViewport: Display: Viewport MouseLockMode Changed, DoNotLock -> LockOnCapture
+[2025.08.01-12.17.43:882][ 48]LogViewport: Display: Viewport MouseCaptureMode Changed, NoCapture -> CapturePermanently
+[2025.08.01-12.17.43:882][ 48]LogLoad: Took 0.210288 seconds to LoadMap(/Game/IdleGame/Map/IdleLevel)
+[2025.08.01-12.17.43:882][ 48]LogGlobalStatus: UEngine::LoadMap Load map complete /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.17.44:641][136]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.44:671][137]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.45:652][252]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.46:648][369]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.47:653][487]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.48:649][604]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.49:654][722]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.50:651][839]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.51:647][956]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.52:651][ 74]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.53:648][191]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.54:653][307]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.55:650][424]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.17.56:061][468]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.17.56:061][468]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_IdleLevel
+[2025.08.01-12.17.56:062][468]LogSlate: Window 'IdleGame Preview [NetMode: Standalone 0]  (64-bit/PC D3D SM6)' being destroyed
+[2025.08.01-12.17.56:070][468]LogWorld: UWorld::CleanupWorld for IdleLevel, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.17.56:070][468]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.17.56:073][468]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2025.08.01-12.17.56:081][468]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.17.56:101][468]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 71
+[2025.08.01-12.17.56:101][468]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=71
+[2025.08.01-12.17.56:103][468]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=71
+[2025.08.01-12.17.56:107][468]LogUObjectHash: Compacting FUObjectHashTables data took   1.34ms
+[2025.08.01-12.17.56:348][469]LogPlayLevel: Display: Destroying online subsystem :Context_104
+[2025.08.01-12.19.35:161][ 53]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2025.08.01-12.19.35:169][ 53]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2025.08.01-12.19.35:203][ 53]LogPlayLevel: Creating play world package: /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.19.35:203][ 53]LogPlayLevel: PIE: StaticDuplicateObject took: (0.000497s)
+[2025.08.01-12.19.35:204][ 53]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/IdleGame/Map/MainMenuMap.MainMenuMap to /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap (0.000526s)
+[2025.08.01-12.19.35:222][ 53]LogUObjectHash: Compacting FUObjectHashTables data took   0.99ms
+[2025.08.01-12.19.35:225][ 53]LogChaosDD: Creating Chaos Debug Draw Scene for world MainMenuMap
+[2025.08.01-12.19.35:226][ 53]LogPlayLevel: PIE: World Init took: (0.001193s)
+[2025.08.01-12.19.35:227][ 53]LogAudio: Display: Creating Audio Device:                 Id: 72, Scope: Unique, Realtime: True
+[2025.08.01-12.19.35:227][ 53]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2025.08.01-12.19.35:227][ 53]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2025.08.01-12.19.35:227][ 53]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2025.08.01-12.19.35:227][ 53]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2025.08.01-12.19.35:227][ 53]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2025.08.01-12.19.35:227][ 53]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2025.08.01-12.19.35:227][ 53]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2025.08.01-12.19.35:227][ 53]LogAudio: Display: AudioDevice MaxSources: 32
+[2025.08.01-12.19.35:227][ 53]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2025.08.01-12.19.35:227][ 53]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2025.08.01-12.19.35:227][ 53]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2025.08.01-12.19.35:230][ 53]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2025.08.01-12.19.35:251][ 53]LogAudioMixer: Display: Using Audio Hardware Device Hoparlör (High Definition Audio Device)
+[2025.08.01-12.19.35:252][ 53]LogAudioMixer: Display: Initializing Sound Submixes...
+[2025.08.01-12.19.35:252][ 53]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2025.08.01-12.19.35:252][ 53]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2025.08.01-12.19.35:252][ 53]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=72
+[2025.08.01-12.19.35:252][ 53]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=72
+[2025.08.01-12.19.35:253][ 53]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=72
+[2025.08.01-12.19.35:253][ 53]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=72
+[2025.08.01-12.19.35:253][ 53]LogInit: FAudioDevice initialized with ID 72.
+[2025.08.01-12.19.35:253][ 53]LogAudio: Display: Audio Device (ID: 72) registered with world 'MainMenuMap'.
+[2025.08.01-12.19.35:253][ 53]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 72
+[2025.08.01-12.19.35:256][ 53]LogLoad: Game class is 'BP_MainMenu_GM_C'
+[2025.08.01-12.19.35:257][ 53]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap up for play (max tick rate 0) at 2025.08.01-15.19.35
+[2025.08.01-12.19.35:257][ 53]LogWorld: Bringing up level for play took: 0.000266
+[2025.08.01-12.19.35:258][ 53]LogOnline: OSS: Created online subsystem instance for: :Context_105
+[2025.08.01-12.19.35:262][ 53]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> DoNotLock
+[2025.08.01-12.19.35:262][ 53]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently_IncludingInitialMouseDown -> NoCapture
+[2025.08.01-12.19.35:262][ 53]PIE: Server logged in
+[2025.08.01-12.19.35:263][ 53]PIE: Play in editor total start time 0,094 seconds.
+[2025.08.01-12.19.35:777][105]LogGlobalStatus: UEngine::Browse Started Browse: "/Game/IdleGame/Map/IdleLevel"
+[2025.08.01-12.19.35:777][105]LogNet: Browse: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.19.35:777][105]LogLoad: LoadMap: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.19.35:777][105]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.19.35:780][105]LogWorld: UWorld::CleanupWorld for MainMenuMap, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.19.35:780][105]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.19.35:832][105]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2025.08.01-12.19.35:833][105]LogUObjectHash: Compacting FUObjectHashTables data took   1.03ms
+[2025.08.01-12.19.35:837][105]LogStreaming: Display: FlushAsyncLoading(608): 1 QueuedPackages, 0 AsyncPackages
+[2025.08.01-12.19.35:838][105]LogAudio: Display: Audio Device (ID: 72) registered with world 'IdleLevel'.
+[2025.08.01-12.19.35:838][105]LogChaosDD: Creating Chaos Debug Draw Scene for world IdleLevel
+[2025.08.01-12.19.35:839][105]LogPlayLevel: PIE: World Init took: (0.000937s)
+[2025.08.01-12.19.35:839][105]LogLoad: Game class is 'BP_IdleGM_C'
+[2025.08.01-12.19.35:840][105]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_IdleLevel.IdleLevel up for play (max tick rate 0) at 2025.08.01-15.19.35
+[2025.08.01-12.19.35:840][105]LogWorld: Bringing up level for play took: 0.000908
+[2025.08.01-12.19.35:840][105]LogGameMode: FindPlayerStart: PATHS NOT DEFINED or NO PLAYERSTART with positive rating
+[2025.08.01-12.19.35:876][105]LogTemp: Warning: Map textures set up successfully.
+[2025.08.01-12.19.35:882][105]LogTemp: Warning: Color Map rebuilt. Found 3 colors.
+[2025.08.01-12.19.35:898][105]LogTemp: Warning: Found 548106 spawnable locations.
+[2025.08.01-12.19.35:898][105]LogTemp: Warning: Manager Initialized for New Game. Color Map has 3 entries. Ready for placement.
+[2025.08.01-12.19.35:922][105]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.35:926][105]LogViewport: Display: Viewport MouseLockMode Changed, DoNotLock -> LockOnCapture
+[2025.08.01-12.19.35:926][105]LogViewport: Display: Viewport MouseCaptureMode Changed, NoCapture -> CapturePermanently
+[2025.08.01-12.19.35:926][105]LogLoad: Took 0.148493 seconds to LoadMap(/Game/IdleGame/Map/IdleLevel)
+[2025.08.01-12.19.35:926][105]LogGlobalStatus: UEngine::LoadMap Load map complete /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.19.36:799][207]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.37:803][325]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.38:806][443]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.39:802][560]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.39:933][572]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.19.39:933][572]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_IdleLevel
+[2025.08.01-12.19.39:933][572]LogWorld: UWorld::CleanupWorld for IdleLevel, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.19.39:933][572]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.19.39:936][572]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2025.08.01-12.19.39:942][572]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.19.39:962][572]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.19.39:962][572]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 72
+[2025.08.01-12.19.39:962][572]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=72
+[2025.08.01-12.19.39:964][572]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=72
+[2025.08.01-12.19.39:970][572]LogUObjectHash: Compacting FUObjectHashTables data took   0.98ms
+[2025.08.01-12.19.40:026][574]LogPlayLevel: Display: Destroying online subsystem :Context_105
+[2025.08.01-12.19.40:551][637]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2025.08.01-12.19.40:559][637]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2025.08.01-12.19.40:583][637]LogPlayLevel: Creating play world package: /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.19.40:583][637]LogPlayLevel: PIE: StaticDuplicateObject took: (0.000498s)
+[2025.08.01-12.19.40:583][637]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/IdleGame/Map/MainMenuMap.MainMenuMap to /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap (0.000527s)
+[2025.08.01-12.19.40:603][637]LogUObjectHash: Compacting FUObjectHashTables data took   1.02ms
+[2025.08.01-12.19.40:607][637]LogChaosDD: Creating Chaos Debug Draw Scene for world MainMenuMap
+[2025.08.01-12.19.40:608][637]LogPlayLevel: PIE: World Init took: (0.001036s)
+[2025.08.01-12.19.40:608][637]LogAudio: Display: Creating Audio Device:                 Id: 73, Scope: Unique, Realtime: True
+[2025.08.01-12.19.40:608][637]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2025.08.01-12.19.40:608][637]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2025.08.01-12.19.40:608][637]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2025.08.01-12.19.40:608][637]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2025.08.01-12.19.40:608][637]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2025.08.01-12.19.40:608][637]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2025.08.01-12.19.40:608][637]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2025.08.01-12.19.40:608][637]LogAudio: Display: AudioDevice MaxSources: 32
+[2025.08.01-12.19.40:608][637]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2025.08.01-12.19.40:608][637]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2025.08.01-12.19.40:608][637]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2025.08.01-12.19.40:610][637]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2025.08.01-12.19.40:631][637]LogAudioMixer: Display: Using Audio Hardware Device Hoparlör (High Definition Audio Device)
+[2025.08.01-12.19.40:631][637]LogAudioMixer: Display: Initializing Sound Submixes...
+[2025.08.01-12.19.40:631][637]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2025.08.01-12.19.40:631][637]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2025.08.01-12.19.40:631][637]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=73
+[2025.08.01-12.19.40:631][637]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=73
+[2025.08.01-12.19.40:633][637]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=73
+[2025.08.01-12.19.40:633][637]LogInit: FAudioDevice initialized with ID 73.
+[2025.08.01-12.19.40:633][637]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=73
+[2025.08.01-12.19.40:633][637]LogAudio: Display: Audio Device (ID: 73) registered with world 'MainMenuMap'.
+[2025.08.01-12.19.40:633][637]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 73
+[2025.08.01-12.19.40:636][637]LogLoad: Game class is 'BP_MainMenu_GM_C'
+[2025.08.01-12.19.40:636][637]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap up for play (max tick rate 0) at 2025.08.01-15.19.40
+[2025.08.01-12.19.40:636][637]LogWorld: Bringing up level for play took: 0.000307
+[2025.08.01-12.19.40:638][637]LogOnline: OSS: Created online subsystem instance for: :Context_106
+[2025.08.01-12.19.40:642][637]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> DoNotLock
+[2025.08.01-12.19.40:642][637]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently_IncludingInitialMouseDown -> NoCapture
+[2025.08.01-12.19.40:643][637]PIE: Server logged in
+[2025.08.01-12.19.40:644][637]PIE: Play in editor total start time 0,085 seconds.
+[2025.08.01-12.19.41:113][684]LogGlobalStatus: UEngine::Browse Started Browse: "/Game/IdleGame/Map/IdleLevel"
+[2025.08.01-12.19.41:113][684]LogNet: Browse: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.19.41:114][684]LogLoad: LoadMap: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.19.41:114][684]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.19.41:115][684]LogWorld: UWorld::CleanupWorld for MainMenuMap, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.19.41:115][684]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.19.41:171][684]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2025.08.01-12.19.41:173][684]LogUObjectHash: Compacting FUObjectHashTables data took   1.03ms
+[2025.08.01-12.19.41:176][684]LogStreaming: Display: FlushAsyncLoading(609): 1 QueuedPackages, 0 AsyncPackages
+[2025.08.01-12.19.41:177][684]LogAudio: Display: Audio Device (ID: 73) registered with world 'IdleLevel'.
+[2025.08.01-12.19.41:177][684]LogChaosDD: Creating Chaos Debug Draw Scene for world IdleLevel
+[2025.08.01-12.19.41:178][684]LogPlayLevel: PIE: World Init took: (0.000901s)
+[2025.08.01-12.19.41:178][684]LogLoad: Game class is 'BP_IdleGM_C'
+[2025.08.01-12.19.41:179][684]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_IdleLevel.IdleLevel up for play (max tick rate 0) at 2025.08.01-15.19.41
+[2025.08.01-12.19.41:179][684]LogWorld: Bringing up level for play took: 0.001018
+[2025.08.01-12.19.41:180][684]LogGameMode: FindPlayerStart: PATHS NOT DEFINED or NO PLAYERSTART with positive rating
+[2025.08.01-12.19.41:215][684]LogTemp: Warning: Map textures set up successfully.
+[2025.08.01-12.19.41:221][684]LogTemp: Warning: Color Map rebuilt. Found 3 colors.
+[2025.08.01-12.19.41:238][684]LogTemp: Warning: Found 548106 spawnable locations.
+[2025.08.01-12.19.41:238][684]LogTemp: Warning: Manager Initialized for New Game. Color Map has 3 entries. Ready for placement.
+[2025.08.01-12.19.41:262][684]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.41:266][684]LogViewport: Display: Viewport MouseLockMode Changed, DoNotLock -> LockOnCapture
+[2025.08.01-12.19.41:266][684]LogViewport: Display: Viewport MouseCaptureMode Changed, NoCapture -> CapturePermanently
+[2025.08.01-12.19.41:266][684]LogLoad: Took 0.153070 seconds to LoadMap(/Game/IdleGame/Map/IdleLevel)
+[2025.08.01-12.19.41:266][684]LogGlobalStatus: UEngine::LoadMap Load map complete /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.19.42:130][785]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.42:474][824]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.19.42:474][824]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_IdleLevel
+[2025.08.01-12.19.42:474][824]LogWorld: UWorld::CleanupWorld for IdleLevel, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.19.42:474][824]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.19.42:476][824]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2025.08.01-12.19.42:482][824]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.19.42:500][824]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.19.42:501][824]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 73
+[2025.08.01-12.19.42:501][824]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=73
+[2025.08.01-12.19.42:503][824]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=73
+[2025.08.01-12.19.42:508][824]LogUObjectHash: Compacting FUObjectHashTables data took   1.03ms
+[2025.08.01-12.19.42:568][826]LogPlayLevel: Display: Destroying online subsystem :Context_106
+[2025.08.01-12.19.45:930][956]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2025.08.01-12.19.45:938][956]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2025.08.01-12.19.45:983][956]LogPlayLevel: Creating play world package: /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.19.45:984][956]LogPlayLevel: PIE: StaticDuplicateObject took: (0.000583s)
+[2025.08.01-12.19.45:984][956]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/IdleGame/Map/MainMenuMap.MainMenuMap to /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap (0.000613s)
+[2025.08.01-12.19.46:004][956]LogUObjectHash: Compacting FUObjectHashTables data took   1.09ms
+[2025.08.01-12.19.46:007][956]LogChaosDD: Creating Chaos Debug Draw Scene for world MainMenuMap
+[2025.08.01-12.19.46:008][956]LogPlayLevel: PIE: World Init took: (0.001046s)
+[2025.08.01-12.19.46:009][956]LogAudio: Display: Creating Audio Device:                 Id: 74, Scope: Unique, Realtime: True
+[2025.08.01-12.19.46:009][956]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2025.08.01-12.19.46:009][956]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2025.08.01-12.19.46:009][956]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2025.08.01-12.19.46:009][956]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2025.08.01-12.19.46:009][956]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2025.08.01-12.19.46:009][956]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2025.08.01-12.19.46:009][956]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2025.08.01-12.19.46:009][956]LogAudio: Display: AudioDevice MaxSources: 32
+[2025.08.01-12.19.46:009][956]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2025.08.01-12.19.46:009][956]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2025.08.01-12.19.46:009][956]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2025.08.01-12.19.46:011][956]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2025.08.01-12.19.46:031][956]LogAudioMixer: Display: Using Audio Hardware Device Hoparlör (High Definition Audio Device)
+[2025.08.01-12.19.46:031][956]LogAudioMixer: Display: Initializing Sound Submixes...
+[2025.08.01-12.19.46:031][956]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2025.08.01-12.19.46:031][956]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2025.08.01-12.19.46:031][956]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=74
+[2025.08.01-12.19.46:031][956]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=74
+[2025.08.01-12.19.46:033][956]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=74
+[2025.08.01-12.19.46:033][956]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=74
+[2025.08.01-12.19.46:033][956]LogInit: FAudioDevice initialized with ID 74.
+[2025.08.01-12.19.46:033][956]LogAudio: Display: Audio Device (ID: 74) registered with world 'MainMenuMap'.
+[2025.08.01-12.19.46:033][956]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 74
+[2025.08.01-12.19.46:036][956]LogLoad: Game class is 'BP_MainMenu_GM_C'
+[2025.08.01-12.19.46:036][956]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap up for play (max tick rate 0) at 2025.08.01-15.19.46
+[2025.08.01-12.19.46:036][956]LogWorld: Bringing up level for play took: 0.000260
+[2025.08.01-12.19.46:038][956]LogOnline: OSS: Created online subsystem instance for: :Context_107
+[2025.08.01-12.19.46:042][956]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> DoNotLock
+[2025.08.01-12.19.46:042][956]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently_IncludingInitialMouseDown -> NoCapture
+[2025.08.01-12.19.46:042][956]PIE: Server logged in
+[2025.08.01-12.19.46:044][956]PIE: Play in editor total start time 0,105 seconds.
+[2025.08.01-12.19.46:446][995]LogGlobalStatus: UEngine::Browse Started Browse: "/Game/IdleGame/Map/IdleLevel"
+[2025.08.01-12.19.46:446][995]LogNet: Browse: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.19.46:446][995]LogLoad: LoadMap: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.19.46:446][995]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.19.46:449][995]LogWorld: UWorld::CleanupWorld for MainMenuMap, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.19.46:449][995]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.19.46:502][995]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2025.08.01-12.19.46:504][995]LogUObjectHash: Compacting FUObjectHashTables data took   1.04ms
+[2025.08.01-12.19.46:508][995]LogStreaming: Display: FlushAsyncLoading(610): 1 QueuedPackages, 0 AsyncPackages
+[2025.08.01-12.19.46:509][995]LogAudio: Display: Audio Device (ID: 74) registered with world 'IdleLevel'.
+[2025.08.01-12.19.46:509][995]LogChaosDD: Creating Chaos Debug Draw Scene for world IdleLevel
+[2025.08.01-12.19.46:510][995]LogPlayLevel: PIE: World Init took: (0.000944s)
+[2025.08.01-12.19.46:510][995]LogLoad: Game class is 'BP_IdleGM_C'
+[2025.08.01-12.19.46:511][995]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_IdleLevel.IdleLevel up for play (max tick rate 0) at 2025.08.01-15.19.46
+[2025.08.01-12.19.46:511][995]LogWorld: Bringing up level for play took: 0.001042
+[2025.08.01-12.19.46:511][995]LogGameMode: FindPlayerStart: PATHS NOT DEFINED or NO PLAYERSTART with positive rating
+[2025.08.01-12.19.46:548][995]LogTemp: Warning: Map textures set up successfully.
+[2025.08.01-12.19.46:555][995]LogTemp: Warning: Color Map rebuilt. Found 3 colors.
+[2025.08.01-12.19.46:571][995]LogTemp: Warning: Found 548106 spawnable locations.
+[2025.08.01-12.19.46:571][995]LogTemp: Warning: Manager Initialized for New Game. Color Map has 3 entries. Ready for placement.
+[2025.08.01-12.19.46:596][995]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.46:600][995]LogViewport: Display: Viewport MouseLockMode Changed, DoNotLock -> LockOnCapture
+[2025.08.01-12.19.46:600][995]LogViewport: Display: Viewport MouseCaptureMode Changed, NoCapture -> CapturePermanently
+[2025.08.01-12.19.46:600][995]LogLoad: Took 0.153456 seconds to LoadMap(/Game/IdleGame/Map/IdleLevel)
+[2025.08.01-12.19.46:600][995]LogGlobalStatus: UEngine::LoadMap Load map complete /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.19.47:464][ 96]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.48:477][215]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.49:473][332]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.49:703][357]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.19.49:703][357]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_IdleLevel
+[2025.08.01-12.19.49:703][357]LogWorld: UWorld::CleanupWorld for IdleLevel, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.19.49:703][357]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.19.49:706][357]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2025.08.01-12.19.49:712][357]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.19.49:732][357]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.19.49:732][357]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 74
+[2025.08.01-12.19.49:732][357]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=74
+[2025.08.01-12.19.49:734][357]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=74
+[2025.08.01-12.19.49:741][357]LogUObjectHash: Compacting FUObjectHashTables data took   1.26ms
+[2025.08.01-12.19.49:781][359]LogPlayLevel: Display: Destroying online subsystem :Context_107
+[2025.08.01-12.19.51:269][531]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2025.08.01-12.19.51:277][531]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2025.08.01-12.19.51:277][531]LogPlayLevel: Creating play world package: /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.19.51:278][531]LogPlayLevel: PIE: StaticDuplicateObject took: (0.000528s)
+[2025.08.01-12.19.51:278][531]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/IdleGame/Map/MainMenuMap.MainMenuMap to /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap (0.000553s)
+[2025.08.01-12.19.51:295][531]LogUObjectHash: Compacting FUObjectHashTables data took   1.02ms
+[2025.08.01-12.19.51:302][531]LogChaosDD: Creating Chaos Debug Draw Scene for world MainMenuMap
+[2025.08.01-12.19.51:303][531]LogPlayLevel: PIE: World Init took: (0.001174s)
+[2025.08.01-12.19.51:304][531]LogAudio: Display: Creating Audio Device:                 Id: 75, Scope: Unique, Realtime: True
+[2025.08.01-12.19.51:304][531]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2025.08.01-12.19.51:304][531]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2025.08.01-12.19.51:304][531]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2025.08.01-12.19.51:304][531]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2025.08.01-12.19.51:304][531]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2025.08.01-12.19.51:304][531]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2025.08.01-12.19.51:304][531]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2025.08.01-12.19.51:304][531]LogAudio: Display: AudioDevice MaxSources: 32
+[2025.08.01-12.19.51:304][531]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2025.08.01-12.19.51:304][531]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2025.08.01-12.19.51:304][531]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2025.08.01-12.19.51:306][531]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2025.08.01-12.19.51:328][531]LogAudioMixer: Display: Using Audio Hardware Device Hoparlör (High Definition Audio Device)
+[2025.08.01-12.19.51:328][531]LogAudioMixer: Display: Initializing Sound Submixes...
+[2025.08.01-12.19.51:328][531]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2025.08.01-12.19.51:328][531]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2025.08.01-12.19.51:328][531]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=75
+[2025.08.01-12.19.51:328][531]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=75
+[2025.08.01-12.19.51:330][531]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=75
+[2025.08.01-12.19.51:330][531]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=75
+[2025.08.01-12.19.51:330][531]LogInit: FAudioDevice initialized with ID 75.
+[2025.08.01-12.19.51:330][531]LogAudio: Display: Audio Device (ID: 75) registered with world 'MainMenuMap'.
+[2025.08.01-12.19.51:330][531]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 75
+[2025.08.01-12.19.51:351][531]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.19.51:351][531]LogLoad: Game class is 'BP_MainMenu_GM_C'
+[2025.08.01-12.19.51:351][531]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap up for play (max tick rate 0) at 2025.08.01-15.19.51
+[2025.08.01-12.19.51:353][531]LogWorld: Bringing up level for play took: 0.000399
+[2025.08.01-12.19.51:354][531]LogOnline: OSS: Created online subsystem instance for: :Context_108
+[2025.08.01-12.19.51:354][531]LogGameMode: FindPlayerStart: PATHS NOT DEFINED or NO PLAYERSTART with positive rating
+[2025.08.01-12.19.51:358][531]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> DoNotLock
+[2025.08.01-12.19.51:358][531]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently_IncludingInitialMouseDown -> NoCapture
+[2025.08.01-12.19.51:360][531]PIE: Server logged in
+[2025.08.01-12.19.51:361][531]PIE: Play in editor total start time 0,084 seconds.
+[2025.08.01-12.19.51:904][582]LogGlobalStatus: UEngine::Browse Started Browse: "/Game/IdleGame/Map/IdleLevel"
+[2025.08.01-12.19.51:904][582]LogNet: Browse: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.19.51:904][582]LogLoad: LoadMap: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.19.51:904][582]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.19.51:907][582]LogWorld: UWorld::CleanupWorld for MainMenuMap, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.19.51:907][582]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.19.51:962][582]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2025.08.01-12.19.51:963][582]LogUObjectHash: Compacting FUObjectHashTables data took   1.07ms
+[2025.08.01-12.19.51:967][582]LogStreaming: Display: FlushAsyncLoading(611): 1 QueuedPackages, 0 AsyncPackages
+[2025.08.01-12.19.51:968][582]LogAudio: Display: Audio Device (ID: 75) registered with world 'IdleLevel'.
+[2025.08.01-12.19.51:968][582]LogChaosDD: Creating Chaos Debug Draw Scene for world IdleLevel
+[2025.08.01-12.19.51:968][582]LogPlayLevel: PIE: World Init took: (0.000919s)
+[2025.08.01-12.19.51:969][582]LogLoad: Game class is 'BP_IdleGM_C'
+[2025.08.01-12.19.51:969][582]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_IdleLevel.IdleLevel up for play (max tick rate 0) at 2025.08.01-15.19.51
+[2025.08.01-12.19.51:970][582]LogWorld: Bringing up level for play took: 0.000882
+[2025.08.01-12.19.51:970][582]LogGameMode: FindPlayerStart: PATHS NOT DEFINED or NO PLAYERSTART with positive rating
+[2025.08.01-12.19.52:005][582]LogTemp: Warning: Map textures set up successfully.
+[2025.08.01-12.19.52:013][582]LogTemp: Warning: Color Map rebuilt. Found 3 colors.
+[2025.08.01-12.19.52:029][582]LogTemp: Warning: Found 548106 spawnable locations.
+[2025.08.01-12.19.52:029][582]LogTemp: Warning: Manager Initialized for New Game. Color Map has 3 entries. Ready for placement.
+[2025.08.01-12.19.52:054][582]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.52:057][582]LogViewport: Display: Viewport MouseLockMode Changed, DoNotLock -> LockOnCapture
+[2025.08.01-12.19.52:057][582]LogViewport: Display: Viewport MouseCaptureMode Changed, NoCapture -> CapturePermanently
+[2025.08.01-12.19.52:057][582]LogLoad: Took 0.152710 seconds to LoadMap(/Game/IdleGame/Map/IdleLevel)
+[2025.08.01-12.19.52:057][582]LogGlobalStatus: UEngine::LoadMap Load map complete /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.19.52:925][683]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.53:930][801]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.54:935][919]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.55:933][ 36]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.56:931][153]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.57:929][270]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.58:935][388]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.19.59:754][482]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.19.59:754][482]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_IdleLevel
+[2025.08.01-12.19.59:754][482]LogSlate: Window 'IdleGame Preview [NetMode: Standalone 0]  (64-bit/PC D3D SM6)' being destroyed
+[2025.08.01-12.19.59:758][482]LogWorld: UWorld::CleanupWorld for IdleLevel, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.19.59:759][482]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.19.59:761][482]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2025.08.01-12.19.59:767][482]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.19.59:785][482]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 75
+[2025.08.01-12.19.59:786][482]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=75
+[2025.08.01-12.19.59:787][482]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=75
+[2025.08.01-12.19.59:793][482]LogUObjectHash: Compacting FUObjectHashTables data took   1.25ms
+[2025.08.01-12.19.59:823][484]LogPlayLevel: Display: Destroying online subsystem :Context_108
+[2025.08.01-12.21.27:718][928]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 8140.903809
+[2025.08.01-12.21.28:718][931]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.08.01-12.21.28:718][931]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 8141.571289, Update Interval: 307.055267
+[2025.08.01-12.23.33:696][458]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2025.08.01-12.23.33:704][458]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2025.08.01-12.23.33:704][458]LogPlayLevel: Creating play world package: /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.23.33:705][458]LogPlayLevel: PIE: StaticDuplicateObject took: (0.000478s)
+[2025.08.01-12.23.33:705][458]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/IdleGame/Map/MainMenuMap.MainMenuMap to /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap (0.000501s)
+[2025.08.01-12.23.33:724][458]LogUObjectHash: Compacting FUObjectHashTables data took   1.02ms
+[2025.08.01-12.23.33:727][458]LogChaosDD: Creating Chaos Debug Draw Scene for world MainMenuMap
+[2025.08.01-12.23.33:729][458]LogPlayLevel: PIE: World Init took: (0.001280s)
+[2025.08.01-12.23.33:729][458]LogAudio: Display: Creating Audio Device:                 Id: 76, Scope: Unique, Realtime: True
+[2025.08.01-12.23.33:729][458]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2025.08.01-12.23.33:729][458]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2025.08.01-12.23.33:729][458]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2025.08.01-12.23.33:729][458]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2025.08.01-12.23.33:729][458]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2025.08.01-12.23.33:729][458]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2025.08.01-12.23.33:729][458]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2025.08.01-12.23.33:729][458]LogAudio: Display: AudioDevice MaxSources: 32
+[2025.08.01-12.23.33:729][458]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2025.08.01-12.23.33:729][458]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2025.08.01-12.23.33:729][458]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2025.08.01-12.23.33:731][458]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2025.08.01-12.23.33:752][458]LogAudioMixer: Display: Using Audio Hardware Device Hoparlör (High Definition Audio Device)
+[2025.08.01-12.23.33:752][458]LogAudioMixer: Display: Initializing Sound Submixes...
+[2025.08.01-12.23.33:752][458]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2025.08.01-12.23.33:752][458]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2025.08.01-12.23.33:752][458]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=76
+[2025.08.01-12.23.33:752][458]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=76
+[2025.08.01-12.23.33:755][458]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=76
+[2025.08.01-12.23.33:755][458]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=76
+[2025.08.01-12.23.33:755][458]LogInit: FAudioDevice initialized with ID 76.
+[2025.08.01-12.23.33:755][458]LogAudio: Display: Audio Device (ID: 76) registered with world 'MainMenuMap'.
+[2025.08.01-12.23.33:755][458]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 76
+[2025.08.01-12.23.33:777][458]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.23.33:777][458]LogLoad: Game class is 'BP_MainMenu_GM_C'
+[2025.08.01-12.23.33:778][458]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap up for play (max tick rate 0) at 2025.08.01-15.23.33
+[2025.08.01-12.23.33:778][458]LogWorld: Bringing up level for play took: 0.000295
+[2025.08.01-12.23.33:780][458]LogOnline: OSS: Created online subsystem instance for: :Context_109
+[2025.08.01-12.23.33:780][458]LogGameMode: FindPlayerStart: PATHS NOT DEFINED or NO PLAYERSTART with positive rating
+[2025.08.01-12.23.33:784][458]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> DoNotLock
+[2025.08.01-12.23.33:784][458]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently_IncludingInitialMouseDown -> NoCapture
+[2025.08.01-12.23.33:786][458]PIE: Server logged in
+[2025.08.01-12.23.33:787][458]PIE: Play in editor total start time 0,083 seconds.
+[2025.08.01-12.23.34:469][526]LogGlobalStatus: UEngine::Browse Started Browse: "/Game/IdleGame/Map/IdleLevel"
+[2025.08.01-12.23.34:470][526]LogNet: Browse: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.23.34:470][526]LogLoad: LoadMap: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.23.34:470][526]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.23.34:472][526]LogWorld: UWorld::CleanupWorld for MainMenuMap, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.23.34:472][526]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.23.34:515][526]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2025.08.01-12.23.34:517][526]LogUObjectHash: Compacting FUObjectHashTables data took   1.03ms
+[2025.08.01-12.23.34:521][526]LogStreaming: Display: FlushAsyncLoading(612): 1 QueuedPackages, 0 AsyncPackages
+[2025.08.01-12.23.34:521][526]LogAudio: Display: Audio Device (ID: 76) registered with world 'IdleLevel'.
+[2025.08.01-12.23.34:521][526]LogChaosDD: Creating Chaos Debug Draw Scene for world IdleLevel
+[2025.08.01-12.23.34:522][526]LogPlayLevel: PIE: World Init took: (0.000911s)
+[2025.08.01-12.23.34:522][526]LogLoad: Game class is 'BP_IdleGM_C'
+[2025.08.01-12.23.34:523][526]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_IdleLevel.IdleLevel up for play (max tick rate 0) at 2025.08.01-15.23.34
+[2025.08.01-12.23.34:524][526]LogWorld: Bringing up level for play took: 0.001154
+[2025.08.01-12.23.34:524][526]LogGameMode: FindPlayerStart: PATHS NOT DEFINED or NO PLAYERSTART with positive rating
+[2025.08.01-12.23.34:558][526]LogTemp: Warning: Map textures set up successfully.
+[2025.08.01-12.23.34:566][526]LogTemp: Warning: Color Map rebuilt. Found 3 colors.
+[2025.08.01-12.23.34:581][526]LogTemp: Warning: Found 548106 spawnable locations.
+[2025.08.01-12.23.34:581][526]LogTemp: Warning: Manager Initialized for New Game. Color Map has 3 entries. Ready for placement.
+[2025.08.01-12.23.34:605][526]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.34:609][526]LogViewport: Display: Viewport MouseLockMode Changed, DoNotLock -> LockOnCapture
+[2025.08.01-12.23.34:609][526]LogViewport: Display: Viewport MouseCaptureMode Changed, NoCapture -> CapturePermanently
+[2025.08.01-12.23.34:609][526]LogLoad: Took 0.139050 seconds to LoadMap(/Game/IdleGame/Map/IdleLevel)
+[2025.08.01-12.23.34:609][526]LogGlobalStatus: UEngine::LoadMap Load map complete /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.23.35:493][629]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.36:616][683]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.37:612][686]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.38:613][689]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.39:614][692]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.40:612][695]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.41:613][698]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.42:613][701]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.43:614][704]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.44:614][707]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.45:614][710]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.46:614][713]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.47:615][716]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.48:614][719]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.49:614][722]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.50:614][725]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.51:614][728]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.52:615][731]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.53:496][834]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.54:495][951]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.55:501][ 69]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.56:497][186]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.57:493][303]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.58:499][421]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.23.59:495][538]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.00:501][656]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.01:499][773]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.02:495][890]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.02:702][915]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> DoNotLock
+[2025.08.01-12.24.02:702][915]LogViewport: Display: Viewport HideCursorDuringCapture Changed, False -> True
+[2025.08.01-12.24.02:702][915]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently -> CaptureDuringMouseDown
+[2025.08.01-12.24.02:702][915]LogTemp: Expansion State set to: PAUSED
+[2025.08.01-12.24.03:892][ 33]PIE: UWidget::RemoveFromParent() called on '/Engine/Transient.UnrealEdEngine_0:BP_IdleGameInstance_C_74.BPW_SaveLoadMenu_C_0' which has no UMG parent (if it was added directly to a native Slate widget via TakeWidget() then it must be removed explicitly rather than via RemoveFromParent())
+[2025.08.01-12.24.03:892][ 33]LogTemp: Expansion State set to: ACTIVE
+[2025.08.01-12.24.03:916][ 33]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.03:916][ 33]PIE: UWidget::RemoveFromParent() called on '/Engine/Transient.UnrealEdEngine_0:BP_IdleGameInstance_C_74.BPW_SaveLoadMenu_C_0' which has no UMG parent (if it was added directly to a native Slate widget via TakeWidget() then it must be removed explicitly rather than via RemoveFromParent())
+[2025.08.01-12.24.03:916][ 33]LogTemp: Expansion State set to: ACTIVE
+[2025.08.01-12.24.03:940][ 33]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.03:941][ 33]LogGlobalStatus: UEngine::Browse Started Browse: "/Game/IdleGame/Map/IdleLevel"
+[2025.08.01-12.24.03:941][ 33]LogNet: Browse: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.24.03:941][ 33]LogLoad: LoadMap: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.24.03:941][ 33]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_IdleLevel
+[2025.08.01-12.24.03:943][ 33]LogWorld: UWorld::CleanupWorld for IdleLevel, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.24.03:943][ 33]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.24.03:963][ 33]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2025.08.01-12.24.03:965][ 33]LogUObjectHash: Compacting FUObjectHashTables data took   1.29ms
+[2025.08.01-12.24.03:969][ 33]LogStreaming: Display: FlushAsyncLoading(613): 1 QueuedPackages, 0 AsyncPackages
+[2025.08.01-12.24.03:970][ 33]LogAudio: Display: Audio Device (ID: 76) registered with world 'IdleLevel'.
+[2025.08.01-12.24.03:970][ 33]LogChaosDD: Creating Chaos Debug Draw Scene for world IdleLevel
+[2025.08.01-12.24.03:971][ 33]LogPlayLevel: PIE: World Init took: (0.000878s)
+[2025.08.01-12.24.03:971][ 33]LogLoad: Game class is 'BP_IdleGM_C'
+[2025.08.01-12.24.03:972][ 33]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_IdleLevel.IdleLevel up for play (max tick rate 0) at 2025.08.01-15.24.03
+[2025.08.01-12.24.03:972][ 33]LogWorld: Bringing up level for play took: 0.000946
+[2025.08.01-12.24.03:972][ 33]LogGameMode: FindPlayerStart: PATHS NOT DEFINED or NO PLAYERSTART with positive rating
+[2025.08.01-12.24.04:008][ 33]LogTemp: Warning: Map textures set up successfully.
+[2025.08.01-12.24.04:075][ 33]LogTemp: Warning: Color Map rebuilt. Found 3 colors.
+[2025.08.01-12.24.04:075][ 33]LogTemp: Warning: Owned Tiles Data applied.
+[2025.08.01-12.24.04:086][ 33]LogTemp: Warning: Civilization Map Data applied. Owned tiles map rebuilt.
+[2025.08.01-12.24.04:111][ 33]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.04:111][ 33]LogViewport: Display: Viewport MouseCaptureMode Changed, CaptureDuringMouseDown -> NoCapture
+[2025.08.01-12.24.04:115][ 33]LogViewport: Display: Viewport MouseLockMode Changed, DoNotLock -> LockOnCapture
+[2025.08.01-12.24.04:115][ 33]LogViewport: Display: Viewport MouseCaptureMode Changed, NoCapture -> CapturePermanently
+[2025.08.01-12.24.04:115][ 33]LogLoad: Took 0.172857 seconds to LoadMap(/Game/IdleGame/Map/IdleLevel)
+[2025.08.01-12.24.04:115][ 33]LogGlobalStatus: UEngine::LoadMap Load map complete /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.24.04:915][126]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.04:946][127]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.05:925][242]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.06:922][359]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.07:920][476]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.08:919][593]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.09:923][711]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.10:920][828]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.11:917][945]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.12:923][ 63]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.13:920][180]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.24.14:157][204]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.24.14:157][204]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_IdleLevel
+[2025.08.01-12.24.14:158][204]LogSlate: Window 'IdleGame Preview [NetMode: Standalone 0]  (64-bit/PC D3D SM6)' being destroyed
+[2025.08.01-12.24.14:163][204]LogWorld: UWorld::CleanupWorld for IdleLevel, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.24.14:163][204]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.24.14:167][204]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2025.08.01-12.24.14:172][204]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.24.14:193][204]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 76
+[2025.08.01-12.24.14:193][204]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=76
+[2025.08.01-12.24.14:195][204]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=76
+[2025.08.01-12.24.14:201][204]LogUObjectHash: Compacting FUObjectHashTables data took   1.08ms
+[2025.08.01-12.24.14:238][207]LogPlayLevel: Display: Destroying online subsystem :Context_109
+[2025.08.01-12.27.33:296][963]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 8506.461914
+[2025.08.01-12.27.34:295][966]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.08.01-12.27.34:295][966]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 8507.127930, Update Interval: 306.602997
+[2025.08.01-12.33.14:339][986]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 8847.509766
+[2025.08.01-12.33.15:339][989]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.08.01-12.33.15:339][989]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 8848.176758, Update Interval: 355.195160
+[2025.08.01-12.39.48:323][827]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 9241.476562
+[2025.08.01-12.39.49:323][830]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.08.01-12.39.49:323][830]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 9242.142578, Update Interval: 359.154022
+[2025.08.01-12.46.33:385][ 42]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 9646.527344
+[2025.08.01-12.46.34:384][ 45]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.08.01-12.46.34:384][ 45]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 9647.192383, Update Interval: 354.448059
+[2025.08.01-12.53.24:073][313]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 10057.235352
+[2025.08.01-12.53.25:072][316]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.08.01-12.53.25:072][316]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 10057.900391, Update Interval: 308.373657
+[2025.08.01-12.54.02:859][541]LogUObjectHash: Compacting FUObjectHashTables data took   1.01ms
+[2025.08.01-12.54.03:229][542]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2025.08.01-12.54.03:255][542]OBJ SavePackage: Generating thumbnails for [2] asset(s) in package [/Game/IdleGame/UI/BPW_Earth] ([2] browsable assets)...
+[2025.08.01-12.54.03:257][542]OBJ SavePackage:     Rendered thumbnail for [WidgetBlueprint /Game/IdleGame/UI/BPW_Earth.BPW_Earth]
+[2025.08.01-12.54.03:257][542]OBJ SavePackage: Finished generating thumbnails for package [/Game/IdleGame/UI/BPW_Earth]
+[2025.08.01-12.54.03:257][542]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/IdleGame/UI/BPW_Earth" FILE="../../../../../../Users/muham/Documents/GitHub/IdleGame/IdleGame/Content/IdleGame/UI/BPW_Earth.uasset" SILENT=true
+[2025.08.01-12.54.03:268][542]LogSavePackage: Moving output files for package: /Game/IdleGame/UI/BPW_Earth
+[2025.08.01-12.54.03:269][542]LogSavePackage: Moving '../../../../../../Users/muham/Documents/GitHub/IdleGame/IdleGame/Saved/BPW_Earth5DB780D8457E10116A9916B3AE5F56D6.tmp' to '../../../../../../Users/muham/Documents/GitHub/IdleGame/IdleGame/Content/IdleGame/UI/BPW_Earth.uasset'
+[2025.08.01-12.54.03:277][542]LogFileHelpers: InternalPromptForCheckoutAndSave took 47.770 ms (total: 3.10 sec)
+[2025.08.01-12.54.03:313][542]LogContentValidation: Display: Starting to validate 1 assets
+[2025.08.01-12.54.03:313][542]LogContentValidation: Enabled validators:
+[2025.08.01-12.54.03:313][542]LogContentValidation: 	/Script/DataValidation.EditorValidator_Material
+[2025.08.01-12.54.03:313][542]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2025.08.01-12.54.03:313][542]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2025.08.01-12.54.03:313][542]LogContentValidation: 	/Script/DataValidation.PackageFileValidator
+[2025.08.01-12.54.03:313][542]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2025.08.01-12.54.03:313][542]LogContentValidation: 	/Script/InputBlueprintNodes.EnhancedInputUserWidgetValidator
+[2025.08.01-12.54.03:314][542]AssetCheck: /Game/IdleGame/UI/BPW_Earth Validating asset
+[2025.08.01-12.54.03:879][609]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2025.08.01-12.54.03:887][609]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2025.08.01-12.54.03:887][609]LogPlayLevel: Creating play world package: /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.54.03:888][609]LogPlayLevel: PIE: StaticDuplicateObject took: (0.000479s)
+[2025.08.01-12.54.03:888][609]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/IdleGame/Map/MainMenuMap.MainMenuMap to /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap (0.000503s)
+[2025.08.01-12.54.03:908][609]LogUObjectHash: Compacting FUObjectHashTables data took   1.11ms
+[2025.08.01-12.54.03:913][609]LogChaosDD: Creating Chaos Debug Draw Scene for world MainMenuMap
+[2025.08.01-12.54.03:914][609]LogPlayLevel: PIE: World Init took: (0.001030s)
+[2025.08.01-12.54.03:914][609]LogAudio: Display: Creating Audio Device:                 Id: 77, Scope: Unique, Realtime: True
+[2025.08.01-12.54.03:914][609]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2025.08.01-12.54.03:915][609]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2025.08.01-12.54.03:915][609]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2025.08.01-12.54.03:915][609]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2025.08.01-12.54.03:915][609]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2025.08.01-12.54.03:915][609]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2025.08.01-12.54.03:915][609]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2025.08.01-12.54.03:915][609]LogAudio: Display: AudioDevice MaxSources: 32
+[2025.08.01-12.54.03:915][609]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2025.08.01-12.54.03:915][609]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2025.08.01-12.54.03:915][609]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2025.08.01-12.54.03:916][609]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2025.08.01-12.54.03:940][609]LogAudioMixer: Display: Using Audio Hardware Device Hoparlör (High Definition Audio Device)
+[2025.08.01-12.54.03:940][609]LogAudioMixer: Display: Initializing Sound Submixes...
+[2025.08.01-12.54.03:940][609]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2025.08.01-12.54.03:940][609]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2025.08.01-12.54.03:940][609]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=77
+[2025.08.01-12.54.03:941][609]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=77
+[2025.08.01-12.54.03:942][609]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=77
+[2025.08.01-12.54.03:942][609]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=77
+[2025.08.01-12.54.03:942][609]LogInit: FAudioDevice initialized with ID 77.
+[2025.08.01-12.54.03:942][609]LogAudio: Display: Audio Device (ID: 77) registered with world 'MainMenuMap'.
+[2025.08.01-12.54.03:942][609]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 77
+[2025.08.01-12.54.03:958][609]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.54.03:958][609]LogLoad: Game class is 'BP_MainMenu_GM_C'
+[2025.08.01-12.54.03:958][609]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_MainMenuMap.MainMenuMap up for play (max tick rate 0) at 2025.08.01-15.54.03
+[2025.08.01-12.54.03:959][609]LogWorld: Bringing up level for play took: 0.000346
+[2025.08.01-12.54.03:960][609]LogOnline: OSS: Created online subsystem instance for: :Context_110
+[2025.08.01-12.54.03:961][609]LogGameMode: FindPlayerStart: PATHS NOT DEFINED or NO PLAYERSTART with positive rating
+[2025.08.01-12.54.03:964][609]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> DoNotLock
+[2025.08.01-12.54.03:964][609]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently_IncludingInitialMouseDown -> NoCapture
+[2025.08.01-12.54.03:966][609]PIE: Server logged in
+[2025.08.01-12.54.03:967][609]PIE: Play in editor total start time 0,08 seconds.
+[2025.08.01-12.54.04:541][664]LogGlobalStatus: UEngine::Browse Started Browse: "/Game/IdleGame/Map/IdleLevel"
+[2025.08.01-12.54.04:541][664]LogNet: Browse: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.54.04:541][664]LogLoad: LoadMap: /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.54.04:541][664]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_MainMenuMap
+[2025.08.01-12.54.04:544][664]LogWorld: UWorld::CleanupWorld for MainMenuMap, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.54.04:544][664]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.54.04:594][664]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2025.08.01-12.54.04:595][664]LogUObjectHash: Compacting FUObjectHashTables data took   1.07ms
+[2025.08.01-12.54.04:599][664]LogStreaming: Display: FlushAsyncLoading(614): 1 QueuedPackages, 0 AsyncPackages
+[2025.08.01-12.54.04:600][664]LogAudio: Display: Audio Device (ID: 77) registered with world 'IdleLevel'.
+[2025.08.01-12.54.04:600][664]LogChaosDD: Creating Chaos Debug Draw Scene for world IdleLevel
+[2025.08.01-12.54.04:601][664]LogPlayLevel: PIE: World Init took: (0.000860s)
+[2025.08.01-12.54.04:601][664]LogLoad: Game class is 'BP_IdleGM_C'
+[2025.08.01-12.54.04:602][664]LogWorld: Bringing World /Game/IdleGame/Map/UEDPIE_0_IdleLevel.IdleLevel up for play (max tick rate 0) at 2025.08.01-15.54.04
+[2025.08.01-12.54.04:602][664]LogWorld: Bringing up level for play took: 0.001493
+[2025.08.01-12.54.04:603][664]LogGameMode: FindPlayerStart: PATHS NOT DEFINED or NO PLAYERSTART with positive rating
+[2025.08.01-12.54.04:639][664]LogTemp: Warning: Map textures set up successfully.
+[2025.08.01-12.54.04:646][664]LogTemp: Warning: Color Map rebuilt. Found 3 colors.
+[2025.08.01-12.54.04:663][664]LogTemp: Warning: Found 548106 spawnable locations.
+[2025.08.01-12.54.04:663][664]LogTemp: Warning: Manager Initialized for New Game. Color Map has 3 entries. Ready for placement.
+[2025.08.01-12.54.04:687][664]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.04:690][664]LogViewport: Display: Viewport MouseLockMode Changed, DoNotLock -> LockOnCapture
+[2025.08.01-12.54.04:690][664]LogViewport: Display: Viewport MouseCaptureMode Changed, NoCapture -> CapturePermanently
+[2025.08.01-12.54.04:690][664]LogLoad: Took 0.149381 seconds to LoadMap(/Game/IdleGame/Map/IdleLevel)
+[2025.08.01-12.54.04:690][664]LogGlobalStatus: UEngine::LoadMap Load map complete /Game/IdleGame/Map/IdleLevel
+[2025.08.01-12.54.05:558][765]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.06:572][884]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.07:568][  1]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.08:565][118]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.09:571][236]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.10:568][353]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.11:567][470]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.12:572][588]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.13:569][705]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.14:567][822]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.15:572][940]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.16:568][ 57]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.17:564][174]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.18:569][292]LogTemp: Warning: Entire map redrawn based on loaded data.
+[2025.08.01-12.54.19:447][394]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.08.01-12.54.19:447][394]LogWorld: BeginTearingDown for /Game/IdleGame/Map/UEDPIE_0_IdleLevel
+[2025.08.01-12.54.19:447][394]LogSlate: Window 'IdleGame Preview [NetMode: Standalone 0]  (64-bit/PC D3D SM6)' being destroyed
+[2025.08.01-12.54.19:452][394]LogWorld: UWorld::CleanupWorld for IdleLevel, bSessionEnded=true, bCleanupResources=true
+[2025.08.01-12.54.19:452][394]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.54.19:456][394]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2025.08.01-12.54.19:461][394]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.08.01-12.54.19:482][394]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 77
+[2025.08.01-12.54.19:482][394]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=77
+[2025.08.01-12.54.19:484][394]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=77
+[2025.08.01-12.54.19:490][394]LogUObjectHash: Compacting FUObjectHashTables data took   1.01ms
+[2025.08.01-12.54.19:518][396]LogPlayLevel: Display: Destroying online subsystem :Context_110
