@@ -62,6 +62,12 @@
     <ClCompile Include="..\..\Source\IdleGame\Private\Managers\IGCivilizationManager.cpp">
       <Filter>Source\IdleGame\Private\Managers</Filter>
     </ClCompile>
+    <Filter Include="Source\IdleGame\Private\Widgets">
+      <UniqueIdentifier>{77FCE8FE-7A15-3535-9F41-BD636D9E37D0}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IdleGame\Private\Widgets\IdleGameWidgetBase.cpp">
+      <Filter>Source\IdleGame\Private\Widgets</Filter>
+    </ClCompile>
     <Filter Include="Source\IdleGame\Public">
       <UniqueIdentifier>{4B7F15C2-8FE9-337B-B9DB-8BD326B780C6}</UniqueIdentifier>
     </Filter>
@@ -82,6 +88,12 @@
     </Filter>
     <ClCompile Include="..\..\Source\IdleGame\Public\Managers\IGCivilizationManager.h">
       <Filter>Source\IdleGame\Public\Managers</Filter>
+    </ClCompile>
+    <Filter Include="Source\IdleGame\Public\Widgets">
+      <UniqueIdentifier>{D9092C67-B5DA-3121-AA1A-5D06197F48CA}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IdleGame\Public\Widgets\IdleGameWidgetBase.h">
+      <Filter>Source\IdleGame\Public\Widgets</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

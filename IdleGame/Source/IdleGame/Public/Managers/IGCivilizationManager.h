@@ -86,6 +86,14 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "GetData")
 	int32 GetOwnedTilesMapSize() const;
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Resources")
+	bool GetLiveResourceNodeData(FIntPoint Location, FS_LiveResourceNode& OutNodeData) const;
+
+	// Resets the current amount of the resource at a given location to the maximum.
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+	void ReplenishResourceAtLocation(FIntPoint Location);
+
 	// --- END ----
 	// Save & Load
 
@@ -120,6 +128,18 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Map Query")
 	bool IsLandAtCoordinates(FIntPoint Coordinates);
 
+	// --- Resources ---
+	
+	// Called by the GM at the start of the game. Reads DT_ResourceNodes
+	// and fills the LiveResourceNodes TMap above with the initial data.
+	UFUNCTION(BlueprintCallable, Category = "Initialization")
+	void InitializeResourceNodes(UDataTable* ResourceNodeLocationsTable, UDataTable* ResourceDataTable);
+
+	// Reduces the amount of a resource at a specific location and returns how many points were generated.
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+	float ConsumeResourceAtLocation(FIntPoint Location, float AmountToConsume, UDataTable* ResourceDataTable);
+
+	//--- Resources END ---
 public:
 	// Dynamic Texture on which we will draw colors
 	UPROPERTY(BlueprintReadOnly, Category = "Map")
@@ -150,12 +170,13 @@ private:
 	FTimerHandle ExpansionTimerHandle;
 	// Map that holds which CivID has which color.
 	TMap<int32, FColor> CurrentCivColors;
-
-	// NEW: Added for region system
 	// Holds the region to which each tile belongs (RegionID).
 	TArray<FMapRow> RegionMap;
 	// The index of this array will determine the region ID (Index 0 = RegionID 1, etc.)
 	TArray<FColor> PureRegionColors;
+
+	// Our TMap, which keeps track of the live status of all resource regions on the map.	
+	TMap<FIntPoint, FS_LiveResourceNode> LiveResourceNodes;
 
 	// C++ Functions
 	// Main function that is called periodically and runs the expansion logic for all civilizations.

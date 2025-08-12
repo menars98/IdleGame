@@ -157,8 +157,8 @@ struct Z_Construct_UClass_UIdleGameSave_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCivilizations_Inner = { "SavedCivilizations", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FS_CivilizationStructures, METADATA_PARAMS(0, nullptr) }; // 2406020703
-const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCivilizations = { "SavedCivilizations", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIdleGameSave, SavedCivilizations), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SavedCivilizations_MetaData), NewProp_SavedCivilizations_MetaData) }; // 2406020703
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCivilizations_Inner = { "SavedCivilizations", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FS_CivilizationStructures, METADATA_PARAMS(0, nullptr) }; // 2612190472
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCivilizations = { "SavedCivilizations", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIdleGameSave, SavedCivilizations), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SavedCivilizations_MetaData), NewProp_SavedCivilizations_MetaData) }; // 2612190472
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCivilizationMapData_Inner = { "SavedCivilizationMapData", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FMapRow, METADATA_PARAMS(0, nullptr) }; // 3300761288
 const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCivilizationMapData = { "SavedCivilizationMapData", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIdleGameSave, SavedCivilizationMapData), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SavedCivilizationMapData_MetaData), NewProp_SavedCivilizationMapData_MetaData) }; // 3300761288
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_CurrentCivColors_ValueProp = { "CurrentCivColors", nullptr, (EPropertyFlags)0x0000000000020001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, Z_Construct_UScriptStruct_FColor, METADATA_PARAMS(0, nullptr) };
@@ -240,10 +240,10 @@ UIdleGameSave::~UIdleGameSave() {}
 struct Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UIdleGameSave, UIdleGameSave::StaticClass, TEXT("UIdleGameSave"), &Z_Registration_Info_UClass_UIdleGameSave, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UIdleGameSave), 1199152851U) },
+		{ Z_Construct_UClass_UIdleGameSave, UIdleGameSave::StaticClass, TEXT("UIdleGameSave"), &Z_Registration_Info_UClass_UIdleGameSave, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UIdleGameSave), 3059111070U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_3877704656(TEXT("/Script/IdleGame"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_2359695005(TEXT("/Script/IdleGame"),
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

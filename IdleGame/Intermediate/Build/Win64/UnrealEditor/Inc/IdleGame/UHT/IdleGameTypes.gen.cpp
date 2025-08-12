@@ -12,11 +12,76 @@ void EmptyLinkFunctionForGeneratedCodeIdleGameTypes() {}
 // Begin Cross Module References
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FColor();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FIntPoint();
+ENGINE_API UClass* Z_Construct_UClass_UTexture2D_NoRegister();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FTableRowBase();
+IDLEGAME_API UEnum* Z_Construct_UEnum_IdleGame_E_BonusType();
 IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FOwnedTilesSaveData();
 IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FS_CivilizationStructures();
+IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FS_LiveResourceNode();
+IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FS_ResourceData();
+IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FS_ResourceNodeLocation();
 UPackage* Z_Construct_UPackage__Script_IdleGame();
 // End Cross Module References
+
+// Begin Enum E_BonusType
+static FEnumRegistrationInfo Z_Registration_Info_UEnum_E_BonusType;
+static UEnum* E_BonusType_StaticEnum()
+{
+	if (!Z_Registration_Info_UEnum_E_BonusType.OuterSingleton)
+	{
+		Z_Registration_Info_UEnum_E_BonusType.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_IdleGame_E_BonusType, (UObject*)Z_Construct_UPackage__Script_IdleGame(), TEXT("E_BonusType"));
+	}
+	return Z_Registration_Info_UEnum_E_BonusType.OuterSingleton;
+}
+template<> IDLEGAME_API UEnum* StaticEnum<E_BonusType>()
+{
+	return E_BonusType_StaticEnum();
+}
+struct Z_Construct_UEnum_IdleGame_E_BonusType_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+		{ "AddClickPower.DisplayName", "Add Click Power" },
+		{ "AddClickPower.Name", "E_BonusType::AddClickPower" },
+		{ "AddPointsPerSecond.DisplayName", "Add Points Per Second" },
+		{ "AddPointsPerSecond.Name", "E_BonusType::AddPointsPerSecond" },
+		{ "BlueprintType", "true" },
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+		{ "MultiplyAllGains.DisplayName", "Multiply All Gains" },
+		{ "MultiplyAllGains.Name", "E_BonusType::MultiplyAllGains" },
+		{ "ReduceUpgradeCost.DisplayName", "Reduce Upgrade Cost" },
+		{ "ReduceUpgradeCost.Name", "E_BonusType::ReduceUpgradeCost" },
+	};
+#endif // WITH_METADATA
+	static constexpr UECodeGen_Private::FEnumeratorParam Enumerators[] = {
+		{ "E_BonusType::AddPointsPerSecond", (int64)E_BonusType::AddPointsPerSecond },
+		{ "E_BonusType::MultiplyAllGains", (int64)E_BonusType::MultiplyAllGains },
+		{ "E_BonusType::ReduceUpgradeCost", (int64)E_BonusType::ReduceUpgradeCost },
+		{ "E_BonusType::AddClickPower", (int64)E_BonusType::AddClickPower },
+	};
+	static const UECodeGen_Private::FEnumParams EnumParams;
+};
+const UECodeGen_Private::FEnumParams Z_Construct_UEnum_IdleGame_E_BonusType_Statics::EnumParams = {
+	(UObject*(*)())Z_Construct_UPackage__Script_IdleGame,
+	nullptr,
+	"E_BonusType",
+	"E_BonusType",
+	Z_Construct_UEnum_IdleGame_E_BonusType_Statics::Enumerators,
+	RF_Public|RF_Transient|RF_MarkAsNative,
+	UE_ARRAY_COUNT(Z_Construct_UEnum_IdleGame_E_BonusType_Statics::Enumerators),
+	EEnumFlags::None,
+	(uint8)UEnum::ECppForm::EnumClass,
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UEnum_IdleGame_E_BonusType_Statics::Enum_MetaDataParams), Z_Construct_UEnum_IdleGame_E_BonusType_Statics::Enum_MetaDataParams)
+};
+UEnum* Z_Construct_UEnum_IdleGame_E_BonusType()
+{
+	if (!Z_Registration_Info_UEnum_E_BonusType.InnerSingleton)
+	{
+		UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_E_BonusType.InnerSingleton, Z_Construct_UEnum_IdleGame_E_BonusType_Statics::EnumParams);
+	}
+	return Z_Registration_Info_UEnum_E_BonusType.InnerSingleton;
+}
+// End Enum E_BonusType
 
 // Begin ScriptStruct FS_CivilizationStructures
 static_assert(std::is_polymorphic<FS_CivilizationStructures>() == std::is_polymorphic<FTableRowBase>(), "USTRUCT FS_CivilizationStructures cannot be polymorphic unless super FTableRowBase is polymorphic");
@@ -42,13 +107,7 @@ struct Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CivilizationNameStages_MetaData[] = {
 		{ "Category", "S_CivilizationStructures" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "// Blueprint'teki t\xef\xbf\xbdm de\xef\xbf\xbdi\xef\xbf\xbdkenlerinizi buraya C++ versiyonlar\xef\xbf\xbdyla ta\xef\xbf\xbd\xef\xbf\xbdy\xef\xbf\xbdn\n" },
-#endif
 		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Blueprint'teki t\xef\xbf\xbdm de\xef\xbf\xbdi\xef\xbf\xbdkenlerinizi buraya C++ versiyonlar\xef\xbf\xbdyla ta\xef\xbf\xbd\xef\xbf\xbdy\xef\xbf\xbdn" },
-#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StartingRegionID_MetaData[] = {
 		{ "Category", "S_CivilizationStructures" },
@@ -237,17 +296,354 @@ UScriptStruct* Z_Construct_UScriptStruct_FOwnedTilesSaveData()
 }
 // End ScriptStruct FOwnedTilesSaveData
 
+// Begin ScriptStruct FS_ResourceData
+static_assert(std::is_polymorphic<FS_ResourceData>() == std::is_polymorphic<FTableRowBase>(), "USTRUCT FS_ResourceData cannot be polymorphic unless super FTableRowBase is polymorphic");
+static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_S_ResourceData;
+class UScriptStruct* FS_ResourceData::StaticStruct()
+{
+	if (!Z_Registration_Info_UScriptStruct_S_ResourceData.OuterSingleton)
+	{
+		Z_Registration_Info_UScriptStruct_S_ResourceData.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FS_ResourceData, (UObject*)Z_Construct_UPackage__Script_IdleGame(), TEXT("S_ResourceData"));
+	}
+	return Z_Registration_Info_UScriptStruct_S_ResourceData.OuterSingleton;
+}
+template<> IDLEGAME_API UScriptStruct* StaticStruct<FS_ResourceData>()
+{
+	return FS_ResourceData::StaticStruct();
+}
+struct Z_Construct_UScriptStruct_FS_ResourceData_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ResourceName_MetaData[] = {
+		{ "Category", "Display" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// The name of the source that will appear in the UI (e.g., \xef\xbf\xbdIron Mine\xef\xbf\xbd)\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "The name of the source that will appear in the UI (e.g., \xef\xbf\xbdIron Mine\xef\xbf\xbd)" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Icon_MetaData[] = {
+		{ "Category", "Display" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// The icon that will appear on the map or in the menu for the source\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "The icon that will appear on the map or in the menu for the source" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BonusType_MetaData[] = {
+		{ "Category", "Gameplay" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// The type of bonus provided by this source (selected from the enum above)\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "The type of bonus provided by this source (selected from the enum above)" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BonusValue_MetaData[] = {
+		{ "Category", "Gameplay" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// The numerical value of the bonus (e.g., 5.0, 0.05, etc.)\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "The numerical value of the bonus (e.g., 5.0, 0.05, etc.)" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsRenewable_MetaData[] = {
+		{ "Category", "Gameplay" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//For Future\n// This can be used in the future for the \xef\xbf\xbd""Declining Yield\xef\xbf\xbd system.\n// Leave it at 0 for now.\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "For Future\n This can be used in the future for the \xef\xbf\xbd""Declining Yield\xef\xbf\xbd system.\n Leave it at 0 for now." },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaxAmount_MetaData[] = {
+		{ "Category", "Gameplay" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// This is also for future systems.\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "This is also for future systems." },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FTextPropertyParams NewProp_ResourceName;
+	static const UECodeGen_Private::FSoftObjectPropertyParams NewProp_Icon;
+	static const UECodeGen_Private::FBytePropertyParams NewProp_BonusType_Underlying;
+	static const UECodeGen_Private::FEnumPropertyParams NewProp_BonusType;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_BonusValue;
+	static void NewProp_bIsRenewable_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsRenewable;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxAmount;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static void* NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FS_ResourceData>();
+	}
+	static const UECodeGen_Private::FStructParams StructParams;
+};
+const UECodeGen_Private::FTextPropertyParams Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_ResourceName = { "ResourceName", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Text, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_ResourceData, ResourceName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ResourceName_MetaData), NewProp_ResourceName_MetaData) };
+const UECodeGen_Private::FSoftObjectPropertyParams Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_Icon = { "Icon", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::SoftObject, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_ResourceData, Icon), Z_Construct_UClass_UTexture2D_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Icon_MetaData), NewProp_Icon_MetaData) };
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_BonusType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_BonusType = { "BonusType", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_ResourceData, BonusType), Z_Construct_UEnum_IdleGame_E_BonusType, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BonusType_MetaData), NewProp_BonusType_MetaData) }; // 4101986749
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_BonusValue = { "BonusValue", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_ResourceData, BonusValue), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BonusValue_MetaData), NewProp_BonusValue_MetaData) };
+void Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_bIsRenewable_SetBit(void* Obj)
+{
+	((FS_ResourceData*)Obj)->bIsRenewable = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_bIsRenewable = { "bIsRenewable", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(FS_ResourceData), &Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_bIsRenewable_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsRenewable_MetaData), NewProp_bIsRenewable_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_MaxAmount = { "MaxAmount", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_ResourceData, MaxAmount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxAmount_MetaData), NewProp_MaxAmount_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FS_ResourceData_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_ResourceName,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_Icon,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_BonusType_Underlying,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_BonusType,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_BonusValue,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_bIsRenewable,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewProp_MaxAmount,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FS_ResourceData_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FS_ResourceData_Statics::StructParams = {
+	(UObject* (*)())Z_Construct_UPackage__Script_IdleGame,
+	Z_Construct_UScriptStruct_FTableRowBase,
+	&NewStructOps,
+	"S_ResourceData",
+	Z_Construct_UScriptStruct_FS_ResourceData_Statics::PropPointers,
+	UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FS_ResourceData_Statics::PropPointers),
+	sizeof(FS_ResourceData),
+	alignof(FS_ResourceData),
+	RF_Public|RF_Transient|RF_MarkAsNative,
+	EStructFlags(0x00000001),
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FS_ResourceData_Statics::Struct_MetaDataParams), Z_Construct_UScriptStruct_FS_ResourceData_Statics::Struct_MetaDataParams)
+};
+UScriptStruct* Z_Construct_UScriptStruct_FS_ResourceData()
+{
+	if (!Z_Registration_Info_UScriptStruct_S_ResourceData.InnerSingleton)
+	{
+		UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_S_ResourceData.InnerSingleton, Z_Construct_UScriptStruct_FS_ResourceData_Statics::StructParams);
+	}
+	return Z_Registration_Info_UScriptStruct_S_ResourceData.InnerSingleton;
+}
+// End ScriptStruct FS_ResourceData
+
+// Begin ScriptStruct FS_ResourceNodeLocation
+static_assert(std::is_polymorphic<FS_ResourceNodeLocation>() == std::is_polymorphic<FTableRowBase>(), "USTRUCT FS_ResourceNodeLocation cannot be polymorphic unless super FTableRowBase is polymorphic");
+static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_S_ResourceNodeLocation;
+class UScriptStruct* FS_ResourceNodeLocation::StaticStruct()
+{
+	if (!Z_Registration_Info_UScriptStruct_S_ResourceNodeLocation.OuterSingleton)
+	{
+		Z_Registration_Info_UScriptStruct_S_ResourceNodeLocation.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FS_ResourceNodeLocation, (UObject*)Z_Construct_UPackage__Script_IdleGame(), TEXT("S_ResourceNodeLocation"));
+	}
+	return Z_Registration_Info_UScriptStruct_S_ResourceNodeLocation.OuterSingleton;
+}
+template<> IDLEGAME_API UScriptStruct* StaticStruct<FS_ResourceNodeLocation>()
+{
+	return FS_ResourceNodeLocation::StaticStruct();
+}
+struct Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ResourceID_MetaData[] = {
+		{ "Category", "Data" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// The type of this resource point. This must match the name of a row in the DT_Resources Data Table.\n// Example: \xef\xbf\xbd""Forest\xef\xbf\xbd, \xef\xbf\xbdIron\xef\xbf\xbd, \xef\xbf\xbdOil\xef\xbf\xbd\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "The type of this resource point. This must match the name of a row in the DT_Resources Data Table.\nExample: \xef\xbf\xbd""Forest\xef\xbf\xbd, \xef\xbf\xbdIron\xef\xbf\xbd, \xef\xbf\xbdOil\xef\xbf\xbd" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Location_MetaData[] = {
+		{ "Category", "Data" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// The exact (X, Y) pixel coordinates of this resource icon on the map.\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "The exact (X, Y) pixel coordinates of this resource icon on the map." },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FNamePropertyParams NewProp_ResourceID;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_Location;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static void* NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FS_ResourceNodeLocation>();
+	}
+	static const UECodeGen_Private::FStructParams StructParams;
+};
+const UECodeGen_Private::FNamePropertyParams Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::NewProp_ResourceID = { "ResourceID", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_ResourceNodeLocation, ResourceID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ResourceID_MetaData), NewProp_ResourceID_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::NewProp_Location = { "Location", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_ResourceNodeLocation, Location), Z_Construct_UScriptStruct_FIntPoint, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Location_MetaData), NewProp_Location_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::NewProp_ResourceID,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::NewProp_Location,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::StructParams = {
+	(UObject* (*)())Z_Construct_UPackage__Script_IdleGame,
+	Z_Construct_UScriptStruct_FTableRowBase,
+	&NewStructOps,
+	"S_ResourceNodeLocation",
+	Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::PropPointers,
+	UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::PropPointers),
+	sizeof(FS_ResourceNodeLocation),
+	alignof(FS_ResourceNodeLocation),
+	RF_Public|RF_Transient|RF_MarkAsNative,
+	EStructFlags(0x00000001),
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::Struct_MetaDataParams), Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::Struct_MetaDataParams)
+};
+UScriptStruct* Z_Construct_UScriptStruct_FS_ResourceNodeLocation()
+{
+	if (!Z_Registration_Info_UScriptStruct_S_ResourceNodeLocation.InnerSingleton)
+	{
+		UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_S_ResourceNodeLocation.InnerSingleton, Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::StructParams);
+	}
+	return Z_Registration_Info_UScriptStruct_S_ResourceNodeLocation.InnerSingleton;
+}
+// End ScriptStruct FS_ResourceNodeLocation
+
+// Begin ScriptStruct FS_LiveResourceNode
+static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_S_LiveResourceNode;
+class UScriptStruct* FS_LiveResourceNode::StaticStruct()
+{
+	if (!Z_Registration_Info_UScriptStruct_S_LiveResourceNode.OuterSingleton)
+	{
+		Z_Registration_Info_UScriptStruct_S_LiveResourceNode.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FS_LiveResourceNode, (UObject*)Z_Construct_UPackage__Script_IdleGame(), TEXT("S_LiveResourceNode"));
+	}
+	return Z_Registration_Info_UScriptStruct_S_LiveResourceNode.OuterSingleton;
+}
+template<> IDLEGAME_API UScriptStruct* StaticStruct<FS_LiveResourceNode>()
+{
+	return FS_LiveResourceNode::StaticStruct();
+}
+struct Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ResourceTypeID_MetaData[] = {
+		{ "Category", "Resource Node" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// The line name in DT_Resources that specifies the type of this resource.\n// This is set once at the start of the game and does not change.\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "The line name in DT_Resources that specifies the type of this resource.\nThis is set once at the start of the game and does not change." },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Location_MetaData[] = {
+		{ "Category", "Resource Node" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// The location of this resource on the map.\n// This is set once at the start of the game and does not change.\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "The location of this resource on the map.\nThis is set once at the start of the game and does not change." },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaxAmount_MetaData[] = {
+		{ "Category", "Resource Node" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// This is the theoretical maximum amount of this resource.\n// It is set once at the beginning of the game and does not change.\n//Maybe we dont need to set in this variable, because we already have it.\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "This is the theoretical maximum amount of this resource.\nIt is set once at the beginning of the game and does not change.\nMaybe we dont need to set in this variable, because we already have it." },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentAmount_MetaData[] = {
+		{ "Category", "Resource Node" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// the only variable that changes during the game\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "the only variable that changes during the game" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FNamePropertyParams NewProp_ResourceTypeID;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_Location;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxAmount;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentAmount;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static void* NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FS_LiveResourceNode>();
+	}
+	static const UECodeGen_Private::FStructParams StructParams;
+};
+const UECodeGen_Private::FNamePropertyParams Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::NewProp_ResourceTypeID = { "ResourceTypeID", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_LiveResourceNode, ResourceTypeID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ResourceTypeID_MetaData), NewProp_ResourceTypeID_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::NewProp_Location = { "Location", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_LiveResourceNode, Location), Z_Construct_UScriptStruct_FIntPoint, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Location_MetaData), NewProp_Location_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::NewProp_MaxAmount = { "MaxAmount", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_LiveResourceNode, MaxAmount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxAmount_MetaData), NewProp_MaxAmount_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::NewProp_CurrentAmount = { "CurrentAmount", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_LiveResourceNode, CurrentAmount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentAmount_MetaData), NewProp_CurrentAmount_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::NewProp_ResourceTypeID,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::NewProp_Location,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::NewProp_MaxAmount,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::NewProp_CurrentAmount,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::StructParams = {
+	(UObject* (*)())Z_Construct_UPackage__Script_IdleGame,
+	nullptr,
+	&NewStructOps,
+	"S_LiveResourceNode",
+	Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::PropPointers,
+	UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::PropPointers),
+	sizeof(FS_LiveResourceNode),
+	alignof(FS_LiveResourceNode),
+	RF_Public|RF_Transient|RF_MarkAsNative,
+	EStructFlags(0x00000001),
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::Struct_MetaDataParams), Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::Struct_MetaDataParams)
+};
+UScriptStruct* Z_Construct_UScriptStruct_FS_LiveResourceNode()
+{
+	if (!Z_Registration_Info_UScriptStruct_S_LiveResourceNode.InnerSingleton)
+	{
+		UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_S_LiveResourceNode.InnerSingleton, Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::StructParams);
+	}
+	return Z_Registration_Info_UScriptStruct_S_LiveResourceNode.InnerSingleton;
+}
+// End ScriptStruct FS_LiveResourceNode
+
 // Begin Registration
 struct Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics
 {
+	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
+		{ E_BonusType_StaticEnum, TEXT("E_BonusType"), &Z_Registration_Info_UEnum_E_BonusType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 4101986749U) },
+	};
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FS_CivilizationStructures::StaticStruct, Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewStructOps, TEXT("S_CivilizationStructures"), &Z_Registration_Info_UScriptStruct_S_CivilizationStructures, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_CivilizationStructures), 2406020703U) },
+		{ FS_CivilizationStructures::StaticStruct, Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics::NewStructOps, TEXT("S_CivilizationStructures"), &Z_Registration_Info_UScriptStruct_S_CivilizationStructures, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_CivilizationStructures), 2612190472U) },
 		{ FOwnedTilesSaveData::StaticStruct, Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics::NewStructOps, TEXT("OwnedTilesSaveData"), &Z_Registration_Info_UScriptStruct_OwnedTilesSaveData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FOwnedTilesSaveData), 133798282U) },
+		{ FS_ResourceData::StaticStruct, Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewStructOps, TEXT("S_ResourceData"), &Z_Registration_Info_UScriptStruct_S_ResourceData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_ResourceData), 2062978358U) },
+		{ FS_ResourceNodeLocation::StaticStruct, Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::NewStructOps, TEXT("S_ResourceNodeLocation"), &Z_Registration_Info_UScriptStruct_S_ResourceNodeLocation, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_ResourceNodeLocation), 2244829639U) },
+		{ FS_LiveResourceNode::StaticStruct, Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::NewStructOps, TEXT("S_LiveResourceNode"), &Z_Registration_Info_UScriptStruct_S_LiveResourceNode, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_LiveResourceNode), 1104059021U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_3775100111(TEXT("/Script/IdleGame"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_2663158588(TEXT("/Script/IdleGame"),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::ScriptStructInfo),
-	nullptr, 0);
+	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -52,7 +52,7 @@ void AIGCivilizationManager::DiagnoseMapDataAtPoint(FIntPoint PointToTest)
 
 void AIGCivilizationManager::SetupMapFromTextures()
 {
-    // Fonksiyonun baþýnda, gerekli texture'larýn atanýp atanmadýðýný kontrol edelim.
+	// Check if the textures are set
     if (!MaskTexture || !RegionMaskTexture)
     {
         UE_LOG(LogTemp, Error, TEXT("SetupMapFromTextures: MaskTexture or RegionMaskTexture is not set in the Civilization Manager!"));
@@ -233,6 +233,65 @@ bool AIGCivilizationManager::IsLandAtCoordinates(FIntPoint Coordinates)
     return false;
 }
 
+void AIGCivilizationManager::InitializeResourceNodes(UDataTable* ResourceNodeLocationsTable, UDataTable* ResourceDataTable)
+{
+    if (!ResourceNodeLocationsTable || !ResourceDataTable)
+    {
+        UE_LOG(LogTemp, Error, TEXT("InitializeResourceNodes: One or both Data Tables are null!"));
+        return;
+    }
+
+    LiveResourceNodes.Empty();
+    const TArray<FName> RowNames = ResourceNodeLocationsTable->GetRowNames();
+
+    for (const FName& RowName : RowNames)
+    {
+        // 1. Read location data (from DT_ResourceNodes)
+        FS_ResourceNodeLocation* LocationData = ResourceNodeLocationsTable->FindRow<FS_ResourceNodeLocation>(RowName, TEXT(""));
+        if (!LocationData) continue;
+
+        // 2. Read the source properties from the master database using the source ID (from DT_Resources)
+        FS_ResourceData* ResourceData = ResourceDataTable->FindRow<FS_ResourceData>(LocationData->ResourceID, TEXT(""));
+        if (!ResourceData) continue;
+
+        // 3. Create and populate a new “Live Source” object
+        FS_LiveResourceNode NewLiveNode;
+        NewLiveNode.ResourceTypeID = LocationData->ResourceID;
+        NewLiveNode.Location = LocationData->Location;
+        NewLiveNode.MaxAmount = ResourceData->MaxAmount;
+        NewLiveNode.CurrentAmount = ResourceData->MaxAmount; 
+
+        // 4. Add this new live source to TMap using its location as the key.
+        LiveResourceNodes.Add(NewLiveNode.Location, NewLiveNode);
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("Initialized %d live resource nodes on the map."), LiveResourceNodes.Num());
+}
+
+float AIGCivilizationManager::ConsumeResourceAtLocation(FIntPoint Location, float AmountToConsume, UDataTable* ResourceDataTable)
+{
+    if (!ResourceDataTable) return 0.0f;
+
+    FS_LiveResourceNode* FoundNode = LiveResourceNodes.Find(Location);
+    if (FoundNode && FoundNode->CurrentAmount > 0)
+    {
+        // Calculate how much will be consumed (cannot exceed what remains in the source)
+        const float ActualConsumedAmount = FMath::Min(FoundNode->CurrentAmount, AmountToConsume);
+        FoundNode->CurrentAmount -= ActualConsumedAmount;
+
+        // Look at the main database to calculate the score generated
+        FS_ResourceData* ResourceData = ResourceDataTable->FindRow<FS_ResourceData>(FoundNode->ResourceTypeID, TEXT(""));
+        if (ResourceData)
+        {
+            // A simple calculation: Amount consumed * resource point yield
+            //@TODO We can make this formula more complex.
+            return ActualConsumedAmount * ResourceData->BonusValue;
+        }
+    }
+
+    return 0.0f; // If there is no source or it has been exhausted, no points will be generated.
+}
+
 void AIGCivilizationManager::StartExpansionTimer()
 {
 	// Start the timer that will periodically call the expansion logic.
@@ -240,7 +299,6 @@ void AIGCivilizationManager::StartExpansionTimer()
     GetWorld()->GetTimerManager().SetTimer(ExpansionTimerHandle, this, &AIGCivilizationManager::TimerTick, 1.0f, true);
 }
 
-// Timer'ýn her saniye çaðýracaðý fonksiyon
 void AIGCivilizationManager::TimerTick()
 {
     UpdateExpansionProgress(1.0f); // We assume that 1 second passes with each tick.
@@ -340,6 +398,27 @@ int32 AIGCivilizationManager::GetCivilizationMapSize() const
 int32 AIGCivilizationManager::GetOwnedTilesMapSize() const
 {
 	return CivilizationOwnedTiles.Num();
+}
+
+bool AIGCivilizationManager::GetLiveResourceNodeData(FIntPoint Location, FS_LiveResourceNode& OutNodeData) const
+{
+    const FS_LiveResourceNode* FoundNode = LiveResourceNodes.Find(Location);
+    if (FoundNode)
+    {
+        OutNodeData = *FoundNode;
+        return true;
+    }
+    return false;
+}
+
+void AIGCivilizationManager::ReplenishResourceAtLocation(FIntPoint Location)
+{
+    FS_LiveResourceNode* FoundNode = LiveResourceNodes.Find(Location);
+    if (FoundNode)
+    {
+        FoundNode->CurrentAmount = FoundNode->MaxAmount;
+        UE_LOG(LogTemp, Log, TEXT("Resource at %s replenished."), *Location.ToString());
+    }
 }
 
 void AIGCivilizationManager::ApplyCivilizationMapData(const TArray<FMapRow>& LoadedMapData)

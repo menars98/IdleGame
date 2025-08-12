@@ -10,10 +10,12 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
  struct FColor;
+class UDataTable;
 class UTexture2DDynamic;
 struct FMapRow;
 struct FOwnedTilesSaveData;
 struct FS_CivilizationStructures;
+struct FS_LiveResourceNode;
 #ifdef IDLEGAME_IGCivilizationManager_generated_h
 #error "IGCivilizationManager.generated.h already included, missing '#pragma once' in IGCivilizationManager.h"
 #endif
@@ -32,6 +34,8 @@ template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FMapRow>();
 
 #define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_27_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execFindAllSpawnableLocations); \
+	DECLARE_FUNCTION(execConsumeResourceAtLocation); \
+	DECLARE_FUNCTION(execInitializeResourceNodes); \
 	DECLARE_FUNCTION(execIsLandAtCoordinates); \
 	DECLARE_FUNCTION(execPlaceCivilizations); \
 	DECLARE_FUNCTION(execUpdateExpansionProgress); \
@@ -41,6 +45,8 @@ template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FMapRow>();
 	DECLARE_FUNCTION(execApplyCivilizationsData); \
 	DECLARE_FUNCTION(execApplyOwnedTilesData); \
 	DECLARE_FUNCTION(execApplyCivilizationMapData); \
+	DECLARE_FUNCTION(execReplenishResourceAtLocation); \
+	DECLARE_FUNCTION(execGetLiveResourceNodeData); \
 	DECLARE_FUNCTION(execGetOwnedTilesMapSize); \
 	DECLARE_FUNCTION(execGetCivilizationMapSize); \
 	DECLARE_FUNCTION(execGetOwnedTilesForSaving); \
