@@ -9,6 +9,7 @@
 #include "IGCivilizationManager.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDynamicTextureReady, UTexture2DDynamic*, DynamicTexture);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnResourceNodeCaptured, FName, NodeRowName);
 
 USTRUCT(BlueprintType)
 struct FMapRow
@@ -139,6 +140,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Resources")
 	float ConsumeResourceAtLocation(FIntPoint Location, float AmountToConsume, UDataTable* ResourceDataTable);
 
+	// Called from GameMode.
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+	void CacheResourceNodeLocations(UDataTable* ResourceNodeDataTable);
+
 	//--- Resources END ---
 public:
 	// Dynamic Texture on which we will draw colors
@@ -157,6 +162,9 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Events")
 	FOnDynamicTextureReady OnDynamicTextureReady;
 
+	UPROPERTY(BlueprintAssignable, Category = "Events")
+	FOnResourceNodeCaptured OnResourceNodeCaptured;
+
 private:
 	// Map Data
 	TArray<FMapRow> MapArray;
@@ -174,7 +182,8 @@ private:
 	TArray<FMapRow> RegionMap;
 	// The index of this array will determine the region ID (Index 0 = RegionID 1, etc.)
 	TArray<FColor> PureRegionColors;
-
+	// Key: FIntPoint (Location), Value: FName (row name in DT_ResourceNodes, e.g., “SpawnPoint1”)
+	TMap<FIntPoint, FName> ResourceNodeLocations;
 	// Our TMap, which keeps track of the live status of all resource regions on the map.	
 	TMap<FIntPoint, FS_LiveResourceNode> LiveResourceNodes;
 

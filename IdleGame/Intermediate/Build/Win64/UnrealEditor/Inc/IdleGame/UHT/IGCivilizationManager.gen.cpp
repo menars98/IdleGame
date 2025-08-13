@@ -20,6 +20,7 @@ ENGINE_API UClass* Z_Construct_UClass_UTexture2DDynamic_NoRegister();
 IDLEGAME_API UClass* Z_Construct_UClass_AIGCivilizationManager();
 IDLEGAME_API UClass* Z_Construct_UClass_AIGCivilizationManager_NoRegister();
 IDLEGAME_API UFunction* Z_Construct_UDelegateFunction_IdleGame_OnDynamicTextureReady__DelegateSignature();
+IDLEGAME_API UFunction* Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature();
 IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FMapRow();
 IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FOwnedTilesSaveData();
 IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FS_CivilizationStructures();
@@ -70,6 +71,50 @@ void FOnDynamicTextureReady_DelegateWrapper(const FMulticastScriptDelegate& OnDy
 	OnDynamicTextureReady.ProcessMulticastDelegate<UObject>(&Parms);
 }
 // End Delegate FOnDynamicTextureReady
+
+// Begin Delegate FOnResourceNodeCaptured
+struct Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature_Statics
+{
+	struct _Script_IdleGame_eventOnResourceNodeCaptured_Parms
+	{
+		FName NodeRowName;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Managers/IGCivilizationManager.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FNamePropertyParams NewProp_NodeRowName;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature_Statics::NewProp_NodeRowName = { "NodeRowName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_IdleGame_eventOnResourceNodeCaptured_Parms, NodeRowName), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature_Statics::NewProp_NodeRowName,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_IdleGame, nullptr, "OnResourceNodeCaptured__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature_Statics::_Script_IdleGame_eventOnResourceNodeCaptured_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature_Statics::_Script_IdleGame_eventOnResourceNodeCaptured_Parms) < MAX_uint16);
+UFunction* Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+void FOnResourceNodeCaptured_DelegateWrapper(const FMulticastScriptDelegate& OnResourceNodeCaptured, FName NodeRowName)
+{
+	struct _Script_IdleGame_eventOnResourceNodeCaptured_Parms
+	{
+		FName NodeRowName;
+	};
+	_Script_IdleGame_eventOnResourceNodeCaptured_Parms Parms;
+	Parms.NodeRowName=NodeRowName;
+	OnResourceNodeCaptured.ProcessMulticastDelegate<UObject>(&Parms);
+}
+// End Delegate FOnResourceNodeCaptured
 
 // Begin ScriptStruct FMapRow
 static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_MapRow;
@@ -288,6 +333,55 @@ DEFINE_FUNCTION(AIGCivilizationManager::execApplyOwnedTilesData)
 	P_NATIVE_END;
 }
 // End Class AIGCivilizationManager Function ApplyOwnedTilesData
+
+// Begin Class AIGCivilizationManager Function CacheResourceNodeLocations
+struct Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations_Statics
+{
+	struct IGCivilizationManager_eventCacheResourceNodeLocations_Parms
+	{
+		UDataTable* ResourceNodeDataTable;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Resources" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Called from GameMode.\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Managers/IGCivilizationManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Called from GameMode." },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ResourceNodeDataTable;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations_Statics::NewProp_ResourceNodeDataTable = { "ResourceNodeDataTable", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(IGCivilizationManager_eventCacheResourceNodeLocations_Parms, ResourceNodeDataTable), Z_Construct_UClass_UDataTable_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations_Statics::NewProp_ResourceNodeDataTable,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AIGCivilizationManager, nullptr, "CacheResourceNodeLocations", nullptr, nullptr, Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations_Statics::PropPointers), sizeof(Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations_Statics::IGCivilizationManager_eventCacheResourceNodeLocations_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations_Statics::Function_MetaDataParams), Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations_Statics::IGCivilizationManager_eventCacheResourceNodeLocations_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AIGCivilizationManager::execCacheResourceNodeLocations)
+{
+	P_GET_OBJECT(UDataTable,Z_Param_ResourceNodeDataTable);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CacheResourceNodeLocations(Z_Param_ResourceNodeDataTable);
+	P_NATIVE_END;
+}
+// End Class AIGCivilizationManager Function CacheResourceNodeLocations
 
 // Begin Class AIGCivilizationManager Function ClaimTileForCivilization
 struct Z_Construct_UFunction_AIGCivilizationManager_ClaimTileForCivilization_Statics
@@ -1509,6 +1603,7 @@ void AIGCivilizationManager::StaticRegisterNativesAIGCivilizationManager()
 		{ "ApplyCivilizationMapData", &AIGCivilizationManager::execApplyCivilizationMapData },
 		{ "ApplyCivilizationsData", &AIGCivilizationManager::execApplyCivilizationsData },
 		{ "ApplyOwnedTilesData", &AIGCivilizationManager::execApplyOwnedTilesData },
+		{ "CacheResourceNodeLocations", &AIGCivilizationManager::execCacheResourceNodeLocations },
 		{ "ClaimTileForCivilization", &AIGCivilizationManager::execClaimTileForCivilization },
 		{ "ConsumeResourceAtLocation", &AIGCivilizationManager::execConsumeResourceAtLocation },
 		{ "DiagnoseMapDataAtPoint", &AIGCivilizationManager::execDiagnoseMapDataAtPoint },
@@ -1581,6 +1676,10 @@ struct Z_Construct_UClass_AIGCivilizationManager_Statics
 #endif
 		{ "ModuleRelativePath", "Public/Managers/IGCivilizationManager.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OnResourceNodeCaptured_MetaData[] = {
+		{ "Category", "Events" },
+		{ "ModuleRelativePath", "Public/Managers/IGCivilizationManager.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MapWidth_MetaData[] = {
 		{ "Category", "Map" },
 		{ "ModuleRelativePath", "Public/Managers/IGCivilizationManager.h" },
@@ -1599,6 +1698,7 @@ struct Z_Construct_UClass_AIGCivilizationManager_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_RegionMaskTexture;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_CivilizationAlpha;
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnDynamicTextureReady;
+	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnResourceNodeCaptured;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_MapWidth;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_MapHeight;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_StartPoint;
@@ -1608,6 +1708,7 @@ struct Z_Construct_UClass_AIGCivilizationManager_Statics
 		{ &Z_Construct_UFunction_AIGCivilizationManager_ApplyCivilizationMapData, "ApplyCivilizationMapData" }, // 294465029
 		{ &Z_Construct_UFunction_AIGCivilizationManager_ApplyCivilizationsData, "ApplyCivilizationsData" }, // 1677455992
 		{ &Z_Construct_UFunction_AIGCivilizationManager_ApplyOwnedTilesData, "ApplyOwnedTilesData" }, // 2177361829
+		{ &Z_Construct_UFunction_AIGCivilizationManager_CacheResourceNodeLocations, "CacheResourceNodeLocations" }, // 269390541
 		{ &Z_Construct_UFunction_AIGCivilizationManager_ClaimTileForCivilization, "ClaimTileForCivilization" }, // 616671854
 		{ &Z_Construct_UFunction_AIGCivilizationManager_ConsumeResourceAtLocation, "ConsumeResourceAtLocation" }, // 3653840308
 		{ &Z_Construct_UFunction_AIGCivilizationManager_DiagnoseMapDataAtPoint, "DiagnoseMapDataAtPoint" }, // 3841583234
@@ -1646,6 +1747,7 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AIGCivilizatio
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_RegionMaskTexture = { "RegionMaskTexture", nullptr, (EPropertyFlags)0x0114000000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AIGCivilizationManager, RegionMaskTexture), Z_Construct_UClass_UTexture2D_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RegionMaskTexture_MetaData), NewProp_RegionMaskTexture_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_CivilizationAlpha = { "CivilizationAlpha", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AIGCivilizationManager, CivilizationAlpha), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CivilizationAlpha_MetaData), NewProp_CivilizationAlpha_MetaData) };
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_OnDynamicTextureReady = { "OnDynamicTextureReady", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AIGCivilizationManager, OnDynamicTextureReady), Z_Construct_UDelegateFunction_IdleGame_OnDynamicTextureReady__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnDynamicTextureReady_MetaData), NewProp_OnDynamicTextureReady_MetaData) }; // 564222487
+const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_OnResourceNodeCaptured = { "OnResourceNodeCaptured", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AIGCivilizationManager, OnResourceNodeCaptured), Z_Construct_UDelegateFunction_IdleGame_OnResourceNodeCaptured__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnResourceNodeCaptured_MetaData), NewProp_OnResourceNodeCaptured_MetaData) }; // 962951670
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_MapWidth = { "MapWidth", nullptr, (EPropertyFlags)0x0020080000000014, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AIGCivilizationManager, MapWidth), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MapWidth_MetaData), NewProp_MapWidth_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_MapHeight = { "MapHeight", nullptr, (EPropertyFlags)0x0020080000000014, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AIGCivilizationManager, MapHeight), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MapHeight_MetaData), NewProp_MapHeight_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_StartPoint = { "StartPoint", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AIGCivilizationManager, StartPoint), Z_Construct_UScriptStruct_FIntPoint, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StartPoint_MetaData), NewProp_StartPoint_MetaData) };
@@ -1655,6 +1757,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AIGCivili
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_RegionMaskTexture,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_CivilizationAlpha,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_OnDynamicTextureReady,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_OnResourceNodeCaptured,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_MapWidth,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_MapHeight,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AIGCivilizationManager_Statics::NewProp_StartPoint,
@@ -1703,10 +1806,10 @@ struct Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_
 		{ FMapRow::StaticStruct, Z_Construct_UScriptStruct_FMapRow_Statics::NewStructOps, TEXT("MapRow"), &Z_Registration_Info_UScriptStruct_MapRow, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FMapRow), 3300761288U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AIGCivilizationManager, AIGCivilizationManager::StaticClass, TEXT("AIGCivilizationManager"), &Z_Registration_Info_UClass_AIGCivilizationManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AIGCivilizationManager), 2899254679U) },
+		{ Z_Construct_UClass_AIGCivilizationManager, AIGCivilizationManager::StaticClass, TEXT("AIGCivilizationManager"), &Z_Registration_Info_UClass_AIGCivilizationManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AIGCivilizationManager), 2596232473U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_2362526224(TEXT("/Script/IdleGame"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_2273089639(TEXT("/Script/IdleGame"),
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_Statics::ScriptStructInfo),
 	nullptr, 0);

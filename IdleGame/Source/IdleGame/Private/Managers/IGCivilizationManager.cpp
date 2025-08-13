@@ -292,6 +292,22 @@ float AIGCivilizationManager::ConsumeResourceAtLocation(FIntPoint Location, floa
     return 0.0f; // If there is no source or it has been exhausted, no points will be generated.
 }
 
+void AIGCivilizationManager::CacheResourceNodeLocations(UDataTable* ResourceNodeDataTable)
+{
+    if (!ResourceNodeDataTable) return;
+    ResourceNodeLocations.Empty();
+
+    const TArray<FName> RowNames = ResourceNodeDataTable->GetRowNames();
+    for (const FName& RowName : RowNames)
+    {
+        FS_ResourceNodeLocation* RowData = ResourceNodeDataTable->FindRow<FS_ResourceNodeLocation>(RowName, "");
+        if (RowData)
+        {
+            ResourceNodeLocations.Add(RowData->Location, RowName);
+        }
+    }
+}
+
 void AIGCivilizationManager::StartExpansionTimer()
 {
 	// Start the timer that will periodically call the expansion logic.
@@ -671,6 +687,18 @@ void AIGCivilizationManager::ClaimTileForCivilization(FIntPoint Location, int32 
     }
     CivilizationMap[Location.Y].Row[Location.X] = CivID;
     CivilizationOwnedTiles.FindOrAdd(CivID).AddUnique(Location);
+
+    // Is this location that was just captured a resource center?
+    if (ResourceNodeLocations.Contains(Location))
+    {
+        const FName NodeRowName = ResourceNodeLocations[Location];
+
+        // Evet! Sinyali gönder.
+        OnResourceNodeCaptured.Broadcast(NodeRowName);
+
+        // Bu kaynaðýn tekrar tetiklenmemesi için haritadan kaldýr.
+        ResourceNodeLocations.Remove(Location);
+    }
 
 }
 
