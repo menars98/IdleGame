@@ -15,6 +15,13 @@ enum class E_BonusType : uint8
     AddClickPower           UMETA(DisplayName = "Add Click Power")
 };
 
+UENUM(BlueprintType)
+enum class E_ModifierType : uint8
+{
+	Production   UMETA(DisplayName = "Production"),
+	Health 	     UMETA(DisplayName = "Health"),
+};
+
 
 USTRUCT(BlueprintType)
 struct FS_CivilizationStructures : public FTableRowBase
@@ -141,4 +148,51 @@ struct FS_LiveResourceNode
     // the only variable that changes during the game
     UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Resource Node")
     float CurrentAmount = 1000.0f;
+};
+
+USTRUCT(BlueprintType)
+struct FS_BuildingData : public FTableRowBase
+{
+    GENERATED_BODY()
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FText BuildingName;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    TSoftObjectPtr<UTexture2D> Icon;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float BaseCost; // The base cost of the building, @TODO which will be multiplied by the level
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    float PointsPerSecond; // How many points a single level of this building produces
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    E_ModifierType ModifierType; // New Enum: Health, Production, Culture, etc.
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    float ModifierValue; // Bonus amount (e.g., +5% Production)
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    int32 RequiredRegionID = 0; // 0 = Global, 1,2,3... = Region-specific (for the Eiffel Tower)
+
+};
+
+USTRUCT(BlueprintType)
+struct FS_RegionState
+{
+    GENERATED_BODY()
+
+    // Which region it is (1=North America, 2=Europe, etc.)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    int32 RegionID;
+
+    // Our control ratio in this region. Between 0.0 (0%) and 1.0 (100%).
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    float ControlPercentage = 0.0f;
+
+    // Keeps track of how many there are in each building.
+    // Key: FName (row name in DT_Buildings), Value: int32 (level/number)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    TMap<FName, int32> BuildingLevels;
 };

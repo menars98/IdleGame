@@ -19,9 +19,13 @@ AIGCivilizationManager::AIGCivilizationManager()
     PureRegionColors.Empty();
     PureRegionColors.Add(FColor(0, 0, 255));      // 1: North America (Blue)
     PureRegionColors.Add(FColor(0, 255, 0));      // 2: South America (Green)
-    PureRegionColors.Add(FColor(255, 0, 0));      // 3: Europe (Red)
-    PureRegionColors.Add(FColor(255, 255, 0));    // 4: Africa (Yellow)
-    PureRegionColors.Add(FColor(255, 0, 255));    // 5: Asia (Purple?)
+    PureRegionColors.Add(FColor(255, 0, 0));      // 3: West Europe (Red)
+    PureRegionColors.Add(FColor(255, 100, 0));    // 4: East Europe (Orange)
+    PureRegionColors.Add(FColor(150, 0, 255));    // 5: Middle East (Purple)
+    PureRegionColors.Add(FColor(255, 255, 0));    // 6: Africa (Yellow)
+    PureRegionColors.Add(FColor(255, 0, 255));    // 7: Asia (Pink)
+    PureRegionColors.Add(FColor(100, 0, 255));    // 8: India-IndoChina (Purple-Blueish)
+    PureRegionColors.Add(FColor(100, 0, 255));    // 8: Ocenia(Turquoise)
 
 }
 
@@ -93,6 +97,7 @@ void AIGCivilizationManager::SetupMapFromTextures()
     // Variable names should be different so that they don't get confused.
     FTexture2DMipMap& RegionTextureMip = RegionMaskTexture->GetPlatformData()->Mips[0];
     const FColor* RegionImageData = static_cast<const FColor*>(RegionTextureMip.BulkData.LockReadOnly());
+
 
     RegionMap.SetNum(MapHeight);
     // We assume that the PureRegionColors array is full (this should be filled elsewhere).
@@ -169,46 +174,44 @@ void AIGCivilizationManager::InitializeForNewGame(const TArray<FS_CivilizationSt
 
 void AIGCivilizationManager::PlaceCivilizations()
 {
-    // Medeniyet listemizdeki her bir medeniyet için...
+    if (Civilizations.Num() == 0) return;
+
     for (int32 i = 0; i < Civilizations.Num(); ++i)
     {
-        // ...rastgele bir baþlangýç merkezi bul.
-        FIntPoint StartCenter = GetRandomSpawnableLocation();
+        const FS_CivilizationStructures& CivToPlace = Civilizations[i];
+        const FIntPoint StartCenter = CivToPlace.Location; // We get this variable from bpw_earth and call it from bp_gamemode
+        const int32 CivID = i + 1; // We assume that IDs start from 1.
+        const int32 Radius = 3; // Starting area size (3 = a 7x7 square).
         if (StartCenter.X == -1)
         {
-            // Eðer baþlanacak yer kalmadýysa döngüyü kýr.
+            // If there is no place to start, break the loop.
             UE_LOG(LogTemp, Warning, TEXT("No more spawnable locations left to place civilizations."));
             break;
         }
-
-        // Medeniyetin ID'sini ve baþlangýç alanýnýn yarýçapýný belirle.
-        int32 CivID = i + 1; // ID'lerin 1'den baþladýðýný varsayýyoruz.
-        int32 Radius = 3;    // Baþlangýç alaný boyutu (3 = 7x7'lik bir kare).
-
-        // Bu merkez noktanýn etrafýndaki alaný tara.
+        // Scan the area around this center point.
         for (int32 y = -Radius; y <= Radius; ++y)
         {
             for (int32 x = -Radius; x <= Radius; ++x)
             {
                 FIntPoint CurrentPoint(StartCenter.X + x, StartCenter.Y + y);
 
-                // --- ÝÞTE TÜM GEÇERLÝLÝK KONTROLLERÝ ---
+                // --- ALL VALIDITY CHECKS ---
                 if (
-                    // 1. Sýnýrlarýn içinde mi?
+                    // 1. Within the limits?
                     CurrentPoint.Y >= 0 && CurrentPoint.Y < MapHeight && CurrentPoint.X >= 0 && CurrentPoint.X < MapWidth &&
 
-                    // 2. Kara parçasý mý?
+                    // 2. Is it a piece of land?
                     MapArray[CurrentPoint.Y].Row[CurrentPoint.X] == 1 &&
 
-                    // 3. Sahipsiz mi?
+                    // 3. Is it unclaimed?
                     CivilizationMap[CurrentPoint.Y].Row[CurrentPoint.X] == -1
 
-                    // 4. Geçerli bir bölge mi? Bu kontrol aslýnda GetRandomSpawnableLocation'da
-                    // zaten yapýldýðý için burada tekrar yapmaya gerek yok, ama güvenlik için eklenebilir.
+                    // 4. Is it a valid region? This check is already performed in GetRandomSpawnableLocation,
+                    // so there is no need to repeat it here, but it can be added for security purposes.
                     // RegionMap[CurrentPoint.Y].Row[CurrentPoint.X] != -1
                     )
                 {
-                    // Eðer tüm koþullar saðlandýysa, bu karoyu sahiplen.
+                    // If all conditions are met, claim this tile.
                     CivilizationMap[CurrentPoint.Y].Row[CurrentPoint.X] = CivID;
                     CivilizationOwnedTiles.FindOrAdd(CivID).AddUnique(CurrentPoint);
                 }
@@ -216,7 +219,7 @@ void AIGCivilizationManager::PlaceCivilizations()
         }
     }
 
-    // Tüm medeniyetler yerleþtirildikten sonra, haritayý tek seferde çiz.
+    // Once all civilizations have been placed, draw the map in one go.
     RedrawEntireMap();
 }
 

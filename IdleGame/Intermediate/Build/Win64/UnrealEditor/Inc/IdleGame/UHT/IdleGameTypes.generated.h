@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define IDLEGAME_IdleGameTypes_generated_h
 
-#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_22_GENERATED_BODY \
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_29_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FS_CivilizationStructures_Statics; \
 	IDLEGAME_API static class UScriptStruct* StaticStruct(); \
 	typedef FTableRowBase Super;
@@ -22,14 +22,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_CivilizationStructures>();
 
-#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_63_GENERATED_BODY \
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_70_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FOwnedTilesSaveData_Statics; \
 	IDLEGAME_API static class UScriptStruct* StaticStruct();
 
 
 template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FOwnedTilesSaveData>();
 
-#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_75_GENERATED_BODY \
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_82_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FS_ResourceData_Statics; \
 	IDLEGAME_API static class UScriptStruct* StaticStruct(); \
 	typedef FTableRowBase Super;
@@ -37,7 +37,7 @@ template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FOwnedTilesSaveData>(
 
 template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_ResourceData>();
 
-#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_107_GENERATED_BODY \
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_114_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics; \
 	IDLEGAME_API static class UScriptStruct* StaticStruct(); \
 	typedef FTableRowBase Super;
@@ -45,12 +45,27 @@ template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_ResourceData>();
 
 template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_ResourceNodeLocation>();
 
-#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_123_GENERATED_BODY \
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_130_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics; \
 	IDLEGAME_API static class UScriptStruct* StaticStruct();
 
 
 template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_LiveResourceNode>();
+
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_156_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FS_BuildingData_Statics; \
+	IDLEGAME_API static class UScriptStruct* StaticStruct(); \
+	typedef FTableRowBase Super;
+
+
+template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_BuildingData>();
+
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_184_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FS_RegionState_Statics; \
+	IDLEGAME_API static class UScriptStruct* StaticStruct();
+
+
+template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_RegionState>();
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h
@@ -65,5 +80,13 @@ template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_LiveResourceNode>(
 enum class E_BonusType : uint8;
 template<> struct TIsUEnumClass<E_BonusType> { enum { Value = true }; };
 template<> IDLEGAME_API UEnum* StaticEnum<E_BonusType>();
+
+#define FOREACH_ENUM_E_MODIFIERTYPE(op) \
+	op(E_ModifierType::Production) \
+	op(E_ModifierType::Health) 
+
+enum class E_ModifierType : uint8;
+template<> struct TIsUEnumClass<E_ModifierType> { enum { Value = true }; };
+template<> IDLEGAME_API UEnum* StaticEnum<E_ModifierType>();
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
