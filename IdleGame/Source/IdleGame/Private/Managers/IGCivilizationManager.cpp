@@ -26,7 +26,8 @@ AIGCivilizationManager::AIGCivilizationManager()
     PureRegionColors.Add(FColor(255, 0, 255));    // 7: Asia (Pink)
     PureRegionColors.Add(FColor(100, 0, 255));    // 8: India-IndoChina (Purple-Blueish)
     PureRegionColors.Add(FColor(100, 0, 255));    // 8: Ocenia(Turquoise)
-
+	// --------------------------------------------
+    // This numbers has to match with DT_Regions row names.
 }
 
 void AIGCivilizationManager::DiagnoseMapDataAtPoint(FIntPoint PointToTest)
@@ -146,6 +147,9 @@ void AIGCivilizationManager::SetupMapFromTextures()
         FlushRenderingCommands();
         OnDynamicTextureReady.Broadcast(DynamicMapTexture);
         UE_LOG(LogTemp, Warning, TEXT("Map textures set up successfully."));
+        // To ensure that Texture does not start with “dirty” data from previous sessions,
+        // let's completely clear it when it is created.
+        RedrawEntireMap();
     }
 }
 

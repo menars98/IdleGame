@@ -67,6 +67,14 @@ template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_BuildingData>();
 
 template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_RegionState>();
 
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_203_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FS_RegionData_Statics; \
+	IDLEGAME_API static class UScriptStruct* StaticStruct(); \
+	typedef FTableRowBase Super;
+
+
+template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_RegionData>();
+
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h
 

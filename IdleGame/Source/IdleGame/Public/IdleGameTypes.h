@@ -196,3 +196,19 @@ struct FS_RegionState
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TMap<FName, int32> BuildingLevels;
 };
+
+USTRUCT(BlueprintType)
+struct FS_RegionData : public FTableRowBase
+{
+    GENERATED_BODY()
+
+public:
+    // The name of the region that will appear in the UI.
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Region Data")
+    FText RegionName;
+
+    // In case we want to add a specific base production rate for this region later.
+    // For now, it can be left at 0.
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Region Data")
+    float BaseProductionRate = 1.0f;
+};
