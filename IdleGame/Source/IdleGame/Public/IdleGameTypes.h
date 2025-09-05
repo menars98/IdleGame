@@ -195,6 +195,8 @@ struct FS_RegionState
     // Key: FName (row name in DT_Buildings), Value: int32 (level/number)
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TMap<FName, int32> BuildingLevels;
+
+    int GetControlledRegionByID();
 };
 
 USTRUCT(BlueprintType)

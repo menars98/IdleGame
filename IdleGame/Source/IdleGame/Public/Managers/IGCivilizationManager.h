@@ -40,6 +40,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Initialization")
 	void SetupMapFromTextures();
 
+	void PrecomputeRegionPixelLists();
+
+	UFUNCTION(BlueprintCallable, Category = "Initialization")
+	void FinalizeMapSetup();
+
 	// Only resets the ownership map and other game states for a NEW GAME.
 	UFUNCTION(BlueprintCallable, Category = "Initialization")
 	void InitializeForNewGame(const TArray<FS_CivilizationStructures>& StartingCivs);
@@ -116,6 +121,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "SaveLoad|Internal")
 	void RedrawEntireMap();
 
+	// Belirtilen bölgeye, belirtilen sayýda yeni piksel ekler.
+   // Baþarýya ulaþýp ulaþmadýðýný bir bool ile döndürür.
+	UFUNCTION(BlueprintCallable, Category = "Expansion")
+	bool ExpandInRegion(int32 RegionID, int32 PixelsToAdd);
+
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	void SetExpansionPaused(bool bIsPaused);
 
@@ -186,7 +196,8 @@ private:
 	TMap<FIntPoint, FName> ResourceNodeLocations;
 	// Our TMap, which keeps track of the live status of all resource regions on the map.	
 	TMap<FIntPoint, FS_LiveResourceNode> LiveResourceNodes;
-
+	// Her bölgedeki TÜM piksellerin bir listesini tutar. Oyun baþýnda bir kez doldurulur.
+	TMap<int32, TArray<FIntPoint>> AllPixelsPerRegion;
 	// C++ Functions
 	// Main function that is called periodically and runs the expansion logic for all civilizations.
 	

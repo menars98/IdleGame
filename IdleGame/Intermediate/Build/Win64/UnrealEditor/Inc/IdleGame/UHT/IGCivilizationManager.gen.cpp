@@ -543,6 +543,99 @@ DEFINE_FUNCTION(AIGCivilizationManager::execDiagnoseMapDataAtPoint)
 }
 // End Class AIGCivilizationManager Function DiagnoseMapDataAtPoint
 
+// Begin Class AIGCivilizationManager Function ExpandInRegion
+struct Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics
+{
+	struct IGCivilizationManager_eventExpandInRegion_Parms
+	{
+		int32 RegionID;
+		int32 PixelsToAdd;
+		bool ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Expansion" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Belirtilen b\xef\xbf\xbdlgeye, belirtilen say\xef\xbf\xbd""da yeni piksel ekler.\n// Ba\xef\xbf\xbd""ar\xef\xbf\xbdya ula\xef\xbf\xbd\xef\xbf\xbdp ula\xef\xbf\xbdmad\xef\xbf\xbd\xef\xbf\xbd\xef\xbf\xbdn\xef\xbf\xbd bir bool ile d\xef\xbf\xbdnd\xef\xbf\xbdr\xef\xbf\xbdr.\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Managers/IGCivilizationManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Belirtilen b\xef\xbf\xbdlgeye, belirtilen say\xef\xbf\xbd""da yeni piksel ekler.\nBa\xef\xbf\xbd""ar\xef\xbf\xbdya ula\xef\xbf\xbd\xef\xbf\xbdp ula\xef\xbf\xbdmad\xef\xbf\xbd\xef\xbf\xbd\xef\xbf\xbdn\xef\xbf\xbd bir bool ile d\xef\xbf\xbdnd\xef\xbf\xbdr\xef\xbf\xbdr." },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FIntPropertyParams NewProp_RegionID;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_PixelsToAdd;
+	static void NewProp_ReturnValue_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::NewProp_RegionID = { "RegionID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(IGCivilizationManager_eventExpandInRegion_Parms, RegionID), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::NewProp_PixelsToAdd = { "PixelsToAdd", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(IGCivilizationManager_eventExpandInRegion_Parms, PixelsToAdd), METADATA_PARAMS(0, nullptr) };
+void Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+{
+	((IGCivilizationManager_eventExpandInRegion_Parms*)Obj)->ReturnValue = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(IGCivilizationManager_eventExpandInRegion_Parms), &Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::NewProp_RegionID,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::NewProp_PixelsToAdd,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AIGCivilizationManager, nullptr, "ExpandInRegion", nullptr, nullptr, Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::PropPointers), sizeof(Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::IGCivilizationManager_eventExpandInRegion_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::Function_MetaDataParams), Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::IGCivilizationManager_eventExpandInRegion_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AIGCivilizationManager::execExpandInRegion)
+{
+	P_GET_PROPERTY(FIntProperty,Z_Param_RegionID);
+	P_GET_PROPERTY(FIntProperty,Z_Param_PixelsToAdd);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(bool*)Z_Param__Result=P_THIS->ExpandInRegion(Z_Param_RegionID,Z_Param_PixelsToAdd);
+	P_NATIVE_END;
+}
+// End Class AIGCivilizationManager Function ExpandInRegion
+
+// Begin Class AIGCivilizationManager Function FinalizeMapSetup
+struct Z_Construct_UFunction_AIGCivilizationManager_FinalizeMapSetup_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Initialization" },
+		{ "ModuleRelativePath", "Public/Managers/IGCivilizationManager.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AIGCivilizationManager_FinalizeMapSetup_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AIGCivilizationManager, nullptr, "FinalizeMapSetup", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AIGCivilizationManager_FinalizeMapSetup_Statics::Function_MetaDataParams), Z_Construct_UFunction_AIGCivilizationManager_FinalizeMapSetup_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AIGCivilizationManager_FinalizeMapSetup()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AIGCivilizationManager_FinalizeMapSetup_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AIGCivilizationManager::execFinalizeMapSetup)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->FinalizeMapSetup();
+	P_NATIVE_END;
+}
+// End Class AIGCivilizationManager Function FinalizeMapSetup
+
 // Begin Class AIGCivilizationManager Function FindAllSpawnableLocations
 struct Z_Construct_UFunction_AIGCivilizationManager_FindAllSpawnableLocations_Statics
 {
@@ -1607,6 +1700,8 @@ void AIGCivilizationManager::StaticRegisterNativesAIGCivilizationManager()
 		{ "ClaimTileForCivilization", &AIGCivilizationManager::execClaimTileForCivilization },
 		{ "ConsumeResourceAtLocation", &AIGCivilizationManager::execConsumeResourceAtLocation },
 		{ "DiagnoseMapDataAtPoint", &AIGCivilizationManager::execDiagnoseMapDataAtPoint },
+		{ "ExpandInRegion", &AIGCivilizationManager::execExpandInRegion },
+		{ "FinalizeMapSetup", &AIGCivilizationManager::execFinalizeMapSetup },
 		{ "FindAllSpawnableLocations", &AIGCivilizationManager::execFindAllSpawnableLocations },
 		{ "GetCivilizationMap", &AIGCivilizationManager::execGetCivilizationMap },
 		{ "GetCivilizationMapSize", &AIGCivilizationManager::execGetCivilizationMapSize },
@@ -1712,6 +1807,8 @@ struct Z_Construct_UClass_AIGCivilizationManager_Statics
 		{ &Z_Construct_UFunction_AIGCivilizationManager_ClaimTileForCivilization, "ClaimTileForCivilization" }, // 616671854
 		{ &Z_Construct_UFunction_AIGCivilizationManager_ConsumeResourceAtLocation, "ConsumeResourceAtLocation" }, // 3653840308
 		{ &Z_Construct_UFunction_AIGCivilizationManager_DiagnoseMapDataAtPoint, "DiagnoseMapDataAtPoint" }, // 3841583234
+		{ &Z_Construct_UFunction_AIGCivilizationManager_ExpandInRegion, "ExpandInRegion" }, // 1872125041
+		{ &Z_Construct_UFunction_AIGCivilizationManager_FinalizeMapSetup, "FinalizeMapSetup" }, // 791829622
 		{ &Z_Construct_UFunction_AIGCivilizationManager_FindAllSpawnableLocations, "FindAllSpawnableLocations" }, // 845169460
 		{ &Z_Construct_UFunction_AIGCivilizationManager_GetCivilizationMap, "GetCivilizationMap" }, // 45104476
 		{ &Z_Construct_UFunction_AIGCivilizationManager_GetCivilizationMapSize, "GetCivilizationMapSize" }, // 2454151969
@@ -1806,10 +1903,10 @@ struct Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_
 		{ FMapRow::StaticStruct, Z_Construct_UScriptStruct_FMapRow_Statics::NewStructOps, TEXT("MapRow"), &Z_Registration_Info_UScriptStruct_MapRow, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FMapRow), 3300761288U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AIGCivilizationManager, AIGCivilizationManager::StaticClass, TEXT("AIGCivilizationManager"), &Z_Registration_Info_UClass_AIGCivilizationManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AIGCivilizationManager), 2596232473U) },
+		{ Z_Construct_UClass_AIGCivilizationManager, AIGCivilizationManager::StaticClass, TEXT("AIGCivilizationManager"), &Z_Registration_Info_UClass_AIGCivilizationManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AIGCivilizationManager), 3329105709U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_2273089639(TEXT("/Script/IdleGame"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_1623905971(TEXT("/Script/IdleGame"),
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_Statics::ScriptStructInfo),
 	nullptr, 0);

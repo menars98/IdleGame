@@ -153,6 +153,36 @@ void AIGCivilizationManager::SetupMapFromTextures()
     }
 }
 
+void AIGCivilizationManager::PrecomputeRegionPixelLists()
+{
+    AllPixelsPerRegion.Empty();
+    if (RegionMap.Num() == 0) return;
+
+    UE_LOG(LogTemp, Warning, TEXT("Starting to precompute pixel lists for all regions..."));
+
+    // Tüm haritayý SADECE BÝR KEZ TARA
+    for (int32 y = 0; y < MapHeight; ++y)
+    {
+        for (int32 x = 0; x < MapWidth; ++x)
+        {
+            const int32 RegionID = RegionMap[y].Row[x];
+            if (RegionID != -1)
+            {
+                // O anki pikseli, ilgili RegionID'nin listesine ekle.
+                AllPixelsPerRegion.FindOrAdd(RegionID).Add(FIntPoint(x, y));
+            }
+        }
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("...Precomputing finished."));
+}
+
+// BP_IdleGM'nin BeginPlay'inde, SetupMapFromTextures'tan sonra çaðýracaðýnýz yeni bir public fonksiyon:
+void AIGCivilizationManager::FinalizeMapSetup()
+{
+    PrecomputeRegionPixelLists();
+}
+
 void AIGCivilizationManager::InitializeForNewGame(const TArray<FS_CivilizationStructures>& StartingCivs)
 {
     // 1. Reset all old game data
@@ -488,6 +518,99 @@ void AIGCivilizationManager::ApplyCivilizationsData(const TArray<FS_Civilization
     RebuildColorMap();
 }
 
+bool AIGCivilizationManager::ExpandInRegion(int32 RegionID, int32 PixelsToAdd)
+{
+    const int32 PlayerCivID = 1;
+    if (!CurrentCivColors.Contains(PlayerCivID)) return false;
+    FColor PlayerColor = CurrentCivColors[PlayerCivID];
+
+    // --- ADIM 1: BÝTÝÞÝK KOMÞULARI BUL (NORMAL BÜYÜME) ---
+    TSet<FIntPoint> Candidates;
+    if (CivilizationOwnedTiles.Contains(PlayerCivID))
+    {
+        // Medeniyetin sahip olduðu ve bu bölgeye ait olan karolarý dön
+        for (const FIntPoint& ownedTile : CivilizationOwnedTiles[PlayerCivID])
+        {
+            if (RegionMap[ownedTile.Y].Row[ownedTile.X] != RegionID) continue;
+
+            // --- ÝÞTE DOLDURULMUÞ KISIM ---
+
+            // ownedTile'ýn 4 komþusunu (Yukarý, Aþaðý, Sol, Sað) tanýmla
+            const FIntPoint Neighbors[] = {
+                FIntPoint(ownedTile.X, ownedTile.Y - 1), // Yukarý
+                FIntPoint(ownedTile.X, ownedTile.Y + 1), // Aþaðý
+                FIntPoint(ownedTile.X - 1, ownedTile.Y), // Sol
+                FIntPoint(ownedTile.X + 1, ownedTile.Y)  // Sað
+            };
+
+            // Bu komþularý tek tek kontrol et
+            for (const FIntPoint& neighbor : Neighbors)
+            {
+                // Bu komþu, geniþlemek için geçerli bir aday mý?
+                if (
+                    // 1. Harita sýnýrlarý içinde mi?
+                    neighbor.Y >= 0 && neighbor.Y < MapHeight && neighbor.X >= 0 && neighbor.X < MapWidth &&
+
+                    // 2. Kara parçasý mý?
+                    MapArray[neighbor.Y].Row[neighbor.X] == 1 &&
+
+                    // 3. Sahipsiz mi?
+                    CivilizationMap[neighbor.Y].Row[neighbor.X] == -1 &&
+
+                    // 4. Geniþlediðimiz bölgeye mi ait?
+                    RegionMap[neighbor.Y].Row[neighbor.X] == RegionID
+                    )
+                {
+                    // Eðer tüm koþullar saðlandýysa, bu komþuyu aday listesine ekle.
+                    Candidates.Add(neighbor);
+                }
+            }
+            // --- DOLDURULMUÞ KISIM SONU ---
+        }
+    }
+
+    // --- ADIM 2: "TIKANMA" TESPÝTÝ VE "KOLONÝZASYON" MODU ---
+    // Eðer bitiþik geniþleyecek hiç yer bulamadýysak...
+    if (Candidates.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("No adjacent tiles found. Attempting colonization mode..."));
+
+        // ...o zaman bu bölgedeki henüz sahip olunmayan TÜM pikselleri bulalým.
+        if (AllPixelsPerRegion.Contains(RegionID))
+        {
+            for (const FIntPoint& pixel : AllPixelsPerRegion[RegionID])
+            {
+                if (CivilizationMap[pixel.Y].Row[pixel.X] == -1)
+                {
+                    // Sahipsiz pikselleri aday listesine ekle.
+                    Candidates.Add(pixel);
+                }
+            }
+        }
+    }
+
+    // Eðer hala geniþleyecek hiç yer yoksa (bölge %100 doluysa), baþarýsýz ol.
+    if (Candidates.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("ExpandInRegion: Region %d is completely full."), RegionID);
+        return false;
+    }
+
+    // --- ADIM 3: SEÇÝM, SAHÝPLENME VE BOYAMA ---
+    TArray<FIntPoint> CandidatesArray = Candidates.Array();
+    TArray<TPair<FIntPoint, FColor>> TilesToPaint;
+
+    for (int i = 0; i < FMath::Min(PixelsToAdd, CandidatesArray.Num()); ++i)
+    {
+        int32 RandIndex = FMath::RandRange(0, CandidatesArray.Num() - 1);
+        FIntPoint PixelToClaim = CandidatesArray[RandIndex];
+
+        ClaimTileForCivilization(PixelToClaim, PlayerCivID);
+
+        CandidatesArray.RemoveAt(RandIndex);
+    }
+    return true;
+}
 void AIGCivilizationManager::SetExpansionPaused(bool bIsPaused)
 {
     bIsExpansionActive = !bIsPaused; // bIsPaused true ise, bIsExpansionActive false olur.

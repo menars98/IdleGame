@@ -45,6 +45,7 @@ template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FMapRow>();
 	DECLARE_FUNCTION(execPlaceCivilizations); \
 	DECLARE_FUNCTION(execUpdateExpansionProgress); \
 	DECLARE_FUNCTION(execSetExpansionPaused); \
+	DECLARE_FUNCTION(execExpandInRegion); \
 	DECLARE_FUNCTION(execRedrawEntireMap); \
 	DECLARE_FUNCTION(execGetCurrentColors); \
 	DECLARE_FUNCTION(execApplyCivilizationsData); \
@@ -65,6 +66,7 @@ template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FMapRow>();
 	DECLARE_FUNCTION(execClaimTileForCivilization); \
 	DECLARE_FUNCTION(execStartExpansionTimer); \
 	DECLARE_FUNCTION(execInitializeForNewGame); \
+	DECLARE_FUNCTION(execFinalizeMapSetup); \
 	DECLARE_FUNCTION(execSetupMapFromTextures); \
 	DECLARE_FUNCTION(execDiagnoseMapDataAtPoint);
 
