@@ -10,22 +10,27 @@
 // Sets default values
 AIGCivilizationManager::AIGCivilizationManager()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
     // --- LET'S DEFINE OUR REGION COLORS HERE ---
     // This determines which colors our code will look for "look like".
-    // You can update this list according to the colors in your map.
     PureRegionColors.Empty();
     PureRegionColors.Add(FColor(0, 0, 255));      // 1: North America (Blue)
     PureRegionColors.Add(FColor(0, 255, 0));      // 2: South America (Green)
-    PureRegionColors.Add(FColor(255, 0, 0));      // 3: West Europe (Red)
-    PureRegionColors.Add(FColor(255, 100, 0));    // 4: East Europe (Orange)
-    PureRegionColors.Add(FColor(150, 0, 255));    // 5: Middle East (Purple)
-    PureRegionColors.Add(FColor(255, 255, 0));    // 6: Africa (Yellow)
-    PureRegionColors.Add(FColor(255, 0, 255));    // 7: Asia (Pink)
-    PureRegionColors.Add(FColor(100, 0, 255));    // 8: India-IndoChina (Purple-Blueish)
-    PureRegionColors.Add(FColor(100, 0, 255));    // 8: Ocenia(Turquoise)
+	PureRegionColors.Add(FColor(125, 0, 0));      // 3: Britain (Dark Red)
+    PureRegionColors.Add(FColor(255, 0, 0));      // 4: West Europe (Red)
+    PureRegionColors.Add(FColor(255, 100, 0));    // 5: East Europe (Orange)
+    PureRegionColors.Add(FColor(150, 0, 255));    // 6: Middle East (Purple)
+    PureRegionColors.Add(FColor(255, 255, 0));    // 7: Africa (Yellow)
+    PureRegionColors.Add(FColor(255, 0, 255));    // 8: Asia (Pink)
+    PureRegionColors.Add(FColor(100, 0, 255));    // 9: India-IndoChina (Purple-Blueish)
+    PureRegionColors.Add(FColor(100, 0, 255));    // 10: Ocenia(Turquoise)
+	PureRegionColors.Add(FColor(0, 0, 125));      // 11: Greenland (Dark Blue)
+	PureRegionColors.Add(FColor(100, 150, 175));  // 12: Scandinavia (Light Blue)
+	PureRegionColors.Add(FColor(0, 190, 150));    // 13: Australia (Cyan)
+	PureRegionColors.Add(FColor(0, 190, 90));     // 14: New Zealand (Light Green)
+	PureRegionColors.Add(FColor(255, 55, 40));    // 15: Japan (Bright Red)
+    PureRegionColors.Add(FColor(70, 100, 115));    // 16: Carribean (Light Blue-Grey)
 	// --------------------------------------------
     // This numbers has to match with DT_Regions row names.
 }
@@ -149,6 +154,13 @@ void AIGCivilizationManager::SetupMapFromTextures()
         UE_LOG(LogTemp, Warning, TEXT("Map textures set up successfully."));
         // To ensure that Texture does not start with “dirty” data from previous sessions,
         // let's completely clear it when it is created.
+        CivilizationMap.SetNum(MapHeight);
+        for (int32 Y = 0; Y < MapHeight; Y++)
+        {
+            CivilizationMap[Y].Row.Init(-1, MapWidth);
+        }
+        CurrentCivColors.Empty(); // Renkleri de temizleyelim
+
         RedrawEntireMap();
     }
 }
@@ -569,26 +581,6 @@ bool AIGCivilizationManager::ExpandInRegion(int32 RegionID, int32 PixelsToAdd)
         }
     }
 
-    // --- ADIM 2: "TIKANMA" TESPÝTÝ VE "KOLONÝZASYON" MODU ---
-    // Eðer bitiþik geniþleyecek hiç yer bulamadýysak...
-    if (Candidates.Num() == 0)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("No adjacent tiles found. Attempting colonization mode..."));
-
-        // ...o zaman bu bölgedeki henüz sahip olunmayan TÜM pikselleri bulalým.
-        if (AllPixelsPerRegion.Contains(RegionID))
-        {
-            for (const FIntPoint& pixel : AllPixelsPerRegion[RegionID])
-            {
-                if (CivilizationMap[pixel.Y].Row[pixel.X] == -1)
-                {
-                    // Sahipsiz pikselleri aday listesine ekle.
-                    Candidates.Add(pixel);
-                }
-            }
-        }
-    }
-
     // Eðer hala geniþleyecek hiç yer yoksa (bölge %100 doluysa), baþarýsýz ol.
     if (Candidates.Num() == 0)
     {
@@ -610,6 +602,32 @@ bool AIGCivilizationManager::ExpandInRegion(int32 RegionID, int32 PixelsToAdd)
         CandidatesArray.RemoveAt(RandIndex);
     }
     return true;
+}
+
+
+bool AIGCivilizationManager::ClaimRandomTileInRegion(int32 RegionID)
+{
+    const int32 PlayerCivID = 1;
+    if (!CurrentCivColors.Contains(PlayerCivID) || !AllPixelsPerRegion.Contains(RegionID)) return false;
+
+    // Bölgedeki sahipsiz pikselleri bul
+    TArray<FIntPoint> UnownedPixels;
+    for (const FIntPoint& pixel : AllPixelsPerRegion[RegionID])
+    {
+        if (CivilizationMap[pixel.Y].Row[pixel.X] == -1)
+        {
+            UnownedPixels.Add(pixel);
+        }
+    }
+
+    if (UnownedPixels.Num() > 0)
+    {
+        FIntPoint TileToClaim = UnownedPixels[FMath::RandRange(0, UnownedPixels.Num() - 1)];
+        ClaimTileForCivilization(TileToClaim, PlayerCivID);
+        UpdateMultipleTilesWithColor({ TPair<FIntPoint, FColor>(TileToClaim, CurrentCivColors[PlayerCivID]) });
+        return true;
+    }
+    return false;
 }
 void AIGCivilizationManager::SetExpansionPaused(bool bIsPaused)
 {

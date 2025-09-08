@@ -213,4 +213,7 @@ public:
     // For now, it can be left at 0.
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Region Data")
     float BaseProductionRate = 1.0f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Region Data")
+    TArray<int32> NeighboringRegionIDs;
 };

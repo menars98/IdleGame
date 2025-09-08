@@ -21,6 +21,11 @@ public:
 
 	// Variables for all data to be saved
 
+	// Records whether the game is in its initial setup phase.
+	// This should always be false in a loaded game.
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Game State")
+	bool bGameHasBeenStarted;
+
 	//-- Data For Civilizations ---
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "SaveData|Civilizations")
 	TArray<FS_CivilizationStructures> SavedCivilizations;
@@ -66,12 +71,15 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "SaveData|Player|Level")
 	TMap<FString, int64> SavedCurrentLevelMap; // Level Progress for each upgrade
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Game State")
+	TArray<FS_RegionState> SavedControlledRegions;
 	//--- Player State End---
 	
 	// UPROPERTY(VisibleAnywhere, Category = "SaveData|Map")
 	// TMap<int32, TArray<FIntPoint>> SavedOwnedTilesData;
 
-	// --- UI Durumu -
+	// --- UI State -
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "SaveData|UI")
 	int32 SavedLastScreenIndex;
 

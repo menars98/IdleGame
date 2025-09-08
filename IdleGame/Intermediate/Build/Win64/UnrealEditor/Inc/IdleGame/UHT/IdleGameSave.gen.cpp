@@ -19,6 +19,7 @@ IDLEGAME_API UClass* Z_Construct_UClass_UIdleGameSave_NoRegister();
 IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FMapRow();
 IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FOwnedTilesSaveData();
 IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FS_CivilizationStructures();
+IDLEGAME_API UScriptStruct* Z_Construct_UScriptStruct_FS_RegionState();
 UPackage* Z_Construct_UPackage__Script_IdleGame();
 // End Cross Module References
 
@@ -40,6 +41,16 @@ struct Z_Construct_UClass_UIdleGameSave_Statics
 #endif
 		{ "IncludePath", "IdleGameSave.h" },
 		{ "ModuleRelativePath", "Public/IdleGameSave.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bGameHasBeenStarted_MetaData[] = {
+		{ "Category", "Game State" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Records whether the game is in its initial setup phase.\n// This should always be false in a loaded game.\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameSave.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Records whether the game is in its initial setup phase.\nThis should always be false in a loaded game." },
+#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SavedCivilizations_MetaData[] = {
 		{ "Category", "SaveData|Civilizations" },
@@ -119,17 +130,29 @@ struct Z_Construct_UClass_UIdleGameSave_Statics
 		{ "Category", "SaveData|Player|Level" },
 		{ "ModuleRelativePath", "Public/IdleGameSave.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SavedLastScreenIndex_MetaData[] = {
-		{ "Category", "SaveData|UI" },
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SavedControlledRegions_MetaData[] = {
+		{ "Category", "Game State" },
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "// --- UI Durumu -\n" },
+		{ "Comment", "// Level Progress for each upgrade\n" },
 #endif
 		{ "ModuleRelativePath", "Public/IdleGameSave.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "--- UI Durumu -" },
+		{ "ToolTip", "Level Progress for each upgrade" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SavedLastScreenIndex_MetaData[] = {
+		{ "Category", "SaveData|UI" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// --- UI State -\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameSave.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "--- UI State -" },
 #endif
 	};
 #endif // WITH_METADATA
+	static void NewProp_bGameHasBeenStarted_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bGameHasBeenStarted;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_SavedCivilizations_Inner;
 	static const UECodeGen_Private::FArrayPropertyParams NewProp_SavedCivilizations;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_SavedCivilizationMapData_Inner;
@@ -149,6 +172,8 @@ struct Z_Construct_UClass_UIdleGameSave_Statics
 	static const UECodeGen_Private::FInt64PropertyParams NewProp_SavedCurrentLevelMap_ValueProp;
 	static const UECodeGen_Private::FStrPropertyParams NewProp_SavedCurrentLevelMap_Key_KeyProp;
 	static const UECodeGen_Private::FMapPropertyParams NewProp_SavedCurrentLevelMap;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_SavedControlledRegions_Inner;
+	static const UECodeGen_Private::FArrayPropertyParams NewProp_SavedControlledRegions;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_SavedLastScreenIndex;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
@@ -157,6 +182,11 @@ struct Z_Construct_UClass_UIdleGameSave_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+void Z_Construct_UClass_UIdleGameSave_Statics::NewProp_bGameHasBeenStarted_SetBit(void* Obj)
+{
+	((UIdleGameSave*)Obj)->bGameHasBeenStarted = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_bGameHasBeenStarted = { "bGameHasBeenStarted", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UIdleGameSave), &Z_Construct_UClass_UIdleGameSave_Statics::NewProp_bGameHasBeenStarted_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bGameHasBeenStarted_MetaData), NewProp_bGameHasBeenStarted_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCivilizations_Inner = { "SavedCivilizations", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FS_CivilizationStructures, METADATA_PARAMS(0, nullptr) }; // 2612190472
 const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCivilizations = { "SavedCivilizations", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIdleGameSave, SavedCivilizations), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SavedCivilizations_MetaData), NewProp_SavedCivilizations_MetaData) }; // 2612190472
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCivilizationMapData_Inner = { "SavedCivilizationMapData", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FMapRow, METADATA_PARAMS(0, nullptr) }; // 3300761288
@@ -176,8 +206,11 @@ const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UIdleGameSave_S
 const UECodeGen_Private::FInt64PropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCurrentLevelMap_ValueProp = { "SavedCurrentLevelMap", nullptr, (EPropertyFlags)0x0000000000020001, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCurrentLevelMap_Key_KeyProp = { "SavedCurrentLevelMap_Key", nullptr, (EPropertyFlags)0x0000000000020001, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCurrentLevelMap = { "SavedCurrentLevelMap", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIdleGameSave, SavedCurrentLevelMap), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SavedCurrentLevelMap_MetaData), NewProp_SavedCurrentLevelMap_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedControlledRegions_Inner = { "SavedControlledRegions", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FS_RegionState, METADATA_PARAMS(0, nullptr) }; // 3714863697
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedControlledRegions = { "SavedControlledRegions", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIdleGameSave, SavedControlledRegions), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SavedControlledRegions_MetaData), NewProp_SavedControlledRegions_MetaData) }; // 3714863697
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedLastScreenIndex = { "SavedLastScreenIndex", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIdleGameSave, SavedLastScreenIndex), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SavedLastScreenIndex_MetaData), NewProp_SavedLastScreenIndex_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UIdleGameSave_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_bGameHasBeenStarted,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCivilizations_Inner,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCivilizations,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCivilizationMapData_Inner,
@@ -197,6 +230,8 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UIdleGame
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCurrentLevelMap_ValueProp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCurrentLevelMap_Key_KeyProp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedCurrentLevelMap,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedControlledRegions_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedControlledRegions,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UIdleGameSave_Statics::NewProp_SavedLastScreenIndex,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UIdleGameSave_Statics::PropPointers) < 2048);
@@ -240,10 +275,10 @@ UIdleGameSave::~UIdleGameSave() {}
 struct Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UIdleGameSave, UIdleGameSave::StaticClass, TEXT("UIdleGameSave"), &Z_Registration_Info_UClass_UIdleGameSave, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UIdleGameSave), 3059111070U) },
+		{ Z_Construct_UClass_UIdleGameSave, UIdleGameSave::StaticClass, TEXT("UIdleGameSave"), &Z_Registration_Info_UClass_UIdleGameSave, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UIdleGameSave), 3276549256U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_2359695005(TEXT("/Script/IdleGame"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_1035918008(TEXT("/Script/IdleGame"),
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameSave_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

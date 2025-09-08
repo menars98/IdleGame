@@ -126,6 +126,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Expansion")
 	bool ExpandInRegion(int32 RegionID, int32 PixelsToAdd);
 
+	UFUNCTION(BlueprintCallable, Category = "Expansion")
+	bool ClaimRandomTileInRegion(int32 RegionID);
+
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	void SetExpansionPaused(bool bIsPaused);
 

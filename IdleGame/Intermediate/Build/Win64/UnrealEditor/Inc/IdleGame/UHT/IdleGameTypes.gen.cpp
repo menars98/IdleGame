@@ -959,9 +959,15 @@ struct Z_Construct_UScriptStruct_FS_RegionData_Statics
 		{ "ToolTip", "In case we want to add a specific base production rate for this region later.\nFor now, it can be left at 0." },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_NeighboringRegionIDs_MetaData[] = {
+		{ "Category", "Region Data" },
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FTextPropertyParams NewProp_RegionName;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_BaseProductionRate;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_NeighboringRegionIDs_Inner;
+	static const UECodeGen_Private::FArrayPropertyParams NewProp_NeighboringRegionIDs;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static void* NewStructOps()
 	{
@@ -971,9 +977,13 @@ struct Z_Construct_UScriptStruct_FS_RegionData_Statics
 };
 const UECodeGen_Private::FTextPropertyParams Z_Construct_UScriptStruct_FS_RegionData_Statics::NewProp_RegionName = { "RegionName", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Text, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_RegionData, RegionName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RegionName_MetaData), NewProp_RegionName_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FS_RegionData_Statics::NewProp_BaseProductionRate = { "BaseProductionRate", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_RegionData, BaseProductionRate), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BaseProductionRate_MetaData), NewProp_BaseProductionRate_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FS_RegionData_Statics::NewProp_NeighboringRegionIDs_Inner = { "NeighboringRegionIDs", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FS_RegionData_Statics::NewProp_NeighboringRegionIDs = { "NeighboringRegionIDs", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_RegionData, NeighboringRegionIDs), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NeighboringRegionIDs_MetaData), NewProp_NeighboringRegionIDs_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FS_RegionData_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_RegionData_Statics::NewProp_RegionName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_RegionData_Statics::NewProp_BaseProductionRate,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_RegionData_Statics::NewProp_NeighboringRegionIDs_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_RegionData_Statics::NewProp_NeighboringRegionIDs,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FS_RegionData_Statics::PropPointers) < 2048);
 const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FS_RegionData_Statics::StructParams = {
@@ -1014,10 +1024,10 @@ struct Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_
 		{ FS_LiveResourceNode::StaticStruct, Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::NewStructOps, TEXT("S_LiveResourceNode"), &Z_Registration_Info_UScriptStruct_S_LiveResourceNode, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_LiveResourceNode), 1104059021U) },
 		{ FS_BuildingData::StaticStruct, Z_Construct_UScriptStruct_FS_BuildingData_Statics::NewStructOps, TEXT("S_BuildingData"), &Z_Registration_Info_UScriptStruct_S_BuildingData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_BuildingData), 43458023U) },
 		{ FS_RegionState::StaticStruct, Z_Construct_UScriptStruct_FS_RegionState_Statics::NewStructOps, TEXT("S_RegionState"), &Z_Registration_Info_UScriptStruct_S_RegionState, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_RegionState), 3714863697U) },
-		{ FS_RegionData::StaticStruct, Z_Construct_UScriptStruct_FS_RegionData_Statics::NewStructOps, TEXT("S_RegionData"), &Z_Registration_Info_UScriptStruct_S_RegionData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_RegionData), 345600469U) },
+		{ FS_RegionData::StaticStruct, Z_Construct_UScriptStruct_FS_RegionData_Statics::NewStructOps, TEXT("S_RegionData"), &Z_Registration_Info_UScriptStruct_S_RegionData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_RegionData), 285400636U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_1355258695(TEXT("/Script/IdleGame"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_1254740967(TEXT("/Script/IdleGame"),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::ScriptStructInfo),
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::EnumInfo));
