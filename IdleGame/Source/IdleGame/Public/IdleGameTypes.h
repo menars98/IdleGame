@@ -176,6 +176,8 @@ struct FS_BuildingData : public FTableRowBase
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     int32 RequiredRegionID = 0; // 0 = Global, 1,2,3... = Region-specific (for the Eiffel Tower)
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    int32 MaxLevel = 10;
 };
 
 USTRUCT(BlueprintType)

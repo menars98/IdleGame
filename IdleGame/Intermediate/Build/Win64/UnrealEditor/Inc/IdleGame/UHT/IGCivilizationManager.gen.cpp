@@ -1009,6 +1009,53 @@ DEFINE_FUNCTION(AIGCivilizationManager::execGetMapArray)
 }
 // End Class AIGCivilizationManager Function GetMapArray
 
+// Begin Class AIGCivilizationManager Function GetOwnedPixelCountInRegion
+struct Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics
+{
+	struct IGCivilizationManager_eventGetOwnedPixelCountInRegion_Parms
+	{
+		int32 RegionID;
+		int32 ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Map Query" },
+		{ "ModuleRelativePath", "Public/Managers/IGCivilizationManager.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FIntPropertyParams NewProp_RegionID;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::NewProp_RegionID = { "RegionID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(IGCivilizationManager_eventGetOwnedPixelCountInRegion_Parms, RegionID), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(IGCivilizationManager_eventGetOwnedPixelCountInRegion_Parms, ReturnValue), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::NewProp_RegionID,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AIGCivilizationManager, nullptr, "GetOwnedPixelCountInRegion", nullptr, nullptr, Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::PropPointers), sizeof(Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::IGCivilizationManager_eventGetOwnedPixelCountInRegion_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::Function_MetaDataParams), Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::IGCivilizationManager_eventGetOwnedPixelCountInRegion_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AIGCivilizationManager::execGetOwnedPixelCountInRegion)
+{
+	P_GET_PROPERTY(FIntProperty,Z_Param_RegionID);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(int32*)Z_Param__Result=P_THIS->GetOwnedPixelCountInRegion(Z_Param_RegionID);
+	P_NATIVE_END;
+}
+// End Class AIGCivilizationManager Function GetOwnedPixelCountInRegion
+
 // Begin Class AIGCivilizationManager Function GetOwnedTilesForSaving
 struct Z_Construct_UFunction_AIGCivilizationManager_GetOwnedTilesForSaving_Statics
 {
@@ -1106,13 +1153,7 @@ struct Z_Construct_UFunction_AIGCivilizationManager_GetRandomSpawnableLocation_S
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
 		{ "Category", "Map" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "// --- AUXILIARY FUNCTIONS FOR BLUEPRINT ---\n// --- GETTERS ---\n" },
-#endif
 		{ "ModuleRelativePath", "Public/Managers/IGCivilizationManager.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "--- AUXILIARY FUNCTIONS FOR BLUEPRINT ---\n--- GETTERS ---" },
-#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FStructPropertyParams NewProp_ReturnValue;
@@ -1238,6 +1279,59 @@ DEFINE_FUNCTION(AIGCivilizationManager::execGetRegionMap)
 	P_NATIVE_END;
 }
 // End Class AIGCivilizationManager Function GetRegionMap
+
+// Begin Class AIGCivilizationManager Function GetTotalPixelCountInRegion
+struct Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics
+{
+	struct IGCivilizationManager_eventGetTotalPixelCountInRegion_Parms
+	{
+		int32 RegionID;
+		int32 ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Map Query" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// --- AUXILIARY FUNCTIONS FOR BLUEPRINT ---\n// --- GETTERS ---\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Managers/IGCivilizationManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "--- AUXILIARY FUNCTIONS FOR BLUEPRINT ---\n--- GETTERS ---" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FIntPropertyParams NewProp_RegionID;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::NewProp_RegionID = { "RegionID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(IGCivilizationManager_eventGetTotalPixelCountInRegion_Parms, RegionID), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(IGCivilizationManager_eventGetTotalPixelCountInRegion_Parms, ReturnValue), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::NewProp_RegionID,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AIGCivilizationManager, nullptr, "GetTotalPixelCountInRegion", nullptr, nullptr, Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::PropPointers), sizeof(Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::IGCivilizationManager_eventGetTotalPixelCountInRegion_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::Function_MetaDataParams), Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::IGCivilizationManager_eventGetTotalPixelCountInRegion_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AIGCivilizationManager::execGetTotalPixelCountInRegion)
+{
+	P_GET_PROPERTY(FIntProperty,Z_Param_RegionID);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(int32*)Z_Param__Result=P_THIS->GetTotalPixelCountInRegion(Z_Param_RegionID);
+	P_NATIVE_END;
+}
+// End Class AIGCivilizationManager Function GetTotalPixelCountInRegion
 
 // Begin Class AIGCivilizationManager Function InitializeForNewGame
 struct Z_Construct_UFunction_AIGCivilizationManager_InitializeForNewGame_Statics
@@ -1762,11 +1856,13 @@ void AIGCivilizationManager::StaticRegisterNativesAIGCivilizationManager()
 		{ "GetCurrentColors", &AIGCivilizationManager::execGetCurrentColors },
 		{ "GetLiveResourceNodeData", &AIGCivilizationManager::execGetLiveResourceNodeData },
 		{ "GetMapArray", &AIGCivilizationManager::execGetMapArray },
+		{ "GetOwnedPixelCountInRegion", &AIGCivilizationManager::execGetOwnedPixelCountInRegion },
 		{ "GetOwnedTilesForSaving", &AIGCivilizationManager::execGetOwnedTilesForSaving },
 		{ "GetOwnedTilesMapSize", &AIGCivilizationManager::execGetOwnedTilesMapSize },
 		{ "GetRandomSpawnableLocation", &AIGCivilizationManager::execGetRandomSpawnableLocation },
 		{ "GetRegionIDAtLocation", &AIGCivilizationManager::execGetRegionIDAtLocation },
 		{ "GetRegionMap", &AIGCivilizationManager::execGetRegionMap },
+		{ "GetTotalPixelCountInRegion", &AIGCivilizationManager::execGetTotalPixelCountInRegion },
 		{ "InitializeForNewGame", &AIGCivilizationManager::execInitializeForNewGame },
 		{ "InitializeResourceNodes", &AIGCivilizationManager::execInitializeResourceNodes },
 		{ "IsLandAtCoordinates", &AIGCivilizationManager::execIsLandAtCoordinates },
@@ -1870,11 +1966,13 @@ struct Z_Construct_UClass_AIGCivilizationManager_Statics
 		{ &Z_Construct_UFunction_AIGCivilizationManager_GetCurrentColors, "GetCurrentColors" }, // 629015490
 		{ &Z_Construct_UFunction_AIGCivilizationManager_GetLiveResourceNodeData, "GetLiveResourceNodeData" }, // 1423761271
 		{ &Z_Construct_UFunction_AIGCivilizationManager_GetMapArray, "GetMapArray" }, // 754562781
+		{ &Z_Construct_UFunction_AIGCivilizationManager_GetOwnedPixelCountInRegion, "GetOwnedPixelCountInRegion" }, // 1878818298
 		{ &Z_Construct_UFunction_AIGCivilizationManager_GetOwnedTilesForSaving, "GetOwnedTilesForSaving" }, // 393333832
 		{ &Z_Construct_UFunction_AIGCivilizationManager_GetOwnedTilesMapSize, "GetOwnedTilesMapSize" }, // 1157306436
-		{ &Z_Construct_UFunction_AIGCivilizationManager_GetRandomSpawnableLocation, "GetRandomSpawnableLocation" }, // 4199980347
+		{ &Z_Construct_UFunction_AIGCivilizationManager_GetRandomSpawnableLocation, "GetRandomSpawnableLocation" }, // 4266633493
 		{ &Z_Construct_UFunction_AIGCivilizationManager_GetRegionIDAtLocation, "GetRegionIDAtLocation" }, // 1302815804
 		{ &Z_Construct_UFunction_AIGCivilizationManager_GetRegionMap, "GetRegionMap" }, // 111442957
+		{ &Z_Construct_UFunction_AIGCivilizationManager_GetTotalPixelCountInRegion, "GetTotalPixelCountInRegion" }, // 1192928109
 		{ &Z_Construct_UFunction_AIGCivilizationManager_InitializeForNewGame, "InitializeForNewGame" }, // 3412817330
 		{ &Z_Construct_UFunction_AIGCivilizationManager_InitializeResourceNodes, "InitializeResourceNodes" }, // 2574240842
 		{ &Z_Construct_UFunction_AIGCivilizationManager_IsLandAtCoordinates, "IsLandAtCoordinates" }, // 1412644913
@@ -1957,10 +2055,10 @@ struct Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_
 		{ FMapRow::StaticStruct, Z_Construct_UScriptStruct_FMapRow_Statics::NewStructOps, TEXT("MapRow"), &Z_Registration_Info_UScriptStruct_MapRow, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FMapRow), 3300761288U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AIGCivilizationManager, AIGCivilizationManager::StaticClass, TEXT("AIGCivilizationManager"), &Z_Registration_Info_UClass_AIGCivilizationManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AIGCivilizationManager), 1934942553U) },
+		{ Z_Construct_UClass_AIGCivilizationManager, AIGCivilizationManager::StaticClass, TEXT("AIGCivilizationManager"), &Z_Registration_Info_UClass_AIGCivilizationManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AIGCivilizationManager), 2439289699U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_3016894643(TEXT("/Script/IdleGame"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_1583000676(TEXT("/Script/IdleGame"),
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_Managers_IGCivilizationManager_h_Statics::ScriptStructInfo),
 	nullptr, 0);

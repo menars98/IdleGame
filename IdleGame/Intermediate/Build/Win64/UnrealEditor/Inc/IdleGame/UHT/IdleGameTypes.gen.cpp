@@ -759,6 +759,16 @@ struct Z_Construct_UScriptStruct_FS_BuildingData_Statics
 		{ "ToolTip", "Bonus amount (e.g., +5% Production)" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaxLevel_MetaData[] = {
+		{ "Category", "S_BuildingData" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// 0 = Global, 1,2,3... = Region-specific (for the Eiffel Tower)\n" },
+#endif
+		{ "ModuleRelativePath", "Public/IdleGameTypes.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "0 = Global, 1,2,3... = Region-specific (for the Eiffel Tower)" },
+#endif
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FTextPropertyParams NewProp_BuildingName;
 	static const UECodeGen_Private::FSoftObjectPropertyParams NewProp_Icon;
@@ -768,6 +778,7 @@ struct Z_Construct_UScriptStruct_FS_BuildingData_Statics
 	static const UECodeGen_Private::FEnumPropertyParams NewProp_ModifierType;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ModifierValue;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_RequiredRegionID;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_MaxLevel;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static void* NewStructOps()
 	{
@@ -783,6 +794,7 @@ const UECodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FS_Buildi
 const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FS_BuildingData_Statics::NewProp_ModifierType = { "ModifierType", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_BuildingData, ModifierType), Z_Construct_UEnum_IdleGame_E_ModifierType, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ModifierType_MetaData), NewProp_ModifierType_MetaData) }; // 4109729050
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FS_BuildingData_Statics::NewProp_ModifierValue = { "ModifierValue", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_BuildingData, ModifierValue), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ModifierValue_MetaData), NewProp_ModifierValue_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FS_BuildingData_Statics::NewProp_RequiredRegionID = { "RequiredRegionID", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_BuildingData, RequiredRegionID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RequiredRegionID_MetaData), NewProp_RequiredRegionID_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FS_BuildingData_Statics::NewProp_MaxLevel = { "MaxLevel", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FS_BuildingData, MaxLevel), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxLevel_MetaData), NewProp_MaxLevel_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FS_BuildingData_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_BuildingData_Statics::NewProp_BuildingName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_BuildingData_Statics::NewProp_Icon,
@@ -792,6 +804,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FS
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_BuildingData_Statics::NewProp_ModifierType,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_BuildingData_Statics::NewProp_ModifierValue,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_BuildingData_Statics::NewProp_RequiredRegionID,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FS_BuildingData_Statics::NewProp_MaxLevel,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FS_BuildingData_Statics::PropPointers) < 2048);
 const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FS_BuildingData_Statics::StructParams = {
@@ -1022,12 +1035,12 @@ struct Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_
 		{ FS_ResourceData::StaticStruct, Z_Construct_UScriptStruct_FS_ResourceData_Statics::NewStructOps, TEXT("S_ResourceData"), &Z_Registration_Info_UScriptStruct_S_ResourceData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_ResourceData), 2062978358U) },
 		{ FS_ResourceNodeLocation::StaticStruct, Z_Construct_UScriptStruct_FS_ResourceNodeLocation_Statics::NewStructOps, TEXT("S_ResourceNodeLocation"), &Z_Registration_Info_UScriptStruct_S_ResourceNodeLocation, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_ResourceNodeLocation), 2244829639U) },
 		{ FS_LiveResourceNode::StaticStruct, Z_Construct_UScriptStruct_FS_LiveResourceNode_Statics::NewStructOps, TEXT("S_LiveResourceNode"), &Z_Registration_Info_UScriptStruct_S_LiveResourceNode, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_LiveResourceNode), 1104059021U) },
-		{ FS_BuildingData::StaticStruct, Z_Construct_UScriptStruct_FS_BuildingData_Statics::NewStructOps, TEXT("S_BuildingData"), &Z_Registration_Info_UScriptStruct_S_BuildingData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_BuildingData), 43458023U) },
+		{ FS_BuildingData::StaticStruct, Z_Construct_UScriptStruct_FS_BuildingData_Statics::NewStructOps, TEXT("S_BuildingData"), &Z_Registration_Info_UScriptStruct_S_BuildingData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_BuildingData), 2222149013U) },
 		{ FS_RegionState::StaticStruct, Z_Construct_UScriptStruct_FS_RegionState_Statics::NewStructOps, TEXT("S_RegionState"), &Z_Registration_Info_UScriptStruct_S_RegionState, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_RegionState), 3714863697U) },
 		{ FS_RegionData::StaticStruct, Z_Construct_UScriptStruct_FS_RegionData_Statics::NewStructOps, TEXT("S_RegionData"), &Z_Registration_Info_UScriptStruct_S_RegionData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FS_RegionData), 285400636U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_1254740967(TEXT("/Script/IdleGame"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_1646142101(TEXT("/Script/IdleGame"),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::ScriptStructInfo),
 	Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_Statics::EnumInfo));

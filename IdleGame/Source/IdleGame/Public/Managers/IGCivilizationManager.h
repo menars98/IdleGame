@@ -66,6 +66,12 @@ public:
 
 	// --- AUXILIARY FUNCTIONS FOR BLUEPRINT ---
 	// --- GETTERS ---
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Map Query")
+	int32 GetTotalPixelCountInRegion(int32 RegionID) const;
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Map Query")
+	int32 GetOwnedPixelCountInRegion(int32 RegionID) const;
+
 	UFUNCTION(BlueprintCallable, Category = "Map")
 	FIntPoint GetRandomSpawnableLocation();
 

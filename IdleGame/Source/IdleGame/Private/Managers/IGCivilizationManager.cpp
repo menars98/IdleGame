@@ -884,6 +884,31 @@ void AIGCivilizationManager::UpdateCivilizationData(const TMap<int32, FColor>& C
     CurrentCivColors = CivColorMap;
 }
 
+int32 AIGCivilizationManager::GetTotalPixelCountInRegion(int32 RegionID) const
+{
+    if (AllPixelsPerRegion.Contains(RegionID))
+    {
+        return AllPixelsPerRegion[RegionID].Num();
+    }
+    return 1; 
+}
+
+int32 AIGCivilizationManager::GetOwnedPixelCountInRegion(int32 RegionID) const
+{
+	const int32 PlayerCivID = 1; //@TODO: Get PlayerCivID dynamically
+    if (!CivilizationOwnedTiles.Contains(PlayerCivID)) return 0;
+
+    int32 Count = 0;
+    for (const FIntPoint& Tile : CivilizationOwnedTiles[PlayerCivID])
+    {
+        if (RegionMap.IsValidIndex(Tile.Y) && RegionMap[Tile.Y].Row[Tile.X] == RegionID)
+        {
+            Count++;
+        }
+    }
+    return Count;
+}
+
 void AIGCivilizationManager::RebuildColorMap()
 {
     CurrentCivColors.Empty();

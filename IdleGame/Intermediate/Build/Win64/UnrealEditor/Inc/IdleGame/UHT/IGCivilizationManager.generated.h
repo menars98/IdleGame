@@ -63,6 +63,8 @@ template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FMapRow>();
 	DECLARE_FUNCTION(execGetCivilizationsData); \
 	DECLARE_FUNCTION(execGetRegionIDAtLocation); \
 	DECLARE_FUNCTION(execGetRandomSpawnableLocation); \
+	DECLARE_FUNCTION(execGetOwnedPixelCountInRegion); \
+	DECLARE_FUNCTION(execGetTotalPixelCountInRegion); \
 	DECLARE_FUNCTION(execUpdateCivilizationData); \
 	DECLARE_FUNCTION(execClaimTileForCivilization); \
 	DECLARE_FUNCTION(execStartExpansionTimer); \

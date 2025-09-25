@@ -60,14 +60,14 @@ template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_LiveResourceNode>(
 
 template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_BuildingData>();
 
-#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_184_GENERATED_BODY \
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_186_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FS_RegionState_Statics; \
 	IDLEGAME_API static class UScriptStruct* StaticStruct();
 
 
 template<> IDLEGAME_API UScriptStruct* StaticStruct<struct FS_RegionState>();
 
-#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_205_GENERATED_BODY \
+#define FID_Users_muham_Documents_GitHub_IdleGame_IdleGame_Source_IdleGame_Public_IdleGameTypes_h_207_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FS_RegionData_Statics; \
 	IDLEGAME_API static class UScriptStruct* StaticStruct(); \
 	typedef FTableRowBase Super;
