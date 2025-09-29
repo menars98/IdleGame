@@ -150,18 +150,7 @@ void AIGCivilizationManager::SetupMapFromTextures()
     {
         DynamicMapTexture->UpdateResource();
         FlushRenderingCommands();
-        OnDynamicTextureReady.Broadcast(DynamicMapTexture);
-        UE_LOG(LogTemp, Warning, TEXT("Map textures set up successfully."));
-        // To ensure that Texture does not start with “dirty” data from previous sessions,
-        // let's completely clear it when it is created.
-        CivilizationMap.SetNum(MapHeight);
-        for (int32 Y = 0; Y < MapHeight; Y++)
-        {
-            CivilizationMap[Y].Row.Init(-1, MapWidth);
-        }
-        CurrentCivColors.Empty(); // Renkleri de temizleyelim
-
-        RedrawEntireMap();
+        UE_LOG(LogTemp, Warning, TEXT("AIGCivilizationManager: Map textures set up successfully."));
     }
 }
 
@@ -214,6 +203,9 @@ void AIGCivilizationManager::InitializeForNewGame(const TArray<FS_CivilizationSt
 
     // 4. Find starting points
     FindAllSpawnableLocations();
+
+    // 5. Clear map
+    RedrawEntireMap();
 
     UE_LOG(LogTemp, Warning, TEXT("Manager Initialized for New Game. Color Map has %d entries. Ready for placement."), CurrentCivColors.Num());
 }
